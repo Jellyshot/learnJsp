@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Read</title>
+</head>
+<body>
+<%
+	request.setCharacterEncoding("UTF-8"); 
+	//parameter를 받을 때는 한글이 깨지는것을 막기 위해 무조건 적어주자.
+	String b_num = request.getParameter("b_num"); //Get방식에 의한 전송
+	out.print(b_num);
+%>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Read</title>
+</head>
+<body>
+<%
+	String b_num = request.getParameter("b_num"); //Get방식에 의한 전송
+%>
+</body>
+</html>

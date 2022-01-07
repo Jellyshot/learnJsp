@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	//자바문법 적용 영역. 줄바꿈은 웹의영역에서 되지 않기 때문에 println대신 print를 쓴다.
+	out.print("안녕하세요<br>"); 
+	out.print("웹프로그래밍 입니다" + "<br>");
+%>
+</body>
+</html>

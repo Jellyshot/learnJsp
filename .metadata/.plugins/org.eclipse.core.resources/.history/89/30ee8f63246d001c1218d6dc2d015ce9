@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%	
+	request.setCharacterEncoding("utf-8");
+	/* setCharacterEncoding: 한글일 경우 utf-8로 언어설정을 함.(영어는 관계없음) */
+	
+	String sname = request.getParameter("sname"); 
+	/* request : 클라이언트쪽에서 넘어오는 문자열 정보를 가져와 저장할수 있음.*/
+	out.print(sname + "<br");
+	
+	/* 어지간한 데이터베이스 및 정보 전달은 form으로 처리한다. */
+%>
+</body>
+</html>
