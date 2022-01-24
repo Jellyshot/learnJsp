@@ -14,7 +14,7 @@
 	String b_num = request.getParameter("b_num"); //Get방식에 의한 전송
 %>	
 	<h3>상세보기</h3>
-	<a href="./list.jsp">리스트</a><br><br>
+	<a href="./list.jsp">리스트로 돌아가기</a><br><br>
 <%	
 	/* 항상 이 3개의 객체는 전역변수로 선언해 놓아야 함. */
 	Connection conn = null; //접속 객체를 null값으로 생성 선언
@@ -50,7 +50,10 @@
 		/* 치환시키는 메서드를 사용하여, contents의 내용을 줄바꿈하도록 만들기 */
 		/* 기본적으로 우리가 웹에서 enter를 치면 \n이 기록되어 있다. 
 		html코드상에 줄바꿈은 br태그를 이용함으로 치환시킴*/
+		/* textarea는 엔터를 쳐서 다음줄 넘김이 가능하지만, 다른 입력요소들은 그게 불가능하므로
+		현재 view.jsp에서는 td안에 b_contents를 입력하므로, 엔터 입력을 <br>로 나타냄*/
 		b_contents = b_contents.replace("\n", "<br>");
+
 %>		
 		
 		<table border="1" style="border-collapse:collapse; margin:auto; width:80%">
