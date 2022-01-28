@@ -25,7 +25,7 @@ public class BoardServiceTest {
 		board = service.read(board);
 		log.info(board);
 	}
-	//@Test
+//	@Test
 	public void testGetList() {
 		//forEach구문에 인스턴스변수 board는 아무거나 넣어줘도 됨.
 		service.getList().forEach(board->log.info(board));

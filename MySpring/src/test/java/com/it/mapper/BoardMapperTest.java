@@ -25,14 +25,14 @@ public class BoardMapperTest {
 
 	
 //getList(리스트 타입의 데이터를 반환받음)
-	//@Test
+//	@Test
 	public void testGetList() {
 //forEach 구문으로 반복시켜 board라는 임시변수에 저장해서
 //log.info(board) board의 내용을 출력한다. 
 	mapper.getList().forEach(board -> log.info(board));
 	}
 	
-	//@Test
+//	@Test
 	public void testInsert() {
 		BoardVO board = new BoardVO();
 		board.setB_subject("게시판테스트");
@@ -43,12 +43,12 @@ public class BoardMapperTest {
 		mapper.insert(board);	
 	}
 	
-	//@Test
+//	@Test
 	public void testRead() {
 		//Read test의 값을 저장할 객체 생성
 		//글 num에 따른 값 출력
 		BoardVO board = new BoardVO();
-		board.setB_num(16);
+		board.setB_num(2);
 		// read method는 mapper에서 반환값을 지정했기 때문에, 반환값을 담을 객체 필요. 
 		// board에 덮어쓰기.
 		board = mapper.read(board);

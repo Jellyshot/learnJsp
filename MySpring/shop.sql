@@ -1,8 +1,51 @@
-use mysql;
+use webjava;
+
+/*
+-- mysql(오류)에서 데이터 독립시키기(데이터 이동)
+-- 1. webjava 데이터 베이스 생성
+create database webjava default character set utf8;
+
+-- 2.데이터 베이스 오픈(현재까지는 mysql에 저장)
+	show databases;  
+	use webjava; -- 데이터베이스를 webjava로 이동
+	
+-- 3. 유저 생성 및 암호 지정
+	grant all privileges on webjava.* to javauser@localhost identified by 'webjava';
+	/* 잠시 new MySQL disconnect 시키고 창닫음*/
+*/
+
+-- mysql에 있던 db 새로 만들기
+-- tblboard 테이블
+create table tblboard (
+ b_num int not null primary key AUTO_INCREMENT,
+ b_subject varchar(100) not null,
+ b_contents varchar(2000) not null,
+ b_name varchar(50) not null,
+ b_date datetime not null default sysdate()
+);
+
+select * from tblboard;
+INSERT INTO tblboard (b_subject, b_name, b_contents) VALUES ('제목이다','홍길동','jsp프로그래밍');
+
+-- tblnotice 테이블
+create table tblnotice (
+ n_num int not null primary key AUTO_INCREMENT,
+ n_subject varchar(100) not null,
+ n_contents varchar(2000) not null,
+ n_name varchar(50) not null,
+ n_date datetime not null default sysdate()
+);
+
+select * from tblnotice;
+INSERT INTO tblnotice (n_subject, n_name, n_contents) VALUES ('제목이다','홍길동','jsp프로그래밍');
+
+
+/* 쇼핑몰 구현 시작!*/
 
 -- 고객 테이블
 create table tblmember(	
 	m_id varchar(50) not null primary key, -- 아이디
+	m_passwd varchar(50) not null, -- 비밀번호
 	m_name varchar(50) not null, -- 성명
 	m_rdate datetime not null default sysdate(),
 	m_udate datetime not null default sysdate()
@@ -37,13 +80,12 @@ alter table tblcartmain auto_increment=1001;
 select * from tblcartmain;
 
 
-
 -- 장바구니 sub 테이블
 create table tblcartsub(
 	cs_code int not null primary key auto_increment,
 	cm_code int not null,
 	p_code int not null,
-	cs_cnt int not null, -- 구매수량
+	cs_cnt int not null,
 	cs_rdate datetime not null default sysdate(),
 	cs_udate datetime not null default sysdate(),
 	foreign key (cm_code) references tblcartmain(cm_code),
@@ -82,19 +124,21 @@ create table tblordersub(
 alter table tblordersub auto_increment=1001;
 
 
-/*-- 전체 테이블 삭제(문제 발생시)
+-- 전체 테이블 삭제(문제 발생시)
 drop table tblordersub;
 drop table tblordermain;
 drop table tblcartsub;
 drop table tblcartmain;
 drop table tblproduct;
 drop table tblmember;
-*/
+
+show tables;
+
 
 -- 회원등록
-insert into tblmember (m_id, m_name) values('tiger', '호랑이');
-insert into tblmember (m_id, m_name) values('lion', '김삿갓');
-insert into tblmember (m_id, m_name) values('rabbit', '정토끼');
+insert into tblmember (m_id, m_name, m_passwd) values('tiger', '호랑이', '1234');
+insert into tblmember (m_id, m_name, m_passwd) values('lion', '김삿갓', '1234');
+insert into tblmember (m_id, m_name, m_passwd) values('rabbit', '정토끼', '1234');
 select * from tblmember;
 
 -- 제품등록
@@ -220,6 +264,10 @@ select * from tblordersub os, tblordermain om
 where om.om_code = (select om_code from tblordermain where m_id = 'tiger' order by om_code desc limit 1)
 
 
+------------------------------------------------------------
+use webjava;
+
+select * from tblmember;
 
 
 
