@@ -7,10 +7,12 @@
 	<title>Home</title>
 </head>
 <body>
+<p><a href="/member/logout">로그아웃</a></p>
 <h1>
 	Hello world!  
 </h1>
 
-<P>  숙제Home The time on the server is ${serverTime}. </P>
+<P>  숙제 Home The time on the server is ${serverTime}. </P>
+<p>  사용자 아이디 : ${m_id}</p>
 </body>
 </html>

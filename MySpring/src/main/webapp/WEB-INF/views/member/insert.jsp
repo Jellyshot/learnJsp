@@ -17,6 +17,10 @@
 	<div class="col-sm-6 mb-3 mb-sm-0">
 	<input type="text" class="form-control form-control-user" name="m_name" placeholder="Name">
 	</div><br>
+	
+	<div class="col-sm-6 mb-3 mb-sm-0">
+	<input type="password" class="form-control form-control-user" name="m_passwd" placeholder="Password">
+	</div><br>
 
 	<button type="submit" class="btn btn-primary btn-user btn-block">회원등록</button>
 </form>

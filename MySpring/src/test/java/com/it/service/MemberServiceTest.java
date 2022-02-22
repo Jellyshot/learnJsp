@@ -29,7 +29,7 @@ public class MemberServiceTest {
 		MemberVO member = new MemberVO();
 		member.setM_id("duck");
 		member.setM_passwd("123");
-		service.auth(member); //MemberServiceimpl에 이미 true, false값을 출력하므로 따로 log는 처리하지 않음
+		service.auth(member); // MemberServiceimpl에 이미 true, false값을 출력하므로 따로 log는 처리하지 않음
 	}
 //	@Test
 	public void testGetList() {

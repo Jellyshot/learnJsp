@@ -5,8 +5,16 @@
     <fullyQualifiedTypeName name="com.it.domain.BoardVO"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="com.it.domain.NoticeVO"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="lombok.Setter"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="com.it.domain.MemberVO"/>
+    <fullyQualifiedTypeName name="com.it.domain.ProductVO"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="org.apache.commons.fileupload.FileItem"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="com.it.domain.CartmainVO"/>
+    <fullyQualifiedTypeName name="com.it.domain.CartsubVO"/>
+    <fullyQualifiedTypeName name="com.it.domain.CartmemberDTO"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.it.service.OrderService"/>
 </qualifiedTypeNameHistroy>

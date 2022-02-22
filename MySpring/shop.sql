@@ -1,4 +1,5 @@
 use webjava;
+use mysql;
 
 /*
 -- mysql(오류)에서 데이터 독립시키기(데이터 이동)
@@ -132,8 +133,19 @@ drop table tblcartmain;
 drop table tblproduct;
 drop table tblmember;
 
+select * from tblmember;
+select * from tblcartmain;
+select * from tblcartsub;
+select * from tblordermain;
+select * from tblordersub;
+select * from tblproduct;
 show tables;
 
+-- 테이블 데이터 삭제(장바구니 및 구매내역 비움)
+delete from tblordersub;
+delete from tblordermain;
+delete from tblcartsub;
+delete from tblcartmain;
 
 -- 회원등록
 insert into tblmember (m_id, m_name, m_passwd) values('tiger', '호랑이', '1234');
@@ -268,6 +280,10 @@ where om.om_code = (select om_code from tblordermain where m_id = 'tiger' order 
 use webjava;
 
 select * from tblmember;
+
+select * from tblcartsub where cm_code = 1007;
+
+show tables;
 
 
 

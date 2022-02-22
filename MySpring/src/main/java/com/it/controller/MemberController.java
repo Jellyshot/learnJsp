@@ -1,5 +1,7 @@
 package com.it.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -108,5 +110,40 @@ public class MemberController {
 		service.delete(Member);
 		return "redirect:/member/list";
 	}
+	
+//	------------------------- 로그인 -----------------------------
+	@GetMapping("/login") 
+	public void login() {
+//		로그인 페이지(form) 호출
+	}
+	
+	@PostMapping("/login")
+	public void login(MemberVO member, HttpSession session) {
+// 💡 HttpSession : php에서 session start 같은거인듯. 이제 세션 변수 만들거야! 이런거
+		
+		log.info(member);
+//		체크라는 변수에 auth 메서드를 실행시키는것을 저장함
+		boolean chk = service.auth(member);
+
+		if(chk == true) {
+			member = service.read(member); 
+			// member에는 login창에서 post로 받은 값이들어있는데, service에서 만든 read method는 아이디값을 받아 해당 아이디값의 정보를 읽어옴. 여기서 name값을 받아 session 처리함.
+			session.setAttribute("m_id", member.getM_id());
+			session.setAttribute("m_name", member.getM_name());
+			//"m_id"라는 변수명으로 member에 담긴 정보 중 m_id를 세션 값으로 지정하는 변수를 생성함
+			// 기본적으로 SESSION값은 30분동안 유지됨.			
+			log.info("로그인 성공");
+			
+		}else {
+			log.info("로그인 실패");
+		}
+	} // 로그인창을 통해 입력된 form 데이터 처리를 함.
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate(); //세션 unset
+		return "redirect:/";
+	}
+	
 	
 }

@@ -25,6 +25,7 @@
 					<thead>
 						<tr>
 							<td>아이디</td>
+							<td>비밀번호</td>
 							<td>이름</td>
 							<td>가입일</td>
 							<td>정보수정일</td>
@@ -37,6 +38,7 @@
 						<c:forEach items="${list}" var="member">
 							<tr>
 								<td>${member.m_id}</td>
+								<td>${member.m_passwd}</td>
 	<!-- ------글의 수정과 삭제를 위한 view page 링크를 name에 지정. 이후 Controller로 돌아가 역할설정-------- -->
 								<td><a href="/member/view?m_id=${member.m_id}">${member.m_name}</a></td>
 				<!-- 작성일 부분은 길어지기 때문에 formating 실시 -->
