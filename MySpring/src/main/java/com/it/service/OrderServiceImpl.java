@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.it.domain.CartmainVO;
 import com.it.domain.CartsubVO;
+import com.it.domain.OrderdetailDTO;
 import com.it.domain.OrdermainVO;
+import com.it.domain.OrdermemberDTO;
 import com.it.domain.OrdersubVO;
 import com.it.mapper.CartMapper;
 import com.it.mapper.OrderMapper;
@@ -28,7 +30,7 @@ public class OrderServiceImpl implements OrderService{
 	
 	
 	@Override
-	public void orderproce(CartmainVO cartmain) {
+	public OrdermainVO orderproce(CartmainVO cartmain) {
 //	orderprocedure에서 진행할것
 //		1. ordermain insert
 			OrdermainVO ordermain = new OrdermainVO();
@@ -53,7 +55,28 @@ public class OrderServiceImpl implements OrderService{
 //			cs_code로 cartsub를 지우고
 //		6. cartmain삭제
 		 	cartmapper.deleteMain(cartmain);
-			
-				
+//	 	7. 장바구니에 보내줄 om_code정보 return
+		 	
+		 	return ordermain;
 	}
+	
+	
+	@Override
+	public List<OrderdetailDTO> getListOrderDetail(OrdermainVO ordermain){
+	//omcode를 받아 product테이블과 ordersub를 조인시켜 반환하는 쿼리		
+			return ordermapper.getListOrderDetail(ordermain);
+	}
+	
+	@Override
+	public OrdermainVO readMainid(OrdermainVO ordermain) {
+		return ordermapper.readMainid(ordermain);
+	}
+	
+	@Override
+	public OrdermemberDTO getOrderTotal(OrdermainVO ordermain) {
+		return ordermapper.getOrderTotal(ordermain);
+	}
+	
+	
+	
 }

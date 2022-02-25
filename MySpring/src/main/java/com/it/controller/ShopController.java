@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.it.domain.CartmainVO;
 import com.it.domain.CartmemberDTO;
 import com.it.domain.CartsubVO;
+import com.it.domain.OrdermainVO;
+import com.it.domain.OrdermemberDTO;
 import com.it.service.CartService;
 import com.it.service.MemberService;
 import com.it.service.OrderService;
@@ -147,12 +149,38 @@ public class ShopController {
 	
 	@GetMapping("/orderinfo")
 	public String orderinfo(HttpSession session, CartmainVO cartmain, Model model) {
+		//1. 로그인 확인 후		
 		String m_id = (String)session.getAttribute("m_id");
-		cartmain.setM_id(m_id);
-		orderservice.orderproce(cartmain);
-		model.addAttribute("list", ordermain);
-		return "/shop/orderinfo";  
-		// 여기서 redirect:를 쓰게 되면, Controller를 재실행하고 다시 여기로 내려와서 또 컨트롤러를 재시작하면서 무한루프의 늪에 빠짐 ^^  
+		String m_name = (String)session.getAttribute("m_name");
+		//2. 로그인 중이면		
+		if(m_id != null) {
+			cartmain.setM_id(m_id);
+			OrdermainVO ordermain = orderservice.orderproce(cartmain);
+			
+			//orderinfo.jsp에 내용을 전달함. ordersub의 내용이 저장되어 있는 변수 생성
+			//요기는 내가 해본거. 이렇게 해도 되긴함.			
+			//OrdermainVO ordermain = new OrdermainVO();
+			//ordermain.setM_id(m_id);
+			//ordermain = orderservice.readMainid(ordermain);
+			
+			model.addAttribute("list", orderservice.getListOrderDetail(ordermain));
+			// 여기서 redirect:를 쓰게 되면, Controller를 재실행하고 다시 여기로 내려와서 또 컨트롤러를 재시작하면서 무한루프의 늪에 빠짐 ^^ 
+			
+			OrdermemberDTO ordertotal = orderservice.getOrderTotal(ordermain);
+//			log.info(ordertotal); 
+			ordertotal.setM_id(m_id);
+			ordertotal.setM_name(m_name);
+			ordertotal.setOm_code(ordermain.getOm_code());
+			model.addAttribute("ordertotal", ordertotal);
+			
+			log.info("---구매가 완료되었습니다---");
+			
+			return "/shop/orderinfo";  
+			
+		}else {
+		//3. 로그인한 상태가 아니면
+			return "/member/login";
+		}
 	}
 	
 	

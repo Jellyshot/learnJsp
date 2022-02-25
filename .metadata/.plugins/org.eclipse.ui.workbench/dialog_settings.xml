@@ -12,12 +12,19 @@
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_SIZE" value="true"/>
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_LOCATION" value="false"/>
 		<list key="orderedElements">
+			<item value="/MySpring/src/main/java/com/it/controller/BoardController.java"/>
+			<item value="/MySpring/src/main/java/com/it/service/BoardServiceImpl.java"/>
+			<item value="/MySpring/src/main/java/com/it/service/BoardService.java"/>
+			<item value="/MySpring/src/main/java/com/it/mapper/BoardMapper.java"/>
 			<item value="/MySpring/shop.sql"/>
+			<item value="/MySpring/src/test/java/com/it/service/BoardServiceTest.java"/>
+			<item value="/MySpring/src/test/java/com/it/mapper/BoardMapperTest.java"/>
+			<item value="BoardMapperTest/run"/>
 			<item value="/MySpring/src/main/java/com/it/service/CartServiceImpl.java"/>
 			<item value="/MySpring/src/main/java/com/it/mapper/CartMapper.java"/>
-			<item value="/MySpring/src/main/java/com/it/service/OrderService.java"/>
-			<item value="org.eclipse.jdt.ui.CompilationUnitEditorMySpring/src/main/java/com/it/service/OrderServiceImpl.java"/>
+			<item value="/MySpring/src/main/java/com/it/domain/OrdermemberDTO.java"/>
 			<item value="/MySpring/src/main/resources/com/it/mapper/CartMapper.xml"/>
+			<item value="/MySpring/src/main/java/com/it/service/OrderService.java"/>
 			<item value="/MySpring/src/main/java/com/it/controller/MemberController.java"/>
 			<item value="org.eclipse.wst.server.ui.ServersView"/>
 			<item value="Tomcat v9.0 Server at localhost/run"/>
@@ -29,7 +36,14 @@
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
-			<item value="org.eclipse.ui.editors"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.debug.ui/org.eclipse.debug.internal.ui.quickaccess.RunQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.e4.ui.parts"/>
@@ -38,8 +52,15 @@
 			<item value="org.eclipse.e4.ui.parts"/>
 		</list>
 		<list key="textEntries">
+			<item value="2"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
 			<item value="3"/>
 			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="3"/>
 			<item value="1"/>
 			<item value="1"/>
 			<item value="1"/>
@@ -51,14 +72,24 @@
 			<item value="2"/>
 		</list>
 		<list key="textArray">
+			<item value="boardcon"/>
+			<item value="boardcont"/>
+			<item value="boardser"/>
+			<item value="boardse"/>
+			<item value="boardma"/>
 			<item value="shop."/>
-			<item value="shop"/>
 			<item value="sql"/>
+			<item value="shop"/>
+			<item value="boardservice"/>
+			<item value="boardm"/>
+			<item value="mapper"/>
 			<item value="carts"/>
+			<item value="cartser"/>
+			<item value="cartse"/>
+			<item value="cartma"/>
+			<item value="orderme"/>
 			<item value="cartmapper"/>
 			<item value="orderser"/>
-			<item value="orderse"/>
-			<item value="cartma"/>
 			<item value="memberc"/>
 			<item value="server"/>
 			<item value="tomcat"/>

@@ -6,6 +6,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.it.domain.BoardVO;
+import com.it.domain.PageDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -28,8 +29,9 @@ public class BoardMapperTest {
 //	@Test
 	public void testGetList() {
 //forEach 구문으로 반복시켜 board라는 임시변수에 저장해서
-//log.info(board) board의 내용을 출력한다. 
-	mapper.getList().forEach(board -> log.info(board));
+//log.info(board) board의 내용을 출력한다.
+	PageDTO page = new PageDTO(2,10);
+	mapper.getList(page).forEach(board -> log.info(board));
 	}
 	
 //	@Test

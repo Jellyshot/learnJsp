@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.it.domain.BoardVO;
+import com.it.domain.PageDTO;
+import com.it.domain.PageviewDTO;
 import com.it.service.BoardService;
 
 import lombok.Setter;
@@ -27,7 +29,7 @@ public class BoardController {
 
 	@Setter(onMethod_ = @Autowired)
 	private BoardService service;
-
+	
 
 	
 	
@@ -35,14 +37,27 @@ public class BoardController {
 //	process 파일 따로 필요 없이 controller에서 처리한다. jsp파일은 폼 부분만 있으면 됨.
 // ---------------------   Read  ------------------------------
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(Model model, PageDTO page) {
 		// Model : jsp로 데이터를 전달해주는 Controller 내장 객체. 주로 VO객체를 저장함.
 		// Tomcat 실행.
 		// board 폴더로 가서 list.jsp 를 만들어 줌 그럼 이제 list.jsp로 가게됨.
 		// model의 속성인 addAttribute를 사용하여 list라는 인스턴스변수에 getList한 데이터를 list.jsp에 전달
-		model.addAttribute("list", service.getList());
+		model.addAttribute("list", service.getList(page));
 		// list.jsp에서는 item="${list}"로 내용을 받음.
+		
+		
+		// --- 페이지네이션 ---
+			int total = service.getTotalCount(); //전체 레코드 갯수
+		//pageDTO를 타고 넘어오는 pageNum을 이용하여 정보를 jsp로 넘겨줌
+			PageviewDTO pageview = new PageviewDTO(page, total);
+			//파라미터로 page, total을 받으니까 list를 통해 넘어온 정보들을 따로 set해주지 않아도 가지고 있음.
+			model.addAttribute("pageview", pageview);
+			
 	}
+	
+	
+	
+	
 	
 // ---------------------- Create -------------------------------
 	@GetMapping("/insert")

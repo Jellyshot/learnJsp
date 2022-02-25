@@ -1,5 +1,8 @@
 package com.it.domain;
 
+import lombok.Data;
+
+@Data
 public class OrderdetailDTO {
 
 	private int os_code;

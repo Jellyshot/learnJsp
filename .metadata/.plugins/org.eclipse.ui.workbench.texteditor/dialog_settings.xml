@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="order"/>
+		<item key="selection" value="os"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="cs"/>
+			<item value="dto"/>
 			<item value="cartinfo"/>
 			<item value="update"/>
 			<item value="product"/>
 			<item value="&#x09;&#x09;&#x09;&#x09;&#x09;&lt;thead&gt;"/>
 			<item value="items"/>
 			<item value="회원"/>
-			<item value="member"/>
-			<item value="m_"/>
 		</list>
 		<list key="replacehistory">
+			<item value="os"/>
 			<item value="cartsub"/>
 			<item value="상품"/>
 			<item value="product"/>

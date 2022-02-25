@@ -11,7 +11,6 @@
 	<!-- Page Section -->
 	<div class="card shadow mb-4">
 	
-		<!-- 상품등록 버튼 -->
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">
 				<a href="/shop/list">상품목록</a>
@@ -40,10 +39,11 @@
 								<td>${ordersub.p_code}</td>
 								<td>${ordersub.p_name}</td>
 								<td><img alt="정보없음" src="/resources/product/${ordersub.p_code}.jpg" height="100"></td>
-				<!-- 작성일 부분은 길어지기 때문에 formating 실시 -->
+				<!-- 가격부분에 formating 실시 -->
 								<td><fmt:formatNumber value="${ordersub.p_price}" pattern="###,###"/></td>
-								<td>${ordersub.cs_cnt}</td>
+								<td>${ordersub.os_cnt}</td>
 								<td><fmt:formatNumber value="${ordersub.os_money}" pattern="###,###" /></td>
+								
 							</tr>
 						</c:forEach>
 					</tbody>

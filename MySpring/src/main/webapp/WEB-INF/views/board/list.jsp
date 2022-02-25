@@ -46,8 +46,22 @@
 								<!-- 작성일 부분은 길어지기 때문에 formating 실시 -->
 							</tr>
 						</c:forEach>
+						
+						<!-- ----------- 페이지네이션 ------------- -->
 					</tbody>
 				</table>
+						
+					<div align="center">							
+								<c:forEach var="num" begin="${pageview.startPage}" end="${pageview.endPage}"> 
+									<a href="#">[${num}]</a>&nbsp;&nbsp;
+								</c:forEach>
+					</div>				
+						
+						
+				
+						
+						
+						
 			</div>
 		</div>
 	</div>

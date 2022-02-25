@@ -15,6 +15,7 @@
     <fullyQualifiedTypeName name="com.it.domain.CartsubVO"/>
     <fullyQualifiedTypeName name="com.it.domain.CartmemberDTO"/>
     <fullyQualifiedTypeName name="lombok.Setter"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.it.service.OrderService"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.lang.Math"/>
 </qualifiedTypeNameHistroy>

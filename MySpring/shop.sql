@@ -276,7 +276,7 @@ select * from tblordersub os, tblordermain om
 where om.om_code = (select om_code from tblordermain where m_id = 'tiger' order by om_code desc limit 1)
 
 
-------------------------------------------------------------
+-- ----------------------------------------------------------
 use webjava;
 
 select * from tblmember;
@@ -286,4 +286,11 @@ select * from tblcartsub where cm_code = 1007;
 show tables;
 
 
+-- ------------ 글 다량 추가 하기 -----------------
 
+insert into tblboard (b_subject, b_contents, b_name) 
+	select b_subject, b_contents, b_name from tblboard;
+	
+select count(*) from tblboard;
+
+select * from tblboard order by b_num desc limit 10 ;

@@ -4,11 +4,12 @@ import java.util.List;
 
 //List를 사용하려면 util을 import 해주어야함.
 import com.it.domain.BoardVO;
+import com.it.domain.PageDTO;
 
 
 public interface BoardMapper {
-//	BoardVO만 들어갈 수 있는  List생성
-	public List<BoardVO> getList();
+//	BoardVO만 들어갈 수 있는  List생성(2022-02-25 페이지네이션을 위해 파라미터를 PageDTO로 받게끔 설정하였음)
+	public List<BoardVO> getList(PageDTO page);
 // 멤버변수가 공란이기 때문에 #기호를 사용할 수 없음.
 // 나중에 compile을 다시 하지 않기 위해서 BoardMapper.xml과 인터페이스 파일을 따로 만듬.
 // 수정이 필요할 경우 xml만 수정하면 되므로.
@@ -28,4 +29,7 @@ public interface BoardMapper {
 //num로 삭제를 하고 #으로 값을 받을 수 있게 하기 위한 구문 작성.
 	public void delete(BoardVO board);
 	
+	
+// -------   pagenation을 위한 코드 -------
+	public int getTotalCount();
 }
