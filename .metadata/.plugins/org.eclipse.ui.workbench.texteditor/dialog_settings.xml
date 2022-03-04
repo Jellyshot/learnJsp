@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="notice"/>
+		<item key="selection" value="aspect"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="b_"/>
-			<item value="board"/>
-			<item value="cs"/>
-			<item value="dto"/>
-			<item value="cartinfo"/>
-			<item value="update"/>
-			<item value="product"/>
-			<item value="&#x09;&#x09;&#x09;&#x09;&#x09;&lt;thead&gt;"/>
+			<item value="fileupload"/>
+			<item value="javax.servlet"/>
+			<item value="aspect"/>
+			<item value="junit"/>
+			<item value="log4j"/>
+			<item value="aspectj"/>
+			<item value="compilerArg"/>
+			<item value="plug"/>
 		</list>
 		<list key="replacehistory">
 			<item value="notice"/>

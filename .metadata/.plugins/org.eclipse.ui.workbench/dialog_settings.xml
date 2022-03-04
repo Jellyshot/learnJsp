@@ -12,8 +12,8 @@
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_SIZE" value="true"/>
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_LOCATION" value="false"/>
 		<list key="orderedElements">
-			<item value="/MySpring/src/main/java/com/it/domain/PageviewDTO.java"/>
 			<item value="/MySpring/shop.sql"/>
+			<item value="/MySpring/src/main/java/com/it/domain/PageviewDTO.java"/>
 			<item value="/MySpring/src/main/java/com/it/controller/BoardController.java"/>
 			<item value="/MySpring/src/main/java/com/it/service/BoardServiceImpl.java"/>
 			<item value="/MySpring/src/main/java/com/it/service/BoardService.java"/>
@@ -54,8 +54,8 @@
 			<item value="org.eclipse.e4.ui.parts"/>
 		</list>
 		<list key="textEntries">
-			<item value="2"/>
 			<item value="3"/>
+			<item value="2"/>
 			<item value="2"/>
 			<item value="1"/>
 			<item value="1"/>
@@ -75,11 +75,11 @@
 			<item value="2"/>
 		</list>
 		<list key="textArray">
-			<item value="pageview"/>
-			<item value="page"/>
 			<item value="shop."/>
 			<item value="sql"/>
 			<item value="shop"/>
+			<item value="pageview"/>
+			<item value="page"/>
 			<item value="boardcon"/>
 			<item value="boardcont"/>
 			<item value="boardser"/>
