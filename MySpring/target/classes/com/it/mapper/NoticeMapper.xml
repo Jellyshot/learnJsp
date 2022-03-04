@@ -11,6 +11,7 @@
 <!-- 2. NoticeVO가 반환값인 getList 생성자의 내용 정의-->
 <select id="getList" resultType="com.it.domain.NoticeVO">
 	SELECT * FROM tblnotice order by n_num desc
+		limit #{pageAmount} offset ${(pageNum-1) * pageAmount}
 </select>
 
 
@@ -41,4 +42,11 @@
 <delete id="delete">
 	DELETE FROM tblnotice WHERE n_num = #{n_num} 
 </delete>
+
+
+
+<!--  7. 페이지네이션을 위한 총 게시글 수 구하는 mapper추가 -->
+<select id="getTotalCount" resultType="int">
+	SELECT COUNT(n_num) FROM tblnotice
+</select> 
 </mapper>

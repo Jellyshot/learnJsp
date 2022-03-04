@@ -29,20 +29,46 @@
 			</tr>
 		</thead>
 	
-<!--  ----- board Read 부분. Controller에서 getList로 받은 "list"에 담긴 데이터를 forEach구문으로 하나씩 뽑아내 notice 변수에 하나씩 덮어쓰기함 ----- -->
+<!--  ----- notice Read 부분. Controller에서 getList로 받은 "list"에 담긴 데이터를 forEach구문으로 하나씩 뽑아내 notice 변수에 하나씩 덮어쓰기함 ----- -->
 		<tbody>
 		<c:forEach items="${list}" var="notice">
 			<tr>
-			<td>${notice.b_num}</td>
+			<td>${notice.n_num}</td>
 <!-- ----- 제목에 view 링크를 걸어주어서 수정과 삭제를 view페이지에서 할 수 있도록 함.  ----- -->
-			<td><a href="/notice/view?b_num=${notice.b_num}">${notice.b_subject}</a></td>
-			<td>${notice.b_name}</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.b_date}" /></td>
+			<td><a href="/notice/view?n_num=${notice.n_num}&pageNum=${pageview.page.pageNum}">${notice.n_subject}</a></td>
+			<td>${notice.n_name}</td>
+			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.n_date}" /></td>
 			<!-- 작성일 부분은 길어지기 때문에 formating 실시 -->
 			</tr>
 		</c:forEach>
 		</tbody>
 		</table>
+		
+		<!-- ----------- 페이지네이션 ------------- -->
+					<div align="center">
+					
+							<c:if test="${pageview.prev}">
+								<a href="/notice/list?pageNum=1">[<<]</a>&nbsp;&nbsp;
+								<a href="/notice/list?pageNum=${pageview.startPage-1}">[Prev]</a>&nbsp;&nbsp;
+							</c:if>
+												
+							<c:forEach var="num" begin="${pageview.startPage}" end="${pageview.endPage}"> 
+								<c:if test="${pageview.page.pageNum == num}">
+									<b><a href="/notice/list?pageNum=${num}" style="color:black">[${num}]</a></b>&nbsp;&nbsp;
+								</c:if>
+								<c:if test="${pageview.page.pageNum != num}">
+								<a href="/notice/list?pageNum=${num}">[${num}]</a>&nbsp;&nbsp;
+								</c:if>
+							</c:forEach>
+								
+							<c:if test="${pageview.next}">
+								<a href="/notice/list?pageNum=${pageview.endPage+1}">[Next]</a>&nbsp;&nbsp;
+								<a href="/notice/list?pageNum=${pageview.realend}">[>>]</a>&nbsp;&nbsp;
+							</c:if>
+							
+					</div>
+					
+					
 		</div>
 	</div>
 	</div>

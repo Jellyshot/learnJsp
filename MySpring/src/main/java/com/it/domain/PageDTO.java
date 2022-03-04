@@ -16,9 +16,11 @@ public class PageDTO {
 		this(1,10);
 	}
 	
-	//해당 변수들에 값이 있으면, 그 값을 저장하는 생성자.	
+	
+	//해당 변수들에 값이 있으면, 그 값을 저장하는 생성자. 정보가 항상 생성되도록 만듬!	
 	public PageDTO(int pageNum, int pageAmount) {
 		this.pageNum = pageNum;
 		this.pageAmount = pageAmount;
+		
 	}
 }

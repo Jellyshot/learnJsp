@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.it.domain.NoticeVO;
+import com.it.domain.PageDTO;
+import com.it.domain.PageviewDTO;
 import com.it.service.NoticeService;
 
 import lombok.Setter;
@@ -33,8 +35,13 @@ public class NoticeController {
 //	Model: jsp로 데이터를 전달해 주는 내장객체로 주로 VO객체를 저장함.
 
 	@GetMapping("/list")
-	public void list(Model model) {
-		model.addAttribute("list", service.getList());
+	public void list(Model model, PageDTO page) {
+		model.addAttribute("list", service.getList(page));
+
+	//페이지네이션
+		int total = service.getTotalCount();
+		PageviewDTO pageview = new PageviewDTO(page, total);
+		model.addAttribute("pageview", pageview);
 	}
 
 // ---------- Create ----------

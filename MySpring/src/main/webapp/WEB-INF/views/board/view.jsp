@@ -10,7 +10,7 @@
 	<h1>게시글 상세보기</h1>
 	<p></p>
 	<h6 class="m-0 font-weight-bold text-primary">
-		<a href="/board/list">게시판 리스트로</a>
+		<a href="/board/list?pageNum=${page.pageNum}">게시판 리스트로</a>
 	</h6>
 	</header>
 	<br>
@@ -41,7 +41,7 @@
 			value="${board.b_date}" readonly>
 	</div><br>
 	<div class=btn>
-	<a href="/board/update?b_num=${board.b_num}" class="btn btn-primary btn-lg">[수정]</a>
+	<a href="/board/update?b_num=${board.b_num}&pageNum=${page.pageNum}" class="btn btn-primary btn-lg">[수정]</a>
 	<a href="/board/delete?b_num=${board.b_num}" class="btn btn-primary btn-lg">[삭제]</a>
 	</div>
 </div>

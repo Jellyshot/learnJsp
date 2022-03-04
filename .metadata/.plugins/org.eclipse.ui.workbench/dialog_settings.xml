@@ -12,11 +12,12 @@
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_SIZE" value="true"/>
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_LOCATION" value="false"/>
 		<list key="orderedElements">
+			<item value="/MySpring/src/main/java/com/it/domain/PageviewDTO.java"/>
+			<item value="/MySpring/shop.sql"/>
 			<item value="/MySpring/src/main/java/com/it/controller/BoardController.java"/>
 			<item value="/MySpring/src/main/java/com/it/service/BoardServiceImpl.java"/>
 			<item value="/MySpring/src/main/java/com/it/service/BoardService.java"/>
 			<item value="/MySpring/src/main/java/com/it/mapper/BoardMapper.java"/>
-			<item value="/MySpring/shop.sql"/>
 			<item value="/MySpring/src/test/java/com/it/service/BoardServiceTest.java"/>
 			<item value="/MySpring/src/test/java/com/it/mapper/BoardMapperTest.java"/>
 			<item value="BoardMapperTest/run"/>
@@ -39,6 +40,7 @@
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.debug.ui/org.eclipse.debug.internal.ui.quickaccess.RunQuickAccessComputer"/>
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
@@ -53,10 +55,11 @@
 		</list>
 		<list key="textEntries">
 			<item value="2"/>
-			<item value="1"/>
-			<item value="1"/>
-			<item value="1"/>
 			<item value="3"/>
+			<item value="2"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
 			<item value="1"/>
 			<item value="1"/>
 			<item value="1"/>
@@ -72,14 +75,16 @@
 			<item value="2"/>
 		</list>
 		<list key="textArray">
+			<item value="pageview"/>
+			<item value="page"/>
+			<item value="shop."/>
+			<item value="sql"/>
+			<item value="shop"/>
 			<item value="boardcon"/>
 			<item value="boardcont"/>
 			<item value="boardser"/>
 			<item value="boardse"/>
 			<item value="boardma"/>
-			<item value="shop."/>
-			<item value="sql"/>
-			<item value="shop"/>
 			<item value="boardservice"/>
 			<item value="boardm"/>
 			<item value="mapper"/>

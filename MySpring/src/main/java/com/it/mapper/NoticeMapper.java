@@ -3,10 +3,11 @@ package com.it.mapper;
 import java.util.List;
 
 import com.it.domain.NoticeVO;
+import com.it.domain.PageDTO;
 
 public interface NoticeMapper {
 	
-	public List<NoticeVO> getList();
+	public List<NoticeVO> getList(PageDTO page);
 	//getList의 반환값은 NoticeVO가 들어간 List타입. 전체를 불러오므로 변수는 필요 없음.
 	
 	public NoticeVO read(NoticeVO notice);
@@ -20,5 +21,8 @@ public interface NoticeMapper {
 	
 	public void delete(NoticeVO notice);
 	//delete 역시 반환할 필요 없음. 삭제할 데이터가 저장되어있는 notice객체를 변수로 지정.
+	
+//	---------- pagination을 위한 생성자 추가 ----------
+	public int getTotalCount();
 
 }

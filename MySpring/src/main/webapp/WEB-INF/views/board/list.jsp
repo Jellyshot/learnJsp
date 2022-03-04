@@ -17,7 +17,7 @@
 			<h6 class="m-0 font-weight-bold text-primary">
 			
 	<!-- -----------------board Create 부분------------------------- -->		
-				<a href="/board/insert" >게시판 글쓰기</a>
+				<a href="/board/insert" >게시판 글쓰기</a><span>&nbsp;${user}&nbsp;${age}</span>
 			</h6>
 		</div>
 		<div class="card-body">
@@ -39,7 +39,8 @@
 								<td>${board.b_num}</td>
 								
 	<!-- ------글의 수정과 삭제를 위한 view page 링크를 만들어 준 후 Controller로 돌아가 역할설정-------- -->
-								<td><a href="/board/view?b_num=${board.b_num}">${board.b_subject}</a></td>
+								<td><a href="/board/view?b_num=${board.b_num}&pageNum=${pageview.page.pageNum}">${board.b_subject}</a></td>
+								<!-- pageview.page.pageNum pageview안에 page라는 객체의 pageNum이라는 뜻 -->
 								<td>${board.b_name}</td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd"
 										value="${board.b_date}" /></td>
@@ -47,14 +48,31 @@
 							</tr>
 						</c:forEach>
 						
-						<!-- ----------- 페이지네이션 ------------- -->
 					</tbody>
 				</table>
 						
-					<div align="center">							
-								<c:forEach var="num" begin="${pageview.startPage}" end="${pageview.endPage}"> 
-									<a href="#">[${num}]</a>&nbsp;&nbsp;
-								</c:forEach>
+					<!-- ----------- 페이지네이션 ------------- -->
+					<div align="center">
+					
+							<c:if test="${pageview.prev}">
+								<a href="/board/list?pageNum=1">[<<]</a>&nbsp;&nbsp;
+								<a href="/board/list?pageNum=${pageview.startPage-1}">[Prev]</a>&nbsp;&nbsp;
+							</c:if>
+												
+							<c:forEach var="num" begin="${pageview.startPage}" end="${pageview.endPage}"> 
+								<c:if test="${pageview.page.pageNum == num}">
+									<b><a href="/board/list?pageNum=${num}" style="color:black">[${num}]</a></b>&nbsp;&nbsp;
+								</c:if>
+								<c:if test="${pageview.page.pageNum != num}">
+								<a href="/board/list?pageNum=${num}">[${num}]</a>&nbsp;&nbsp;
+								</c:if>
+							</c:forEach>
+								
+							<c:if test="${pageview.next}">
+								<a href="/board/list?pageNum=${pageview.endPage+1}">[Next]</a>&nbsp;&nbsp;
+								<a href="/board/list?pageNum=${pageview.realend}">[>>]</a>&nbsp;&nbsp;
+							</c:if>
+							
 					</div>				
 						
 						

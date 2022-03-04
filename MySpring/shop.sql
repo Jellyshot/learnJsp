@@ -25,7 +25,8 @@ create table tblboard (
  b_date datetime not null default sysdate()
 );
 
-select * from tblboard;
+select * from tblboard where b_num between 1 and 10;
+select count(*) from tblboard;
 INSERT INTO tblboard (b_subject, b_name, b_contents) VALUES ('제목이다','홍길동','jsp프로그래밍');
 
 -- tblnotice 테이블
@@ -39,9 +40,28 @@ create table tblnotice (
 
 select * from tblnotice;
 INSERT INTO tblnotice (n_subject, n_name, n_contents) VALUES ('제목이다','홍길동','jsp프로그래밍');
+INSERT INTO tblnotice (n_subject, n_name, n_contents) VALUES ('정처기 D-1','홍길동','합격하겠지 모~!');
+
+-- ------------ 글 다량 추가 하기 -----------------
+insert into tblnotice (n_subject, n_contents, n_name) 
+	select n_subject, n_contents, n_name from tblnotice;
+select count(*) from tblnotice;
 
 
 /* 쇼핑몰 구현 시작!*/
+
+-- 관리자 테이블
+create table tbladmin(	
+	a_id varchar(50) not null primary key, -- 아이디
+	a_passwd varchar(50) not null, -- 비밀번호
+	a_name varchar(50) not null, -- 성명
+	a_rdate datetime not null default sysdate(),
+	a_udate datetime not null default sysdate() -- update시 seta_udate도 넣어주면 자동으로 바뀜
+);
+select * from tbladmin;
+
+insert into tbladmin (a_id, a_passwd, a_name) values ('admin', '1234', '관리자');
+
 
 -- 고객 테이블
 create table tblmember(	
@@ -143,6 +163,7 @@ show tables;
 
 -- 테이블 데이터 삭제(장바구니 및 구매내역 비움)
 delete from tblordersub;
+delete from tblnotice;
 delete from tblordermain;
 delete from tblcartsub;
 delete from tblcartmain;

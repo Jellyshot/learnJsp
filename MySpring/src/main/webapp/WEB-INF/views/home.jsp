@@ -7,6 +7,7 @@
 	<title>Home</title>
 </head>
 <body>
+<!-- 뷰의 바로 아래가 바로바로바로~ home.jsp~! -->
 <p><a href="/member/logout">로그아웃</a></p>
 <h1>
 	Hello world!  

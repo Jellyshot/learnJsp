@@ -30,7 +30,6 @@ public class BoardController {
 	@Setter(onMethod_ = @Autowired)
 	private BoardService service;
 	
-
 	
 	
 //	process부분에서는 return: "redirect:"; 를 하고, 나머지에서는 model.Attribute를 사용한다.	
@@ -39,6 +38,8 @@ public class BoardController {
 	@GetMapping("/list")
 	public void list(Model model, PageDTO page) {
 		// Model : jsp로 데이터를 전달해주는 Controller 내장 객체. 주로 VO객체를 저장함.
+		// RequestParam 변수를 생성하는 어노테이션. "user"는 웹브라우저에서 쓸 이름, String user는 변수이름
+		
 		// Tomcat 실행.
 		// board 폴더로 가서 list.jsp 를 만들어 줌 그럼 이제 list.jsp로 가게됨.
 		// model의 속성인 addAttribute를 사용하여 list라는 인스턴스변수에 getList한 데이터를 list.jsp에 전달
@@ -53,9 +54,16 @@ public class BoardController {
 			//파라미터로 page, total을 받으니까 list를 통해 넘어온 정보들을 따로 set해주지 않아도 가지고 있음.
 			model.addAttribute("pageview", pageview);
 			
+		// 가방대신 RequestParam로 만든 변수 출력해보기~! url에 ?user=🍰를 하면 콘솔에 🍰가 찍힌다.	
+		// public void list	@RequestParam("user") String user, @RequestParam("age") int age) 
+		// 다만 이 방식일때는, Null값이 되는 변수, 항상 값이 넘어가지 않는 경우에는 사용하면 안된다. 에러가뜸! 그래서 가방(객체)가 편함! 
+		//	log.info("--- board url의 유저를 출력해보아요 ---");
+		//	log.info(user);
+		//	log.info("--- board url의 나이를 출력해보아요 ---");
+		//	log.info(age + 1);
+		//	model.addAttribute("user", user);
+		//	model.addAttribute("age", age);
 	}
-	
-	
 	
 	
 	
@@ -85,7 +93,7 @@ public class BoardController {
 	
 //	------------------- 수정, 삭제를 위한 view ---------------------------
 	@GetMapping("/view")
-	public void view(BoardVO board, Model model) {
+	public void view(BoardVO board, Model model, PageDTO page) {
 		log.info("-----view num 확인-----");
 		log.info(board); //여기서 board에는 list에서 받은 b_num값이 들어 있음.
 		board = service.read(board); 
@@ -98,32 +106,38 @@ public class BoardController {
 	 *  그래서 void가 아니라 string을 써줘야함. 맞니?
 	 *  model의 속성인 addAttribute를 사용하여 board라는 인스턴스변수에 board객체에 담은 데이터를 전달
 	 */
-		model.addAttribute("board",board);	
+		model.addAttribute("board",board);
+		//get으로 받았던 pageNum을 저장하기 위해 PageDTO 파라미터를 인지시켜주고, addAttribute 시켜줌.		
+		model.addAttribute("page", page);
 	}
 	
 	
 //	------------------------ Update ------------------------------------
 //	view에서 넘겨준 b_num값으로 데이터를 update(form)에 불러옴.
 	@GetMapping("/update")
-	public void update(BoardVO board, Model model) {
+	public void update(BoardVO board, Model model, PageDTO page) {
 		log.info("-----update num 확인-----");
 		log.info(board);
 		board = service.read(board);
 		log.info("-----update 데이터 확인-----");
 		log.info(board);
 		model.addAttribute("board", board);
+		model.addAttribute("page", page);
 	}
 	
 //	form에서 수정버튼을 누르면 작동하는 코드 작성 (update_process 리턴 필요)
 	@PostMapping("/update")
-	public String update(BoardVO board) {
+	public String update(BoardVO board, PageDTO page) {
 		log.info("---------앞에서 받아온 update할 데이터 확인----------");
 		log.info(board);
 		service.update(board);
-		return "redirect:/board/view?b_num=" + board.getB_num();		
+		//문자열 안에서 띄워쓰기는 그대로 반영되기때문에 안되지만, 문자열 외 값을 가져오는 문법에서의 띄워쓰기는 괜찮음.		
+		return "redirect:/board/view?b_num=" + board.getB_num() + "&pageNum=" + page.getPageNum();		
 	}
 	
+	
 //	------------------------ Delete ------------------------------	
+	
 	@GetMapping("/delete")
 	public String delte(BoardVO board) {
 		log.info("-----삭제-----");

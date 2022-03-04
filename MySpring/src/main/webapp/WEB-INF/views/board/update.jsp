@@ -7,9 +7,9 @@
 <div class="container">
 <h1>수정하기</h1>
 <h6 class="m-0 font-weight-bold text-primary">
-		<a href="/board/list" >게시판 리스트로</a>
+		<a href="/board/list?pageNum=${page.pageNum}">게시판 리스트로</a>
 </h6><br>
-<form class="user" method="post" action="/board/update" style= "margin:16px;">
+<form class="user" method="post" action="/board/update?pageNum=${page.pageNum}" style= "margin:16px;">
 
 	<div class="col-sm-6 mb-3 mb-sm-0">
 	<input type="text" class="form-control form-control-user"
@@ -32,6 +32,8 @@
 	</div><br>
 	
 	<input type="submit" class="btn btn-primary btn-user btn-block" value="수정">
+	
+	<%-- <input type="hidden" value="${page.pageNum}">로 하려고 했는데, 그럼 board내용이랑 겹쳐진다구 쌤이 form action으로 하잼 --%> 
 </form>
 	
 <!-- Bootstrap core JavaScript-->
