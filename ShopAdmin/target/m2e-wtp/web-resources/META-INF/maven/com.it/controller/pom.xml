@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.it</groupId>
 	<artifactId>controller</artifactId>
-	<name>ShopAdmin</name>
+	<name>MySpring</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -20,6 +20,8 @@
 			<artifactId>spring-context</artifactId>
 			<version>${org.springframework-version}</version>
 			<exclusions>
+			
+			
 				<!-- Exclude Commons Logging in favor of SLF4j -->
 				<exclusion>
 					<groupId>commons-logging</groupId>
@@ -32,10 +34,9 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
-		
-		<!-- lombok -->
-		<dependency>
+
+		<!-- Spring-test, lombok 추가 -->
+				<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${org.springframework-version}</version>
@@ -47,20 +48,17 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		
-		<!-- mybatis -->
+		<!-- Database(Mysql) -->
 		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>8.0.18</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.4.6</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
@@ -77,13 +75,13 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
-		<!--  log4jdbc-log4j2 -->
+		<!-- log4jdbc-log4j2 -->
 		<dependency>
 			<groupId>org.bgee.log4jdbc-log4j2</groupId>
 			<artifactId>log4jdbc-log4j2-jdbc4</artifactId>
 			<version>1.16</version>
 		</dependency>
-						
+		
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -109,10 +107,19 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		
+	<!-- log4j New -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
+		</dependency>
+		
+	<!-- log4j defualt	
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.mail</groupId>
@@ -133,7 +140,8 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
-
+										 -->
+										 
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
@@ -144,8 +152,8 @@
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -158,12 +166,6 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<scope>provided</scope>
 		</dependency>
 		
 		<!-- Jackson-databind -->
@@ -178,27 +180,27 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.3</version>
 		</dependency>
-		
-				<dependency>
+	
+		<!-- REST API -->
+		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
 			<version>2.9.6</version>
 		</dependency>
- 		
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.2</version>
 		</dependency>
-		
-		<!-- aspectj -->
+	
+		<!-- aspectj 추가 -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
 	
-		<!-- Test -->
+		<!-- Test(단위를 테스트함) -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.Board2Mapper">
+	<!-- board2mapper에 있는 내용을 읽어들이겠다는 method
+		resultType에는 내가 읽을 파일의 경로설정을 해준다. -->
+	<select id="getList" resultType="com.it.domain.Board2VO">
+		select * from tblboard2 order by b_num desc 
+			limit #{pageAmount} offset ${(pageNum-1) * pageAmount}
+	</select>
+
+<!-- 페이지네이션 -->
+
+	<!-- 총 레코드 갯수 검색 -->
+	<select id="getTotalCount" resultType="int">
+		select count(b_num) from tblboard2
+	</select>
+
+
+	<!-- Create -->
+	
+	<insert id="insert">
+		insert into tblboard2 (b_subject, b_name, b_contents, b_file)
+		values (#{b_subject}, #{b_name}, #{b_contents}, #{b_file})
+	<!-- #{ } php에서 ?에 해당하는것들. 
+		 #{ }에는 Board2Mapper.java에서 Board2VO.java를 board에 담아 insert로 넘긴다고
+		 선언해 두었기 때문에, insert 구문에는 Board2VO에서 선언한 매개변수가 들어간다. 
+		 다만 b_num은 A.I설정해 두었고, date도 자동설정이기 때문에 나머지 3개변수만 씀-->
+	</insert>
+	
+	
+	
+	<!-- Read -->
+	<select id="read" resultType="com.it.domain.Board2VO">
+		select * from tblboard2 where b_num = #{b_num}
+	</select>
+
+
+
+	<!-- Update 반환값 없음.-->
+	<update id="update">
+		update tblboard2 set b_subject = #{b_subject},
+		b_name = #{b_name}, b_contents = #{b_contents}
+		where b_num = #{b_num}
+	</update>
+	
+	
+	<!-- Delete -->
+	<delete id="delete">
+		delete from tblboard2 where b_num = #{b_num}
+	</delete>		
+	
+</mapper>

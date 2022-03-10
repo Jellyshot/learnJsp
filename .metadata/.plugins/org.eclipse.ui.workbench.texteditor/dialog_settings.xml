@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="aspect"/>
+		<item key="selection" value="Board2VO"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="fileupload"/>
-			<item value="javax.servlet"/>
-			<item value="aspect"/>
-			<item value="junit"/>
-			<item value="log4j"/>
-			<item value="aspectj"/>
-			<item value="compilerArg"/>
-			<item value="plug"/>
+			<item value="core"/>
+			<item value="icon"/>
+			<item value="form"/>
+			<item value="board"/>
+			<item value="BoardVO"/>
+			<item value="tblboard"/>
+			<item value="Board"/>
+			<item value="fa"/>
 		</list>
 		<list key="replacehistory">
+			<item value="board2"/>
+			<item value="Board2VO"/>
+			<item value="tblboard2"/>
+			<item value="Board2"/>
+			<item value="Admin"/>
 			<item value="notice"/>
 			<item value="os"/>
 			<item value="cartsub"/>
-			<item value="상품"/>
-			<item value="product"/>
-			<item value="p_"/>
-			<item value="Product"/>
-			<item value="member"/>
 		</list>
 	</section>
 </section>

@@ -42,6 +42,23 @@ select * from tblnotice;
 INSERT INTO tblnotice (n_subject, n_name, n_contents) VALUES ('제목이다','홍길동','jsp프로그래밍');
 INSERT INTO tblnotice (n_subject, n_name, n_contents) VALUES ('정처기 D-1','홍길동','합격하겠지 모~!');
 
+
+-- tblboard2 테이블
+create table tblboard2 (
+ b_num int not null primary key AUTO_INCREMENT,
+ b_subject varchar(100) not null,
+ b_contents varchar(2000) not null,
+ b_file varchar(200),
+ b_name varchar(50) not null,
+ b_date datetime not null default sysdate()
+);
+
+select * from tblboard2 where b_num between 1 and 10;
+select count(*) from tblboard2;
+INSERT INTO tblboard2 (b_subject, b_name, b_contents) VALUES ('제목이다','홍길동','jsp프로그래밍');
+
+
+
 -- ------------ 글 다량 추가 하기 -----------------
 insert into tblnotice (n_subject, n_contents, n_name) 
 	select n_subject, n_contents, n_name from tblnotice;
