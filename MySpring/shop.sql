@@ -51,16 +51,33 @@ select count(*) from tblnotice;
 /* 쇼핑몰 구현 시작!*/
 
 -- 관리자 테이블
+drop table if exists tbladmin;
+
 create table tbladmin(	
 	a_id varchar(50) not null primary key, -- 아이디
-	a_passwd varchar(50) not null, -- 비밀번호
+	a_passwd varchar(500) not null, -- 비밀번호
 	a_name varchar(50) not null, -- 성명
 	a_rdate datetime not null default sysdate(),
 	a_udate datetime not null default sysdate() -- update시 seta_udate도 넣어주면 자동으로 바뀜
 );
+
+-- 암복호화 시키기(hex: 16진수 변환, aes: mysql에서 제공하는 양방향암호화 알고리즘)  
+select hex(aes_encrypt('tiger',sha2('123!',512)));
+select aes_decrypt(unhex('0xfaee86a08a044e2b3ccaaddecd3b272a'),sha2('123!',512));
+
+
+insert into tbladmin (a_id, a_passwd, a_name) 
+	values ('admin', hex(aes_encrypt('1234',sha2('123!',512))), '관리자');
+insert into tbladmin (a_id, a_passwd, a_name) 
+	values ('subadmin', hex(aes_encrypt('12345',sha2('123!',512))), '부관리자');
+
 select * from tbladmin;
 
-insert into tbladmin (a_id, a_passwd, a_name) values ('admin', '1234', '관리자');
+
+select * from tbladmin 
+	where a_id = 'subadmin' and
+		a_passwd = hex(aes_encrypt('1234',sha2('123!',512)));
+
 
 
 -- 고객 테이블
