@@ -5,7 +5,8 @@
 <%@ include file="../include/header.jsp"%>
 
 
-  <body class="bg-primary">
+ 
+<div id="layoutSidenav_content">        
 	
                   <main>
                     <div class="container">
@@ -55,7 +56,7 @@
                         </div>
                     </div>
                 </main>
-            
+            </div>
 
 
 

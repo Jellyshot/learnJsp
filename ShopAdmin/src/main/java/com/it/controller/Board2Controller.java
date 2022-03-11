@@ -1,20 +1,26 @@
 package com.it.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.it.domain.Board2VO;
+import com.it.domain.PageDTO;
+import com.it.domain.PageviewDTO;
 import com.it.service.Board2Service;
 
 import lombok.Setter;
@@ -28,6 +34,60 @@ public class Board2Controller {
 	@Setter(onMethod_ = @Autowired)
 	private Board2Service service;
 	
+	// ---------------------- Read -------------------------------
+	@GetMapping("/list")
+	public void list(Model model, PageDTO page) {
+		// Model : jsp로 데이터를 전달해주는 Controller 내장 객체. 주로 VO객체를 저장함.
+		// RequestParam 변수를 생성하는 어노테이션. "user"는 웹브라우저에서 쓸 이름, String user는 변수이름
+		
+		// Tomcat 실행.
+		// board 폴더로 가서 list.jsp 를 만들어 줌 그럼 이제 list.jsp로 가게됨.
+		// model의 속성인 addAttribute를 사용하여 list라는 인스턴스변수에 getList한 데이터를 list.jsp에 전달
+		model.addAttribute("list", service.getList(page));
+		// list.jsp에서는 item="${list}"로 내용을 받음.
+		
+		
+		// --- 페이지네이션 ---
+			int total = service.getTotalCount(); //전체 레코드 갯수
+		//pageDTO를 타고 넘어오는 pageNum을 이용하여 정보를 jsp로 넘겨줌
+			PageviewDTO pageview = new PageviewDTO(page, total);
+			//파라미터로 page, total을 받으니까 list를 통해 넘어온 정보들을 따로 set해주지 않아도 가지고 있음.
+			model.addAttribute("pageview", pageview);
+			
+		// 가방대신 RequestParam로 만든 변수 출력해보기~! url에 ?user=🍰를 하면 콘솔에 🍰가 찍힌다.	
+		// public void list	@RequestParam("user") String user, @RequestParam("age") int age) 
+		// 다만 이 방식일때는, Null값이 되는 변수, 항상 값이 넘어가지 않는 경우에는 사용하면 안된다. 에러가뜸! 그래서 가방(객체)가 편함! 
+		//	log.info("--- board url의 유저를 출력해보아요 ---");
+		//	log.info(user);
+		//	log.info("--- board url의 나이를 출력해보아요 ---");
+		//	log.info(age + 1);
+		//	model.addAttribute("user", user);
+		//	model.addAttribute("age", age);
+	}
+	
+	
+	//	------------------- 수정, 삭제를 위한 view ---------------------------
+	@GetMapping("/view")
+	public void view(Board2VO board, Model model, PageDTO page) {
+		log.info("-----list에서 넘어온 num값을 받아 read 실행-----");
+		board = service.read(board); 
+		log.info(board);
+		
+	/*	read 로 board변수에 값을 담았으므로, board변수에 있는 값을 name="board"로 넘김.
+	 *  값을 넘길때는 model.addAttribute(String, object)를 사용하고, 페이지를 이동시킬때는 redirect:url을 사용.
+	 *  addAttribute는 값만 넘겨주고 끝이므로 리턴값이 필요 없지만, redirect:url은 메세지 출력해야 하니까 return값이 있음
+	 *  그래서 void가 아니라 string을 써줘야함.
+	 *  model의 속성인 addAttribute를 사용하여 board라는 인스턴스변수에 데이터를 담아 jsp로 전달
+	 */
+		model.addAttribute("board",board);
+		
+		
+		//get으로 받았던 pageNum을 저장하기 위해 PageDTO 파라미터를 인지시켜주고, addAttribute 시켜줌.		
+		model.addAttribute("page", page);
+	}
+	
+	
+	
 	// ---------------------- Create -------------------------------
 		@GetMapping("/insert")
 		public void insert() {
@@ -39,7 +99,7 @@ public class Board2Controller {
 		// post임으로 form의 input 태그의 name과 Board2VO의 멤버변수 이름에 맞추어 postMapping의 board변수에 저장된다.  
 		
 		@PostMapping("/insert")
-		public void insert(HttpServletRequest request) {
+		public String insert(HttpServletRequest request) {
 //			HttpServletRequest : request 메서드를 사용할 수 있도록 만들어주는 클래스
 			
 			DiskFileUpload upload = new DiskFileUpload(); // 데이터 전송 컴포넌트 'upload' 생성
@@ -91,9 +151,57 @@ public class Board2Controller {
 							}
 						} // - end of else
 				} //- end of while
+				// 반복구문을 통해 board에 저장한 값을 insert 시킨후 리스트로 이동시킴
 				log.info(board);
+				service.insert(board);
+				
 				
 			}catch(Exception e){
+				System.out.println(e);
+			}
+			return "redirect:/board2/list";
+		} // - end of 'Post' insert
+		
+		
+		
+		/* ---------------------- Download -------------------------------
+			board2 list에서 첨부파일을 클릭했을 때, 해당 파일을 다운로드 받을 수 있도록 함. */
+		
+		@GetMapping("/downLoad")
+		public void download(Board2VO board, HttpServletResponse response) {
+			
+			board = service.read(board);
+			
+			try {
+				//파일을 저장소에서 찾아서
+				String filepath = "c:\\myWorkspace\\learnJsp\\pds\\"+board.getB_file();
+				File file = new File(filepath);
+								
+				//한글처리 가능하도록 만들기
+				String newName = new String(file.getName().getBytes("UTF-8"),"ISO-8859-1");
+				
+				/* downLoad는 웹페이지를 여는것이 아닌(text/html이 아니라), 
+				파일 객체를 클라이언트에 전송하는것이라는것을 알리는 코드 */
+				response.setHeader("Content-Disposition", "attachment;filename="+newName);
+				log.info(file.getName());
+				
+				FileInputStream fis = new FileInputStream(filepath);
+				
+				//response객체의 기능인 outputstream사용하여 사용자에게 첨부된 파일을 전송할 통로 만들기
+				OutputStream out = response.getOutputStream();
+				
+				/* 버퍼: 파일 운송을 위해 크기의 단위를 1024바이트로 읽은 양을 저장시킬거임. 
+					일단 default값은 읽지 않았다는 전체 하에 read에 0을 저장시킴
+					만약에 버퍼가 읽지 못한다면 -1 값을 반환하므로, -1이 아니라면 이라는 조건을 줌.	*/
+				int read = 0; 
+				byte[] buffer = new byte[1024]; 
+				while((read = fis.read(buffer)) != -1) {
+					out.write(buffer, 0, read); // buffer의 처음부터 read에 저장된 값만큼 웹 브라우저에 출력
+				}
+				
+				
+				
+			} catch (Exception e) {
 				System.out.println(e);
 			}
 		}
