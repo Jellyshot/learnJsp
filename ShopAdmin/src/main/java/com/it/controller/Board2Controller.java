@@ -100,7 +100,7 @@ public class Board2Controller {
 		
 		@PostMapping("/insert")
 		public String insert(HttpServletRequest request) {
-//			HttpServletRequest : request 메서드를 사용할 수 있도록 만들어주는 클래스
+//			HttpServletRequest : request 메서드를 사용할 수 있도록 만들어주는 클래스. 클라이언트의 요청으로부터 받은 정보가 VO파일로 받을 수 없는 유형일때 request로 받는다.
 			
 			DiskFileUpload upload = new DiskFileUpload(); // 데이터 전송 컴포넌트 'upload' 생성
 //			DiskFileUpload = java의 내장함수 현업에서는 내장말고 유료서비스 씀.
@@ -169,7 +169,7 @@ public class Board2Controller {
 		
 		@GetMapping("/downLoad")
 		public void download(Board2VO board, HttpServletResponse response) {
-			
+		//response는 jsp파일이 아닌 다른 정보를 클라이언트쪽에 넘겨주어야 할때 씀.
 			board = service.read(board);
 			
 			try {
@@ -198,12 +198,32 @@ public class Board2Controller {
 				while((read = fis.read(buffer)) != -1) {
 					out.write(buffer, 0, read); // buffer의 처음부터 read에 저장된 값만큼 웹 브라우저에 출력
 				}
-				
-				
-				
 			} catch (Exception e) {
 				System.out.println(e);
 			}
 		}
+		
+		//	------------------------ Update ------------------------------------
+		//view에서 넘겨준 b_num값으로 데이터를 update(form)에 불러옴.
+		@GetMapping("/update")
+		public void update(Board2VO board, Model model, PageDTO page) {
+			log.info("-----update할 board정보 확인-----");
+			board = service.read(board);
+			log.info(board);
+			
+			model.addAttribute("board", board);
+			model.addAttribute("page", page);
+		}
+		
+		//form에서 수정버튼을 누르면 작동하는 코드 작성 (update_process 리턴 필요)
+		@PostMapping("/update")
+		public String update(Board2VO board, PageDTO page) {
+			log.info("---------앞에서 받아온 update할 데이터 확인----------");
+			log.info(board);
+			service.update(board);
+			//문자열 안에서 띄워쓰기는 그대로 반영되기때문에 안되지만, 문자열 외 값을 가져오는 문법에서의 띄워쓰기는 괜찮음.		
+			return "redirect:/board/view?b_num=" + board.getB_num() + "&pageNum=" + page.getPageNum();		
+		}
+		
 }
 		

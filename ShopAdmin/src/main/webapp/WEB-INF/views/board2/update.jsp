@@ -4,49 +4,57 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="../include/header.jsp"%>
 
-<div class="container">
-<h1>수정하기</h1>
-<h6 class="m-0 font-weight-bold text-primary">
-		<a href="/board/list?pageNum=${page.pageNum}">게시판 리스트로</a>
-</h6><br>
-<form class="user" method="post" action="/board/update?pageNum=${page.pageNum}" style= "margin:16px;">
 
-	<div class="col-sm-6 mb-3 mb-sm-0">
-	<input type="text" class="form-control form-control-user"
-				name="b_num" value="${board.b_num}" readonly>
-	</div><br>
+ 
+<div id="layoutSidenav_content">        
 	
-	<div class="col-sm-6 mb-3 mb-sm-0">
-	<input type="text" class="form-control form-control-user"
-				name="b_name" value="${board.b_name}" readonly>
-	</div><br>
-	<div class="col-sm-6">
-		<input type="text" class="form-control form-control-user"
-				name="b_subject" value="${board.b_name}">
-	</div><br>
-	<div class="form-group">
-		<label>내용</label>
-		<textarea rows="5" class="form-control" name="b_contents">
-		${board.b_name}
-		</textarea>
-	</div><br>
-	
-	<input type="submit" class="btn btn-primary btn-user btn-block" value="수정">
-	
-	<%-- <input type="hidden" value="${page.pageNum}">로 하려고 했는데, 그럼 board내용이랑 겹쳐진다구 쌤이 form action으로 하잼 --%> 
-</form>
-	
-<!-- Bootstrap core JavaScript-->
-<!-- <script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+         <main>
+           <div class="container">
+               <div class="row justify-content-center">
+                   <div class="col-lg-7">
+                       <div class="card shadow-lg border-0 rounded-lg mt-5">
+                           <div class="card-header"><h3 class="text-center font-weight-light my-4">Update Board2</h3></div>
+                           <div class="card-body">
+   
+							<a class="btn btn-primary mb-3" href="/board2/list" role="button">List</a>
 
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+                               <form action="/board2/update?pageNum=${page.pageNum}" method="post" enctype="multipart/form-data">
+                                 <div class="row mb-3 md-6">
 
-Custom scripts for all pages
-<script src="js/sb-admin-2.min.js"></script> -->
-</div>
-</body>
+                                         <div class="form-floating mb-3 mb-md-0">
+                                             <input class="form-control mb-3" id="inputFirstName" type="text" name="b_num" value="${board.b_num}" readonly/>
+                                             <label for="inputFirstName">No.</label>
+                                    	</div>	                                                
+                                         <div class="form-floating mb-3 mb-md-0">
+                                             <input class="form-control mb-3" id="inputFirstName" type="text" name="b_name" value="${board.b_name}" readonly/>
+                                             <label for="inputFirstName">Name</label>
+                                    	</div>	
 
-</html>
+                                         <div class="form-floating mb-3 mb-md-0 ">
+                                             <input class="form-control mb-3" id="inputLastName" type="text" value="${board.b_subject} name="b_subject" />
+                                             <label for="inputLastName">Subject</label>
+                                         </div>
+
+                                 </div>
+                                 <div class="form-floating mb-3 mb-md-0">
+								<p>Contents</p>
+								<textarea rows="5" class="d-grid mb-3" name="b_contents" style="width:100%">${board.b_contents}</textarea>
+                                <input class="form-control mb-3" id="inputPassword" type="file" value="${board.b_file}" name="b_file" />
+                                 </div>
+                                 <div class="mt-4 mb-0">
+                                 <div class="d-grid">
+                                 	<button type="submit" class="btn btn-primary btn-block">Update</button>
+                              	</div>
+                                 </div>
+                             </form>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </main>
+ </div>
+
+
 
 <%@ include file="../include/footer.jsp"%>
