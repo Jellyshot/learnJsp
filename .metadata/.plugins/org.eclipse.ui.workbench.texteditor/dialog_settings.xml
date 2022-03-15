@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="board"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="request`"/>
 			<item value="board"/>
 			<item value="core"/>
 			<item value="icon"/>
@@ -13,7 +14,6 @@
 			<item value="BoardVO"/>
 			<item value="tblboard"/>
 			<item value="Board"/>
-			<item value="fa"/>
 		</list>
 		<list key="replacehistory">
 			<item value="board2"/>

@@ -48,4 +48,8 @@ public class AdminController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("/signup")
+	public void signup() {
+		
+	}
 }

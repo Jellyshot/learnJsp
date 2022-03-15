@@ -5,9 +5,7 @@
 <%@ include file="../include/header.jsp"%>
 
 
-    <body class="bg-primary">
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
+<div id="layoutSidenav_content">   
                 <main>
                     <div class="container">
                         <div class="row justify-content-center">
@@ -60,7 +58,7 @@
                     </div>
                 </footer>
             </div>
-        </div>
+        
         
         
 <%@ include file="../include/footer.jsp"%>        
