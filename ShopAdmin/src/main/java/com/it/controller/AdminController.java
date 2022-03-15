@@ -47,9 +47,5 @@ public class AdminController {
 		session.invalidate(); // 세션 끊기. 관련된 모든 변수를 삭제함.
 		return "redirect:/";
 	}
-	
-	@GetMapping("/signup")
-	public void signup() {
-		
-	}
+
 }

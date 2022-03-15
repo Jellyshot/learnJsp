@@ -6,14 +6,14 @@
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="junit"/>
+			<item value="spring-test"/>
+			<item value="maven-"/>
 			<item value="request`"/>
 			<item value="board"/>
 			<item value="core"/>
 			<item value="icon"/>
 			<item value="form"/>
-			<item value="BoardVO"/>
-			<item value="tblboard"/>
-			<item value="Board"/>
 		</list>
 		<list key="replacehistory">
 			<item value="board2"/>

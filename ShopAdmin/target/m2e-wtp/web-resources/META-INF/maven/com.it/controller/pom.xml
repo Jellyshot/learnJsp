@@ -36,7 +36,7 @@
 		</dependency>
 
 		<!-- Spring-test, lombok 추가 -->
-				<dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${org.springframework-version}</version>
