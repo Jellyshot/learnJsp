@@ -12,7 +12,7 @@
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_SIZE" value="true"/>
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_LOCATION" value="false"/>
 		<list key="orderedElements">
-			<item value="org.eclipse.datatools.sqltools.sqlscrapbook.SQLScrapbookEditorMySpring/shop.sql"/>
+			<item value="/MySpring/shop.sql"/>
 			<item value="/MySpring/src/main/java/com/it/domain/PageviewDTO.java"/>
 			<item value="/MySpring/src/main/java/com/it/controller/BoardController.java"/>
 			<item value="/MySpring/src/main/java/com/it/service/BoardServiceImpl.java"/>
@@ -27,11 +27,10 @@
 			<item value="/MySpring/src/main/java/com/it/service/OrderService.java"/>
 			<item value="/MySpring/src/main/java/com/it/controller/MemberController.java"/>
 			<item value="org.eclipse.wst.server.ui.ServersView"/>
-			<item value="/ExamSpring/src/main/webapp/WEB-INF/views/home.jsp"/>
 			<item value="org.eclipse.ui.views.ContentOutline"/>
 		</list>
 		<list key="orderedProviders">
-			<item value="org.eclipse.ui.editors"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
@@ -46,7 +45,6 @@
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.e4.ui.parts"/>
-			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
 			<item value="org.eclipse.e4.ui.parts"/>
 		</list>
 		<list key="textEntries">
@@ -65,11 +63,10 @@
 			<item value="1"/>
 			<item value="1"/>
 			<item value="1"/>
-			<item value="1"/>
 			<item value="2"/>
 		</list>
 		<list key="textArray">
-			<item value="sho"/>
+			<item value="shop."/>
 			<item value="pageview"/>
 			<item value="page"/>
 			<item value="boardcon"/>
@@ -88,7 +85,6 @@
 			<item value="orderser"/>
 			<item value="memberc"/>
 			<item value="server"/>
-			<item value="home."/>
 			<item value="outline"/>
 			<item value="outli"/>
 		</list>

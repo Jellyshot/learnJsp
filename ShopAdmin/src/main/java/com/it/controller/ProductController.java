@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.it.domain.PageDTO;
 import com.it.domain.ProductVO;
 import com.it.service.ProductService;
 
@@ -99,8 +100,24 @@ public class ProductController {
 	} // - end of imgupload(post)
 	
 	@GetMapping("/update")
-	public void update(ProductVO product) {
-		log.info("수정할 제품정보 : " + product);
+	public void update(ProductVO product, Model model, PageDTO page) {
+		product = service.read(product);
+		log.info("수정할 제품정보 : " + product.getP_code());
+		model.addAttribute("product", product);
+		model.addAttribute("page", page);
 	}
-	//📌📌📌 와.. 우리 기존에 상품 정보 수정 안함..? 📌📌📌
+	@PostMapping("/update")
+	public String update(ProductVO product, PageDTO page) {
+		log.info(product);
+		service.update(product);
+		return "redirect:/product/view?p_code="+product.getP_code()+"&pageNum="+page.getPageNum();
+	}
+	
+	
+	@GetMapping("/delete")
+	public String delete(ProductVO product) {
+		service.delete(product);
+		return "redirect:/product/list";
+	}
+	
 }
