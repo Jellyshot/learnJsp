@@ -53,7 +53,7 @@ public class ProductController {
 		//read한 값을 view.jsp에 뿌려줘야 하므로 addAttribute 필요
 		product = service.read(product);
 		model.addAttribute("product", product);
-		//📌📌📌 view에 왜 return값이 필요 없는걸까? 📌📌📌		
+
 	}
 	
 	//insert시 이미지를 함께 업로드 하는것이 아닌 view페이지에서 상품 사진만 따로 올리도록 설정

@@ -193,6 +193,7 @@ select * from tblcartsub;
 select * from tblordermain;
 select * from tblordersub;
 select * from tblproduct;
+select * from tblnotice;
 show tables;
 
 -- 테이블 데이터 삭제(장바구니 및 구매내역 비움)

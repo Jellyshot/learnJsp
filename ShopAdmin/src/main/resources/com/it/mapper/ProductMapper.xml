@@ -11,6 +11,7 @@
 		resultType에는 내가 읽을 파일의 경로설정을 해준다. -->
 		
 		select * from tblproduct order by p_code desc
+		limit #{pageAmount} offset ${(pageNum-1) * pageAmount}
 	</select>
 
 

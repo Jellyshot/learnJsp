@@ -11,7 +11,7 @@
                   <main>
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-lg-7">
+                            
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Board2</h3></div>
                                     <div class="card-body">
@@ -24,13 +24,14 @@
                                                 
                                                     <div class="form-floating mb-3 mb-md-0">
                                                         <input class="form-control mb-3" id="inputFirstName" type="text" placeholder="Enter your first name" name="b_name" />
-                                                        <label for="inputFirstName">Name</label>
+                                                        <label for="inputFirstName"> Name</label>
                                                 	</div>	
 
                                                     <div class="form-floating mb-3 mb-md-0 ">
                                                         <input class="form-control mb-3" id="inputLastName" type="text" placeholder="Enter your last name" name="b_subject" />
-                                                        <label for="inputLastName">Subject</label>
+                                                        <label for="inputLastName"> Subject</label>
                                                     </div>
+                                                    <div class="mb-3">
 
                                             </div>
                                             <div class="form-floating mb-3 mb-md-0">
@@ -49,7 +50,7 @@
                                     </div>
                                   
                                 </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </main>

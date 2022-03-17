@@ -34,6 +34,11 @@ public class Board2Controller {
 	@Setter(onMethod_ = @Autowired)
 	private Board2Service service;
 	
+	@GetMapping("/test")
+	public void test() {
+		
+	}
+	
 	// ---------------------- Read -------------------------------
 	@GetMapping("/list")
 	public void list(Model model, PageDTO page) {
