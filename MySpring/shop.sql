@@ -42,6 +42,7 @@ select * from tblnotice;
 INSERT INTO tblnotice (n_subject, n_name, n_contents) VALUES ('제목이다','홍길동','jsp프로그래밍');
 INSERT INTO tblnotice (n_subject, n_name, n_contents) VALUES ('정처기 D-1','홍길동','합격하겠지 모~!');
 
+alter table tblnotice add n_file varchar(500) null;
 
 -- tblboard2 테이블
 create table tblboard2 (
@@ -55,6 +56,7 @@ create table tblboard2 (
 
 select * from tblboard2 where b_num between 1 and 10;
 select count(*) from tblboard2;
+select * from tblboard2;
 INSERT INTO tblboard2 (b_subject, b_name, b_contents) VALUES ('제목이다','홍길동','jsp프로그래밍');
 
 
@@ -349,4 +351,4 @@ insert into tblboard (b_subject, b_contents, b_name)
 	
 select count(*) from tblboard;
 
-select * from tblboard order by b_num desc limit 10 ;
+select * from tblnotice order by n_num desc limit 10 ;

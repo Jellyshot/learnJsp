@@ -42,13 +42,13 @@
                               <tr>
                                   <td>${notice.n_num}</td>
                                   <!-- ------글의 수정과 삭제를 위한 view page 링크를 만들어 준 후 Controller로 돌아가 역할설정-------- -->
-                                  <td><a href="/board2/view?b_num=${notice.n_num}&pageNum=${pageview.page.pageNum}">${notice.n_subject}</a></td>
+                                  <td><a href="/notice/view?n_num=${notice.n_num}&pageNum=${pageview.page.pageNum}">${notice.n_subject}</a></td>
                                   <!-- pageview.page.pageNum pageview안에 page라는 객체의 pageNum이라는 뜻 -->
                                   <td>${notice.n_name}</td>
                                   <!-- 객체의 값 존재 유무를 따질때는 null, 문자열을 따질때는 ""이다. -->
 					     	     <c:if test="${notice.n_file != null}">
                                  	 <!-- 첨부파일 다운로드 가능하게 하기. -->
-					     		 	 <td align =center><a href="/board2/downLoad?b_num=${notice.n_num}"><i class='fas fa-file'></i></a></td>
+					     		 	 <td align =center><a href="/notice/downLoad?b_num=${notice.n_num}"><i class='fas fa-file'></i></a></td>
 					        	</c:if>
 					          	<c:if test="${notice.n_file == null}">
 					       			<td> </td>

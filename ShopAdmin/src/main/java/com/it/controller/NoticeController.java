@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileItem;
@@ -36,12 +37,18 @@ public class NoticeController {
 	
 	
 	@GetMapping("/list")
-	public void list(Model model, PageDTO page){
+	public String list(Model model, PageDTO page, HttpSession session){
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+			
+		}else {
 		model.addAttribute("list", service.getList(page));
 		
 		int total = service.getTotalCount();
 		PageviewDTO pageview = new PageviewDTO(page, total);
 		model.addAttribute("pageview", pageview);
+		}return "/notice/list";
 	}
 	
 	
@@ -60,7 +67,7 @@ public class NoticeController {
 			 * next(), previous()로 이동 hashNext()다음요소 확인 기능이 있음
 			 */
 			
-			String filepath = "C:\\myWorkspace\\leanJsp\\pds";
+			String filepath = "C:\\myWorkspace\\learnJsp\\pds";
 			
 			NoticeVO notice = new NoticeVO();
 			
@@ -86,6 +93,7 @@ public class NoticeController {
 					if(fname!="") {
 						notice.setN_file(fname);
 						File file = new File(filepath + "/" + fname);
+						log.info(file.getName());
 						item.write(file);
 					}
 				}
@@ -104,7 +112,7 @@ public class NoticeController {
 	public void veiw(NoticeVO notice, Model model, PageDTO page) {
 		notice = service.read(notice);
 		model.addAttribute("notice", notice);
-		model.addAttribute("p_num", page.getPageNum());
+		model.addAttribute("page", page);
 	}
 	
 	@GetMapping("/downLoad")
@@ -143,13 +151,61 @@ public class NoticeController {
 		notice = service.read(notice);
 		log.info("update Notice"+notice);
 		model.addAttribute("notice", notice);
-		model.addAttribute("p_num", page.getPageNum());
+		model.addAttribute("page", page);
 	}
+	
 	@PostMapping("/update")
-	public String update(NoticeVO notice, PageDTO page) {
-		service.update(notice);
-		return "redirect:/notice/view?n_num="+notice.getN_num()+"&p_num="+page.getPageNum();
+	public String update(HttpServletRequest request, PageDTO page) {
+		DiskFileUpload upload = new DiskFileUpload();
+		NoticeVO notice = new NoticeVO();
+		try {
+			List items = upload.parseRequest(request);
+			Iterator params = items.iterator();
+			
+			String filepath = "C:\\myWorkspace\\learnJSP\\pds";
+			
+			
+			while(params.hasNext()) {
+				FileItem item = (FileItem)params.next();
+				if(item.isFormField()) {
+					String fieldname = item.getFieldName();
+					String fieldvalue = item.getString("utf-8");
+					log.info(fieldname + ":" + fieldvalue );
+					
+					if(fieldname.equals("n_subject")) {
+						notice.setN_subject(fieldvalue);
+					} else if(fieldname.equals("n_name")) {
+						notice.setN_name(fieldvalue);
+					} else if(fieldname.equals("n_contents")) {
+						notice.setN_contents(fieldvalue);
+					} else if(fieldname.equals("n_num")) {
+						notice.setN_num(Integer.parseInt(fieldvalue));
+					} else if(fieldname.equals("n_fileold")) {
+						notice.setN_file(fieldvalue);
+					}
+				} else {
+					String fname = item.getName();
+					log.info("바이너리 파일이름 : " + fname);
+					if (fname != null) {
+						File file = new File(filepath + "/" + fname);
+						notice.setN_file(fname);
+						item.write(file);
+					}
+				}
+			} // - end of while
+			//log.info(notice);
+			service.update(notice);
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		return "redirect:/notice/view?n_num=" + notice.getN_num() + "&pageNum=" + page.getPageNum();
 	}
+//	public String update(NoticeVO notice, PageDTO page) {
+//		log.info(notice);
+//		service.update(notice);
+//		return "redirect:/notice/view?n_num=" + notice.getN_num() + "&pageNum=" + page.getPageNum();
+//	}
 	
 	
 	@GetMapping("/delete")

@@ -34,7 +34,7 @@
 	
 	<!-- Update -->		
 	<update id="update">
-		update tblnotice set n_name = #{n_name}, n_subject = #{n_subject}, n_contents = #{n_contents}, n_file=#{n_file}
+		update tblnotice set n_name = #{n_name}, n_subject = #{n_subject}, n_contents = #{n_contents}, n_file = #{n_file}
 		where n_num = #{n_num}  
 	</update>
 	

@@ -11,7 +11,8 @@
     <div class="row justify-content-center my-5">
     <div class="card">
 	  <div class="card-header"><h3 class="text-center font-weight-light my-4">공지사항 등록</h3></div>
-	  <div class="card-body">
+	  <form class="card-body" action="/notice/insert" method="post" enctype="multipart/form-data" >
+	  
 	    <div class="mb-3">
 	  		<label for="exampleFormControlInput1" class="form-label">제목</label>
 	  		<input type="text" name="n_subject"class="form-control" id="exampleFormControlInput1" placeholder="제목을 입력하세요">
@@ -31,7 +32,7 @@
 		<div class="d-grid gap-2">
   		<input class="btn btn-secondary" type="submit">
 		</div>
-	  </div>
+	  </form>
 	</div>
 
     

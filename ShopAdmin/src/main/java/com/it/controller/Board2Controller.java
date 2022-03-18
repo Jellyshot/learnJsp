@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileItem;
@@ -41,7 +42,11 @@ public class Board2Controller {
 	
 	// ---------------------- Read -------------------------------
 	@GetMapping("/list")
-	public void list(Model model, PageDTO page) {
+	public String list(Model model, PageDTO page, HttpSession session) {
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+		}else {
 		// Model : jsp로 데이터를 전달해주는 Controller 내장 객체. 주로 VO객체를 저장함.
 		// RequestParam 변수를 생성하는 어노테이션. "user"는 웹브라우저에서 쓸 이름, String user는 변수이름
 		
@@ -68,12 +73,17 @@ public class Board2Controller {
 		//	log.info(age + 1);
 		//	model.addAttribute("user", user);
 		//	model.addAttribute("age", age);
+	} return "/board2/list";
 	}
-	
 	
 	//	------------------- 수정, 삭제를 위한 view ---------------------------
 	@GetMapping("/view")
-	public void view(Board2VO board, Model model, PageDTO page) {
+	public String view(Board2VO board, Model model, PageDTO page, HttpSession session) {
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+			
+		}else {
 		log.info("-----list에서 넘어온 num값을 받아 read 실행-----");
 		board = service.read(board); 
 		log.info(board);
@@ -89,14 +99,21 @@ public class Board2Controller {
 		
 		//get으로 받았던 pageNum을 저장하기 위해 PageDTO 파라미터를 인지시켜주고, addAttribute 시켜줌.		
 		model.addAttribute("page", page);
+		} return "/board2/view";
 	}
-	
 	
 	
 	// ---------------------- Create -------------------------------
 		@GetMapping("/insert")
-		public void insert() {
+		public String insert(HttpSession session) {
 			// form이 들어간 package를 호출만 함.
+			String a_id = (String)session.getAttribute("a_id");
+			if(a_id == null) {
+				return "redirect:/admin/login";
+				
+			}else {
+				return "/board2/insert";
+			}
 		}
 		
 		
@@ -104,9 +121,13 @@ public class Board2Controller {
 		// post임으로 form의 input 태그의 name과 Board2VO의 멤버변수 이름에 맞추어 postMapping의 board변수에 저장된다.  
 		
 		@PostMapping("/insert")
-		public String insert(HttpServletRequest request) {
+		public String insert(HttpServletRequest request, HttpSession session) {
 //			HttpServletRequest : request 메서드를 사용할 수 있도록 만들어주는 클래스. 클라이언트의 요청으로부터 받은 정보가 VO파일로 받을 수 없는 유형일때 request로 받는다.
-			
+			String a_id = (String)session.getAttribute("a_id");
+			if(a_id == null) {
+				return "redirect:/admin/login";
+				
+			}else {
 			DiskFileUpload upload = new DiskFileUpload(); // 데이터 전송 컴포넌트 'upload' 생성
 //			DiskFileUpload = java의 내장함수 현업에서는 내장말고 유료서비스 씀.
 			try {
@@ -145,16 +166,16 @@ public class Board2Controller {
 							board.setB_contents(fieldvalue);
 						}
 								
-						}else { //바이너리 파일이라면 (사진, File형식) 절대경로값을 filefile변수에 저장
+					} else { //바이너리 파일이라면 (사진, File형식) 절대경로값을 filefile변수에 저장
 							String fname = item.getName();
 //							log.info(fname);
 							if(fname != "") {
-							board.setB_file(fname);
-							File file = new File(filepath + "/" + fname); //파일 객체 생성
+								board.setB_file(fname);
+								File file = new File(filepath + "/" + fname); //파일 객체 생성
 //								File 생성자는 java.io 패키지 추가해야함.
-							 item.write(file); //해당 경로에 파일 쓰기
+								item.write(file); //해당 경로에 파일 쓰기
 							}
-						} // - end of else
+					} // - end of else
 				} //- end of while
 				// 반복구문을 통해 board에 저장한 값을 insert 시킨후 리스트로 이동시킴
 				log.info(board);
@@ -165,6 +186,7 @@ public class Board2Controller {
 				System.out.println(e);
 			}
 			return "redirect:/board2/list";
+			}
 		} // - end of 'Post' insert
 		
 		
@@ -173,7 +195,12 @@ public class Board2Controller {
 			board2 list에서 첨부파일을 클릭했을 때, 해당 파일을 다운로드 받을 수 있도록 함. */
 		
 		@GetMapping("/downLoad")
-		public void download(Board2VO board, HttpServletResponse response) {
+		public String download(Board2VO board, HttpServletResponse response, HttpSession session) {
+			String a_id = (String)session.getAttribute("a_id");
+			if(a_id == null) {
+				return "redirect:/admin/login";
+				
+			}else {
 		//response는 jsp파일이 아닌 다른 정보를 클라이언트쪽에 넘겨주어야 할때 씀.
 			board = service.read(board);
 			
@@ -206,28 +233,42 @@ public class Board2Controller {
 			} catch (Exception e) {
 				System.out.println(e);
 			}
+			return "/board2/downLoad";
+			}
 		}
 		
 		//	------------------------ Update ------------------------------------
 		//view에서 넘겨준 b_num값으로 데이터를 update(form)에 불러옴.
 		@GetMapping("/update")
-		public void update(Board2VO board, Model model, PageDTO page) {
+		public String update(Board2VO board, Model model, PageDTO page, HttpSession session) {
+			String a_id = (String)session.getAttribute("a_id");
+			if(a_id == null) {
+				return "redirect:/admin/login";
+				
+			}else {
 			log.info("-----update할 board정보 확인-----");
 			board = service.read(board);
 			log.info(board);
 			
 			model.addAttribute("board", board);
 			model.addAttribute("page", page);
+			} return "/board2/update";
 		}
 		
 		//form에서 수정버튼을 누르면 작동하는 코드 작성 (update_process 리턴 필요)
 		@PostMapping("/update")
-		public String update(Board2VO board, PageDTO page) {
+		public String update(Board2VO board, PageDTO page, HttpSession session) {
+			String a_id = (String)session.getAttribute("a_id");
+			if(a_id == null) {
+				return "redirect:/admin/login";
+				
+			}else {
 			log.info("---------앞에서 받아온 update할 데이터 확인----------");
 			log.info(board);
 			service.update(board);
-			//문자열 안에서 띄워쓰기는 그대로 반영되기때문에 안되지만, 문자열 외 값을 가져오는 문법에서의 띄워쓰기는 괜찮음.		
-			return "redirect:/board/view?b_num=" + board.getB_num() + "&pageNum=" + page.getPageNum();		
+			//문자열 안에서 띄워쓰기는 그대로 반영되기때문에 안되지만, 문자열 외 값을 가져오는 문법에서의 띄워쓰기는 괜찮음.	
+			}
+			return "redirect:/board2/view?b_num=" + board.getB_num() + "&pageNum=" + page.getPageNum();		
 		}
 		
 }

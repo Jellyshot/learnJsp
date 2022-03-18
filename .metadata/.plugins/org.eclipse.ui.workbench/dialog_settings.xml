@@ -48,7 +48,7 @@
 			<item value="org.eclipse.e4.ui.parts"/>
 		</list>
 		<list key="textEntries">
-			<item value="1"/>
+			<item value="3"/>
 			<item value="2"/>
 			<item value="2"/>
 			<item value="1"/>
@@ -67,6 +67,8 @@
 		</list>
 		<list key="textArray">
 			<item value="shop."/>
+			<item value="sql"/>
+			<item value="sh"/>
 			<item value="pageview"/>
 			<item value="page"/>
 			<item value="boardcon"/>
