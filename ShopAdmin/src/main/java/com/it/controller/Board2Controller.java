@@ -195,12 +195,8 @@ public class Board2Controller {
 			board2 list에서 첨부파일을 클릭했을 때, 해당 파일을 다운로드 받을 수 있도록 함. */
 		
 		@GetMapping("/downLoad")
-		public String download(Board2VO board, HttpServletResponse response, HttpSession session) {
-			String a_id = (String)session.getAttribute("a_id");
-			if(a_id == null) {
-				return "redirect:/admin/login";
-				
-			}else {
+		public void download(Board2VO board, HttpServletResponse response) {
+
 		//response는 jsp파일이 아닌 다른 정보를 클라이언트쪽에 넘겨주어야 할때 씀.
 			board = service.read(board);
 			
@@ -233,8 +229,7 @@ public class Board2Controller {
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-			return "/board2/downLoad";
-			}
+
 		}
 		
 		//	------------------------ Update ------------------------------------

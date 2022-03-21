@@ -108,6 +108,7 @@ create table tblmember(
 	m_udate datetime not null default sysdate()
 );
 select * from tblmember;
+alter table tblmember add m_phone varchar(13);
 
 
 -- 상품 테이블

@@ -44,7 +44,8 @@
                              <td>${notice.n_date}</td>
                          </tr>
                          <tr>
-                             <td>${notice.n_file}</td>
+                         	<th>첨부파일</th>
+                             <td><a href="/notice/downLoad?n_num=${notice.n_num}">${notice.n_file}</a></td>
                           </tr>
                     </table>
                        <div class="mt-4 mb-0">

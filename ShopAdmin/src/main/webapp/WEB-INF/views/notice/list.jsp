@@ -48,7 +48,7 @@
                                   <!-- 객체의 값 존재 유무를 따질때는 null, 문자열을 따질때는 ""이다. -->
 					     	     <c:if test="${notice.n_file != null}">
                                  	 <!-- 첨부파일 다운로드 가능하게 하기. -->
-					     		 	 <td align =center><a href="/notice/downLoad?b_num=${notice.n_num}"><i class='fas fa-file'></i></a></td>
+					     		 	 <td align =center><i class='fas fa-file'></i></td>
 					        	</c:if>
 					          	<c:if test="${notice.n_file == null}">
 					       			<td> </td>
