@@ -3032,6 +3032,10 @@ textarea.form-control-lg {
     transition: none;
   }
 }
+
+.hk:hover{
+	cursor:pointer;
+}
 .btn:hover {
   color: #212529;
 }

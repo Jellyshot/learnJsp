@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileItem;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.it.domain.PageDTO;
+import com.it.domain.PageviewDTO;
 import com.it.domain.ProductVO;
 import com.it.service.ProductService;
 
@@ -31,13 +33,31 @@ public class ProductController {
 	private ProductService service;
 	
 	@GetMapping("/list")
-	public void list(Model model){
-		// 폼만 보여줄 것이 아니라 getList한 내용을 jsp 표기해야 하므로, model에 레코드를 담아 전달
-		model.addAttribute("list",service.getList());
+	public String list(Model model, PageDTO page, HttpSession session){
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+			
+		}else {
+			// 폼만 보여줄 것이 아니라 getList한 내용을 jsp 표기해야 하므로, model에 레코드를 담아 전달
+			model.addAttribute("list",service.getList(page));
+			
+			int total = service.getTotalCount();
+			PageviewDTO pageview = new PageviewDTO(page, total);
+			model.addAttribute("pageview", pageview);
+		}
+		return "/product/list";
 	}
 	
 	@GetMapping("/insert")
-	public void insert() {
+	public String insert(HttpSession session) {
+		String a_id = (String)session.getAttribute("a_id");
+		if(a_id == null) {
+			return "redirect:/admin/login";
+			
+		}else {
+			return "/product/insert";
+		}
 		
 	}
 	@PostMapping("/insert")
@@ -49,10 +69,11 @@ public class ProductController {
 	}
 	
 	@GetMapping("/view")
-	public void read(ProductVO product, Model model) {
+	public void read(ProductVO product, Model model, PageDTO page) {
 		//read한 값을 view.jsp에 뿌려줘야 하므로 addAttribute 필요
 		product = service.read(product);
 		model.addAttribute("product", product);
+		model.addAttribute("page", page);
 
 	}
 	
@@ -62,6 +83,7 @@ public class ProductController {
 		log.info("업로드할 상품코드: " + product.getP_code());
 		model.addAttribute("p_code", product.getP_code());
 	}
+	
 	@PostMapping("/imgupload")
 	public void imgupload(HttpServletRequest request) {
 		DiskFileUpload upload = new DiskFileUpload(); 

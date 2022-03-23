@@ -35,8 +35,8 @@ public class MemberController {
 			int total = service.getTotalCount();
 			
 			PageviewDTO pageview = new PageviewDTO(page,total);
-			model.addAttribute(a_id, pageview);
-		} return "redirect:/member/list"; 
+			model.addAttribute("pageview", pageview);
+		} return "/member/list"; 
 	}
 	
 	@GetMapping("/insert")
@@ -68,7 +68,7 @@ public class MemberController {
 			member = service.read(member);
 			model.addAttribute("member", member);
 			model.addAttribute("page", page);
-			return "redirect:/member/list";
+			return "/member/view";
 		}
 	}
 	
@@ -81,9 +81,10 @@ public class MemberController {
 			member = service.read(member);
 			model.addAttribute("member", member);
 			model.addAttribute("page", page);
-			return "/member/update";
 		}
+		return "/member/update";
 	}
+	
 	@PostMapping("/update")
 	public String update(HttpSession session, MemberVO member, PageDTO page) {
 		String a_id = (String)session.getAttribute("a_id");

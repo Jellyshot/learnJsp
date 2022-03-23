@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="member"/>
+		<item key="selection" value="hover"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="member"/>
-			<item value="html"/>
-			<item value="index.html"/>
-			<item value="b_"/>
-			<item value="board.b_"/>
-			<item value="board2"/>
-			<item value="form"/>
-			<item value="chart"/>
+			<item value="hover"/>
+			<item value="cursor"/>
+			<item value="button"/>
+			<item value="insertRow"/>
+			<item value="card"/>
+			<item value="Open"/>
+			<item value="card_img"/>
+			<item value="notice"/>
 		</list>
 		<list key="replacehistory">
+			<item value="member"/>
+			<item value="m_"/>
 			<item value="n_"/>
 			<item value="notice.n_"/>
 			<item value="notice"/>
 			<item value="board2"/>
 			<item value="Board2VO"/>
 			<item value="tblboard2"/>
-			<item value="Board2"/>
-			<item value="Admin"/>
 		</list>
 	</section>
 </section>

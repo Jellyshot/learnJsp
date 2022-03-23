@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.CartMapper">
+
+
+<!-- 기본 쿼리 -->
+	<!-- main -->
+	<select id="getListMain" resultType="com.it.domain.CartmainVO">
+		SELECT * FROM tblcartmain ORDER BY cm_code DESC
+	</select>
+	<select id="readMain" resultType="com.it.domain.CartmainVO">
+		SELECT * FROM tblcartmain WHERE cm_code = #{cm_code} 
+	</select>
+	<select id="readMainid" resultType="com.it.domain.CartmainVO">
+		SELECT * FROM tblcartmain WHERE m_id = #{m_id} 
+	</select>
+	<insert id="insertMain">
+		INSERT INTO tblcartmain (m_id) VALUES (#{m_id})
+	</insert>
+	<delete id="deleteMain">
+		DELETE FROM tblcartmain WHERE cm_code = #{cm_code} 
+	</delete>
+
+	<!-- sub -->
+	<select id="getListSub" resultType="com.it.domain.CartsubVO">
+		SELECT * FROM tblcartsub ORDER BY cs_code DESC
+	</select>
+	<select id="getListCart" resultType="com.it.domain.CartsubVO">
+		SELECT * FROM tblcartsub WHERE cm_code = #{cm_code}
+		ORDER BY cs_code DESC
+	</select>
+	
+	<insert id="insertSub">
+		INSERT INTO tblcartsub (cm_code, p_code, cs_cnt) VALUES (#{cm_code}, #{p_code}, #{cs_cnt})
+	</insert>
+	<select id="readSub" resultType="com.it.domain.CartsubVO">
+		SELECT * FROM tblcartsub WHERE cs_code = #{cs_code}
+	</select>
+	<select id="readSubproduct" resultType="com.it.domain.CartsubVO">
+		SELECT * FROM tblcartsub WHERE cm_code = #{cm_code} and p_code = #{p_code}
+	</select>
+	<update id="updateSub">
+		UPDATE tblcartsub SET cs_cnt = #{cs_cnt}
+		WHERE cs_code = #{cs_code}
+	</update>
+	<delete id="deleteSub">
+		DELETE FROM tblcartsub WHERE cs_code = #{cs_code}
+	</delete>
+	
+	
+	<!-- 조인 쿼리 -->
+	<select id="getListCartDetail" resultType="com.it.domain.CartdetailDTO">
+		SELECT cs.cs_code, p.p_code, p.p_name, p.p_price, cs.cs_cnt, p.p_price*cs.cs_cnt as cs_money 
+		FROM tblproduct p, tblcartsub cs
+		WHERE p.p_code = cs.p_code
+		and cs.cm_code = #{cm_code} 
+	</select>
+	
+	
+
+</mapper>

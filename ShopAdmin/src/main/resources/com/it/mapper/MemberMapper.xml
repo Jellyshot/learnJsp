@@ -12,8 +12,8 @@
 	</select>
 	
 	<insert id="insert">
-		insert into tblmember(m_id, m_passwd, m_name, m_phone, m_address)
-		values (#{m_id}, #{m_passwd}, #{m_name}, #{m_phone}, #{m_address})
+		insert into tblmember(m_id, m_passwd, m_name, m_phone)
+		values (#{m_id}, #{m_passwd}, #{m_name}, #{m_phone})
 	</insert>
 	
 	<select id="read" resultType="com.it.domain.MemberVO">
@@ -21,7 +21,7 @@
 	</select>
 	
 	<update id="update">
-		update tblmember set m_name = #{m_name}, m_phone=#{m_phone}, m_address = #{m_address}, m_udate = #{m_udate}
+		update tblmember set m_name = #{m_name}, m_phone=#{m_phone},  m_udate = now()
 		where m_id = #{m_id}
 	</update>
 	
@@ -35,7 +35,7 @@
 	
 	
 	<select id="getTotalCount" resultType="int">
-		select count(m_id) tblmember
+		select count(*) tblmember
 	</select>
 	
 	

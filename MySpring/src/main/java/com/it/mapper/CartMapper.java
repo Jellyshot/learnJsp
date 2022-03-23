@@ -26,6 +26,7 @@ public interface CartMapper {
 	
 	public CartmainVO readMain(CartmainVO cartmain);
 	public CartsubVO readSub(CartsubVO cartsub);
+	
 	public CartmainVO readMainid(CartmainVO cartmain);
 	public CartsubVO readSubproduct(CartsubVO cartsub); 
 	
@@ -37,6 +38,7 @@ public interface CartMapper {
 	
 	public void deleteMain(CartmainVO cartmain);
 	public void deleteSub(CartsubVO cartsub);
+	
 	public void deletesuball(CartmainVO cartmain);
 	
 	

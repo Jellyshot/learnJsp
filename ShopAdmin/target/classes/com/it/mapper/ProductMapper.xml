@@ -31,7 +31,7 @@
 
 	<!-- Update 반환값 없음.-->
 	<update id="update">
-		update tblproduct set p_name = #{p_name}, p_price = #{p_price}
+		update tblproduct set p_name = #{p_name}, p_price = #{p_price}, p_udate = now()
 		where p_code = #{p_code}
 	</update>
 	
@@ -39,5 +39,11 @@
 	<delete id="delete">
 		delete from tblproduct where p_code = #{p_code}
 	</delete>		
+	
+	
+	<select id="getTotalCount" resultType="int">
+		select count(p_code) from tblproduct
+	</select>
+	
 	
 </mapper>

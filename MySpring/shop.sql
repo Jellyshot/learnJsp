@@ -104,11 +104,12 @@ create table tblmember(
 	m_id varchar(50) not null primary key, -- 아이디
 	m_passwd varchar(50) not null, -- 비밀번호
 	m_name varchar(50) not null, -- 성명
+	m_phone varchar(13) not null,
 	m_rdate datetime not null default sysdate(),
 	m_udate datetime not null default sysdate()
 );
 select * from tblmember;
-alter table tblmember add m_phone varchar(13);
+alter table tblmember drop m_address;
 
 
 -- 상품 테이블
