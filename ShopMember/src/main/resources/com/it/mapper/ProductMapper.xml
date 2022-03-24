@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.ProductMapper">
+
+	<select id="getList" resultType="com.it.domain.ProductVO">
+	<!-- 게시판에 있는 내용을 읽어드리겠다는 method
+		resultType에는 내가 읽을 파일의 경로설정을 해준다. -->
+		
+		select * from tblproduct order by p_code desc
+		limit #{pageAmount} offset ${(pageNum-1) * pageAmount}
+	</select>
+
+
+	<!-- Create -->
+	<insert id="insert">
+		insert into tblproduct (p_name, p_price)
+		values (#{p_name}, #{p_price})
+	</insert>
+	
+	
+	<!-- Read (p_code로 레코드 하나를 검출하여 ProductVO형식으로 값을 리턴함) -->
+	<select id="read" resultType="com.it.domain.ProductVO">
+		select * from tblproduct where p_code = #{p_code}
+	</select>
+	
+	
+
+	<!-- Update 반환값 없음.-->
+	<update id="update">
+		update tblproduct set p_name = #{p_name}, p_price = #{p_price}, p_udate = now()
+		where p_code = #{p_code}
+	</update>
+	
+	<!-- Delete -->
+	<delete id="delete">
+		delete from tblproduct where p_code = #{p_code}
+	</delete>		
+	
+	
+	<select id="getTotalCount" resultType="int">
+		select count(p_code) from tblproduct
+	</select>
+	
+	
+</mapper>

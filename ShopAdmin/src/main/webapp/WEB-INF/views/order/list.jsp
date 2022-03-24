@@ -19,11 +19,20 @@
                       <table id="datatablesSimple" class="dataTable-table">
                           <thead>
                               <tr>
-                                  <th>번호</th>
-                                  <th>제목</th>
-                                  <th>작성자</th>
-                                  <th>첨부파일</th>
-                                  <th>작성일</th>
+                                  <th>주문번호</th>
+                                  <th>주문일</th>
+                                  <th>회원ID</th>
+                                  <th>회원명</th>
+                                  <th>배송상태</th>
+                                  <th>상품코드</th>
+                                  <th>상품명</th>
+                                  <th>갯수</th>
+                                  <th>상품단가</th>
+                                  <th>합계금액</th>
+                                  <th>연락처</th>
+                                  <th>배송주소</th>
+                                  <th>우편번호</th>
+                                  <th>비고</th>
                               </tr>
                           </thead>
                           <tbody>
