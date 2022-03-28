@@ -5,7 +5,9 @@ import java.util.List;
 import com.it.domain.CartmainVO;
 import com.it.domain.OrderdetailDTO;
 import com.it.domain.OrdermainVO;
+import com.it.domain.OrdermanageDTO;
 import com.it.domain.OrdermemberDTO;
+import com.it.domain.PageDTO;
 
 public interface OrderService {
 
@@ -16,4 +18,10 @@ public interface OrderService {
 	public OrdermainVO readMainid(OrdermainVO ordermain);
 	
 	public OrdermemberDTO getOrderTotal(OrdermainVO ordermain);
+	
+	public List<OrdermanageDTO> ordermanage(PageDTO page); 
+	
+	public void statusupdate(OrdermanageDTO ordermanage);
+	
+	public int getTotalCount();
 }

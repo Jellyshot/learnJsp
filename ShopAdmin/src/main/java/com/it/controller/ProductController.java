@@ -85,7 +85,8 @@ public class ProductController {
 	}
 	
 	@PostMapping("/imgupload")
-	public void imgupload(HttpServletRequest request) {
+	public String imgupload(HttpServletRequest request, HttpSession session) {
+
 		DiskFileUpload upload = new DiskFileUpload(); 
 //		DiskFileUpload = java의 데이터 전송 컴포넌트
 		try {
@@ -100,6 +101,7 @@ public class ProductController {
 			foreach를 사용하지 않는 이유는, Iterator를 쓰면 데이터를 집어넣지 않아도 null값이 있다고 판단하여 반복을 돌리는데
 			foreach의 경우 값이 없다면 반복을 시키지 않는다.*/
 			String imgpath = "C:\\myWorkspace\\learnJsp\\ShopAdmin\\src\\main\\webapp\\resources\\product";
+			String imgpath2 = "C:\\myWorkspace\\learnJsp\\ShopMember\\src\\main\\webapp\\resources\\product";
 //			목적이 사진 업로드이므로 경로를 설정해 주고
 			String p_code = ""; // while문 전체에서 사용할 p_code 변수를 선언한다.
 			
@@ -112,14 +114,24 @@ public class ProductController {
 							
 					}else { //바이너리 파일이라면 (사진, File형식) 절대경로값을 imgfile변수에 저장
 						File imgfile = new File(imgpath + "/" + p_code + ".jpg");
+						File imgfile2 = new File(imgpath2 + "/" + p_code + ".jpg");
 //							File 생성자는 java.io 패키지 추가해야함.
 						item.write(imgfile); //해당 경로에 파일 쓰기
+						item.write(imgfile2); //해당 경로에 파일 쓰기
 					}
 			}
 		}catch(Exception e){
 			System.out.println(e);
 		}
+		return "/product/imgupload_end";
+		
 	} // - end of imgupload(post)
+	
+	@GetMapping("/imgupload_end")
+	public void imgupload_end(){
+		
+	}
+	
 	
 	@GetMapping("/update")
 	public void update(ProductVO product, Model model, PageDTO page) {

@@ -7,66 +7,85 @@
 
  <div id="layoutSidenav_content">
       <main>
-          <div class="container-fluid px-4">
-          
-              <h1 class="mt-4"><i class="fas fa-shopping-cart"></i> 주문관리</h1>
-                <div class="card mb-4">
-                  <div class="card-body">
-                    <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-                    <div class="dataTable-search">
-                    <input class="dataTable-input" placeholder="Search..." type="text">
-                    </div></div><div class="dataTable-container">
-                      <table id="datatablesSimple" class="dataTable-table">
-                          <thead>
+     
+       <div class="container-fluid px-4">
+        <h1 class="mt-4"><i class="fas fa-shopping-cart"></i> 주문관리</h1>
+                
+      	<div class="card mb-4">
+            <div class="card-header">
+                <svg class="svg-inline--fa fa-table fa-w-16 me-1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="table" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"></path></svg>
+                <!-- <i class="fas fa-table me-1"></i> Font Awesome fontawesome.com -->
+                Dream Shop 주문정보	
+            </div>
+            <div class="card-body">
+                <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns search-results">
+	                <div class="dataTable-top">
+	                	<div class="dataTable-search">
+	                		<input class="dataTable-input" placeholder="Search..." type="text">
+                		</div>
+               		</div>
+         			<div class="dataTable-container">
+         				<table id="datatablesSimple" class="dataTable-table">
+
+	                    <thead>
+						 <tr>
+	                          <th>주문번호</th>
+	                          <th>주문일</th>
+	                          <th>회원ID</th>
+	                          <th>회원명</th>
+	                          <th>배송상태</th>
+	                          <th>상품코드</th>
+	                          <th>상품명</th>
+	                          <th>갯수</th>
+	                          <th>상품단가</th>
+	                          <th>합계금액</th>
+	                          <th>연락처</th>
+	                          <th>배송주소</th>
+	                          <th>우편번호</th>
+	                          <th collapse="2" >비고</th>
+	                      </tr>
+	                   </thead>
+	                  
+	                    <tbody>
+                        <!--  ----- forEach구문으로 하나씩 뽑아낸 레코드를 ordermanage에 하나씩 덮어쓰기함 ----- -->
+                              <c:forEach items="${list}" var="ordermanage">
                               <tr>
-                                  <th>주문번호</th>
-                                  <th>주문일</th>
-                                  <th>회원ID</th>
-                                  <th>회원명</th>
-                                  <th>배송상태</th>
-                                  <th>상품코드</th>
-                                  <th>상품명</th>
-                                  <th>갯수</th>
-                                  <th>상품단가</th>
-                                  <th>합계금액</th>
-                                  <th>연락처</th>
-                                  <th>배송주소</th>
-                                  <th>우편번호</th>
-                                  <th>비고</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <!--  ----- board Read 부분. forEach구문으로 하나씩 뽑아낸 레코드를 board에 하나씩 덮어쓰기함 ----- -->
-                              <c:forEach items="${list}" var="board">
-                              <tr>
-                                  <td>${board.b_num}</td>
-                                  <!-- ------글의 수정과 삭제를 위한 view page 링크를 만들어 준 후 Controller로 돌아가 역할설정-------- -->
-                                  <td><a href="/board2/view?b_num=${board.b_num}&pageNum=${pageview.page.pageNum}">${board.b_subject}</a></td>
+		       		              <th>${ordermanage.om_code}</th>
+		                          <th>${ordermanage.om_rdate}</th>
+		                          <th>${ordermanage.m_id}</th>
+		                          <th>${ordermanage.m_name}</th>
+		                          <th>${ordermanage.om_status}</th>
+		                          <th>${ordermanage.p_code}</th>
+		                          <th>${ordermanage.p_name}</th>
+		                          <th>${ordermanage.os_cnt}</th>
+		                          <th>${ordermanage.p_price}</th>
+		                          <th>${ordermanage.os_price}</th>
+		                          <th>${ordermanage.m_phone}</th>
+		                          <th>${ordermanage.a_address01} ${ordermanage.a_address02}</th>
+		                          <th>${ordermanage.a_zipcode}</th>
+                                  <td><form action="/order/update?om_code=${ordermanage.om_code}" method="post">
+                                  	<select name="om_status">
+                                  		<option>배송대기</option>
+                                  		<option>출고완료</option>
+                                  		<option>배송완료</option>
+                                  	</select>	
+                                  	<input type="submit" value="수정" />
+                                  </form></td>
+                                  <td><a href="/order/view?b_num=${board.b_num}&pageNum=${pageview.page.pageNum}">삭제</a></td>
+                                  <td>${board.b_subject}</a></td>
                                   <!-- pageview.page.pageNum pageview안에 page라는 객체의 pageNum이라는 뜻 -->
-                                  <td>${board.b_name}</td>
-                                  <!-- 객체의 값 존재 유무를 따질때는 null, 문자열을 따질때는 ""이다. -->
-					     	     <c:if test="${board.b_file != null}">
-                                 	 <!-- 첨부파일 다운로드 가능하게 하기. -->
-					     		 	 <td align =center><a href="/board2/downLoad?b_num=${board.b_num}"><i class='fas fa-file'></i></a></td>
-					        	</c:if>
-					          	<c:if test="${board.b_file == null}">
-					       			<td> </td>
-					          	</c:if>
+                                  <td>${om.b_name}</td>
 					          	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.b_date}" /></td>
 					          <!-- 작성일 부분은 길어지기 때문에 formating 실시 -->
 					         </tr>
 					            </c:forEach>
-                          </tbody>
-                      </table>
-                      </div><div class="dataTable-bottom">
-						</div>
-                  </div>
-              </div>
-          </div>
-          
-          
-          
-          
+	                  	</tbody>
+	                </table></div><div class="dataTable-bottom"><div class="dataTable-info">Showing 1 to 1 of 1 entries</div><nav class="dataTable-pagination"><ul class="dataTable-pagination-list"></ul></nav></div></div>
+	            </div>
+	        </div>
+	      </div>
+      
+      
           	<!-- ----------- 페이지네이션 ------------- -->
 					<div align="center">
 					
@@ -88,9 +107,7 @@
 								<a href="/board/list?pageNum=${pageview.endPage+1}">[Next]</a>&nbsp;&nbsp;
 								<a href="/board/list?pageNum=${pageview.realend}">[>>]</a>&nbsp;&nbsp;
 							</c:if>
-						
-						
-							
+
 					</div>				
       </main>
   </div>

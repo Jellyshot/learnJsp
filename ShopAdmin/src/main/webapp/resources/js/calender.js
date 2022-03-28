@@ -1,7 +1,10 @@
+
 var today = new Date();
+
 function buildCalendar(){
   var row = null
   var cnt = 0;
+  
   var calendarTable = document.getElementById("calendar");
   var calendarTableTitle = document.getElementById("calendarTitle");
   calendarTableTitle.innerHTML = today.getFullYear()+"년"+(today.getMonth()+1)+"월";
@@ -22,7 +25,7 @@ function buildCalendar(){
 
   /* row = calendarTable.insertRow(); */
 
-  for(i = 1; i <= lastDate.getDate(); i++){
+  for(i = tempcol ; i <= lastDate.getDate(); i++){
   	cell = row.insertCell();
   	cnt += 1;
 

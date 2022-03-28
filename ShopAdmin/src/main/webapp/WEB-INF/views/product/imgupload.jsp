@@ -21,6 +21,8 @@
 				thisform.action="/product/imgupload";
 				thisform.method="post";
 				thisform.submit();
+				
+				//opener.location.reload();
 				//thisform.target = _self;
 				
 				/* Promise(resolve => setTimeout(resolve, 3000)).then(()=>window.open("about:blank", "_self").close());
@@ -29,7 +31,6 @@
 				
 				// opener.location.reload();
 				// self.close();
-				location.href="/product/list";
 				
 				
 			}

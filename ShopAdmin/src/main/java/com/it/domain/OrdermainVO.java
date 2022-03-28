@@ -11,6 +11,8 @@ public class OrdermainVO {
 	
 	private String m_id;
 	
+	private String om_status;
+	
 	private Date om_rdate;
 	
 	private Date om_udate;

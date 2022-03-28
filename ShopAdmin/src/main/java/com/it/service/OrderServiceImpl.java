@@ -9,8 +9,10 @@ import com.it.domain.CartmainVO;
 import com.it.domain.CartsubVO;
 import com.it.domain.OrderdetailDTO;
 import com.it.domain.OrdermainVO;
+import com.it.domain.OrdermanageDTO;
 import com.it.domain.OrdermemberDTO;
 import com.it.domain.OrdersubVO;
+import com.it.domain.PageDTO;
 import com.it.mapper.CartMapper;
 import com.it.mapper.OrderMapper;
 
@@ -77,6 +79,19 @@ public class OrderServiceImpl implements OrderService{
 		return ordermapper.getOrderTotal(ordermain);
 	}
 	
+	@Override
+	public List<OrdermanageDTO> ordermanage(PageDTO page) {
+		return ordermapper.ordermanage(page);
+	}
 	
+	@Override
+	public void statusupdate(OrdermanageDTO ordermanage) {
+		ordermapper.statusupdate(ordermanage);
+	}
+	
+	@Override
+	public int getTotalCount() {
+		return ordermapper.getTotalCount()	;
+	}
 	
 }

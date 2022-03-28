@@ -25,6 +25,8 @@ create table tblboard (
  b_date datetime not null default sysdate()
 );
 
+show tables;
+
 select * from tblboard where b_num between 1 and 10;
 select count(*) from tblboard;
 INSERT INTO tblboard (b_subject, b_name, b_contents) VALUES ('제목이다','홍길동','jsp프로그래밍');
@@ -111,6 +113,17 @@ create table tblmember(
 select * from tblmember;
 alter table tblmember drop m_address;
 
+create table tbladdress(
+	a_code int(8) primary key,
+	m_id varchar(50) not null,
+	a_address01 varchar(200) null,
+	a_address02 varchar(200) null,
+	a_zipcode varchar(20) null,
+	foreign key (m_id) references tblmember(m_id) on delete cascade
+);
+select * from tbladdress;
+drop table tbladdress;
+
 
 -- 상품 테이블
 create table tblproduct(
@@ -160,6 +173,7 @@ select * from tblcartsub;
 create table tblordermain(
 	om_code int not null primary key auto_increment,
 	m_id varchar(50) not null,
+	om_status varchar(10) not null default "order",
 	om_rdate datetime not null default sysdate(),
 	om_udate datetime not null default sysdate(),
 	foreign key (m_id) references tblmember(m_id) 

@@ -4,8 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="../include/header.jsp"%>
 
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript" defer src="/resources/js/my.js"></script>
+ 
  
 <div id="layoutSidenav_content">        
 	
@@ -20,7 +20,7 @@
 								<a class="btn btn-primary mb-3" href="/board2/list" role="button">List</a>
 
 
-                               <form enctype="multipart/form-data" name="writefrm" id="id_writeform" action="/board2/insert" method="post">
+                               <form enctype="multipart/form-data" name="writefrm">
                                    <div class="row mb-3 md-6">
                                        
                                            <div class="form-floating mb-3 mb-md-0">
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="mt-4 mb-0">
                                     <div class="d-grid">
-                                    <input type="button" id="id_btn" class="btn btn-primary btn-block" value="Write" />
+                                    <input type="button" onclick="writeform();" class="btn btn-primary btn-block" value="Write"  />
                                     <!-- <a href="javascript:writeform2();">공지사항으로 가기</a> -->
                                     </div>
                                     
