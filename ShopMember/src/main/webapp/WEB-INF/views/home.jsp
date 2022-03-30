@@ -3,9 +3,55 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="./include/header.jsp"%>
 
+<!DOCTYPE HTML>
 
+<html>
+	<head>
+		<title>Dream Shop</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/resources/css/main.css" />
+		<link rel="stylesheet" href="/resources/css/noscript.css" />
+		
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+					<div id="intro">
+						<h1>Dream<br />
+						Shop</h1>
+						<p>일상에서 놓치고 있는 소중한 순간들을 만나보세요.</p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+
+				<!-- Header -->
+					<header id="header">
+						<a href="/" class="logo">Dream Shop</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="/">Main</a></li>
+							<li><a href="generic.html">Generic Page</a></li>
+							<li><a href="elements.html">Elements Reference</a></li>
+						</ul>
+						<ul class="icons">
+						<c:if test="${m_id == null }">
+							<li><a href="/member/login"><span class="label"><i class="fas fa-sign-in-alt"></i></span></a></li>
+						</c:if>
+						<c:if test="${m_id != null}">
+								<li><a href="/member/mypage"><span class="label"><i class="fas fa-user"></i></span></a></li>
+						</c:if>
+						</ul>
+					</nav>
+		</div>
 <!-- Main -->
 	<div id="main">
 
@@ -30,14 +76,21 @@
 				<article>
 					<header>
 						<span class="date">${product.p_code}</span>
-						<h2><a href="#">${product.p_name}</a></h2>
+						<h2>${product.p_name}</h2>
 					</header>
 					<a href="#" class="image fit"><img src="/resources/product/${product.p_code}.jpg" alt="이미지 준비중" /></a>
-					<p class="align-center">&#8361;${product.p_price}</p>
+					<p class="align-center"><fmt:formatNumber value="${product.p_price}" type="currency"/></p>
+					<form action="/shop/cart" method="post">
 					<ul class="actions special">
-						<li><a href="/cartinsert" class="button">장바구니</a></li>
-						<li><a href="#" class="button">구매하기</a></li>
+						<li><input type="hidden" value="${product.p_code}"/></li>
+						<li><select name="cs_cnt">
+							<c:forEach var="count" begin="1" end="10" step="1">
+								<option value="${count}">${count}개</option>
+							</c:forEach>
+						</select></li>
+						<li><input type="submit" class="button" value="장바구니"></li>
 					</ul>
+					</form>
 				</article>
 			
 			
@@ -49,15 +102,29 @@
 			<footer>
 				<div class="pagination">
 					<!--<a href="#" class="previous">Prev</a>-->
-					<a href="#" class="page active">1</a>
-					<a href="#" class="page">2</a>
-					<a href="#" class="page">3</a>
-					<span class="extra">&hellip;</span>
-					<a href="#" class="page">8</a>
-					<a href="#" class="page">9</a>
-					<a href="#" class="page">10</a>
-					<a href="#" class="next">Next</a>
-				</div>
+					
+							<c:if test="${pageview.prev}">
+								<a href="/?pageNum=1"><<</a>&nbsp;&nbsp;
+								<a href="/?pageNum=${pageview.startPage-1}" class="previous">Prev</a>&nbsp;&nbsp;
+							</c:if>
+												
+							<c:forEach var="num" begin="${pageview.startPage}" end="${pageview.endPage}"> 
+								<c:if test="${pageview.page.pageNum == num}">
+									<b><a href="/?pageNum=${num}" class="page active">[${num}]</a></b>&nbsp;&nbsp;
+								</c:if>
+								<c:if test="${pageview.page.pageNum != num}">
+								<a href="/?pageNum=${num}" class="page">[${num}]</a>&nbsp;&nbsp;
+								</c:if>
+							</c:forEach>
+								
+							<c:if test="${pageview.next}">
+								<a href="/?pageNum=${pageview.endPage+1}" class="next">Next</a>&nbsp;&nbsp;
+								<a href="/?pageNum=${pageview.realend}">>></a>&nbsp;&nbsp;
+							</c:if>
+							
+					</div>				
+					
+
 			</footer>
 
 	</div>

@@ -27,7 +27,7 @@ public class PageviewDTO {
 		this.page = page;
 		this.total = total;
 		
-		this.endPage = (int)Math.ceil(page.getPageNum()/10.0) * 10; 
+		this.endPage = (int)Math.ceil((double)page.getPageNum()/10.0) * 10; 
 		//현재페이지/limit(인데, 여기서는 pageAmount를 페이지네이션 길이겸 레코드 갯수로 씀. 어차피 똑같으니까 변수 따로 안주었음) 
 		/*pageNum = 현재 페이지(페이지네이션)
 			pagenation length = 10

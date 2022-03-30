@@ -6,6 +6,8 @@
 	
 <mapper namespace="com.it.mapper.MemberMapper">
 
+
+
 	<select id="getList" resultType="com.it.domain.MemberVO">
 		select * from tblmember order by m_rdate desc
 		limit #{pageAmount} offset ${(pageNum-1) * pageAmount}

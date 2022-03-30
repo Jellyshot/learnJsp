@@ -13,6 +13,7 @@ public interface MemberMapper {
 	public void update(MemberVO member);
 	public void delete(MemberVO member);
 	
+	
 	public void upasswd(MemberVO member);
 	
 	public int getTotalCount();

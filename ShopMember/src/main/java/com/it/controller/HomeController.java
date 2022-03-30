@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.it.domain.CartmainVO;
 import com.it.domain.CartsubVO;
 import com.it.domain.PageDTO;
+import com.it.domain.PageviewDTO;
 import com.it.service.CartService;
 import com.it.service.MemberService;
 import com.it.service.OrderService;
@@ -62,6 +63,10 @@ public class HomeController {
 		model.addAttribute("m_id", m_id);
 		
 		model.addAttribute("list", productservice.getList(page));
+		
+		int total = productservice.getTotalCount();
+		PageviewDTO pageview = new PageviewDTO(page, total);
+		model.addAttribute("pageview", pageview );
 		return "home";
 	}
 	

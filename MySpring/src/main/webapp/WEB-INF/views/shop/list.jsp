@@ -41,6 +41,7 @@
 								<tr><td align="center">상품명 : ${product.p_name}</td></tr>
 								<tr><td align="center">상품가격 : ${product.p_price}</td></tr>
 									<tr><td align="center">
+									
 								<form action="/shop/cart" method="post">
 									<input type="hidden" name="p_code" value="${product.p_code}">
 									

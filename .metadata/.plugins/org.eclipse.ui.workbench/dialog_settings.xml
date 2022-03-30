@@ -66,8 +66,8 @@
 			<item value="2"/>
 		</list>
 		<list key="textArray">
-			<item value="shop"/>
 			<item value="sho"/>
+			<item value="sh"/>
 			<item value="cartser"/>
 			<item value="cartse"/>
 			<item value="pageview"/>

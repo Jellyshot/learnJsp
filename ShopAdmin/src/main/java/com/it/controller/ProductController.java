@@ -74,7 +74,6 @@ public class ProductController {
 		product = service.read(product);
 		model.addAttribute("product", product);
 		model.addAttribute("page", page);
-
 	}
 	
 	//insert시 이미지를 함께 업로드 하는것이 아닌 view페이지에서 상품 사진만 따로 올리도록 설정

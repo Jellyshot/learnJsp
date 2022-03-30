@@ -17,22 +17,12 @@
 	<body class="is-preload">
 
 		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+			<div id="wrapper">
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>Dream<br />
-						Shop</h1>
-						<p>일상에서 놓치고 있는 소중한 순간들을 만나보세요.</p>
-						<ul class="actions">
-							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
-
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Dream Shop</a>
-					</header>
+			<!-- Header -->
+				<header id="header">
+					<a href="/" class="logo">Massively</a>
+				</header>
 
 				<!-- Nav -->
 					<nav id="nav">
@@ -42,6 +32,11 @@
 							<li><a href="elements.html">Elements Reference</a></li>
 						</ul>
 						<ul class="icons">
+						<c:if test="${m_id == null }">
 							<li><a href="/member/login"><span class="label"><i class="fas fa-sign-in-alt"></i></span></a></li>
+						</c:if>
+						<c:if test="${m_id != null}">
+								<li><a href="/member/mypage"><span class="label"><i class="fas fa-user"></i></span></a></li>
+						</c:if>
 						</ul>
 					</nav>

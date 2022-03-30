@@ -25,11 +25,38 @@ public class MemberController {
 	@Setter(onMethod_ = @Autowired)
 	public MemberService service;
 	
+	@GetMapping("/login")
+	public void login() {
+		
+	}
+	@PostMapping("/login")
+	public String login(MemberVO member, HttpSession session) {
+		log.info(member);
+		boolean chk = service.login(member);
+		if(chk==true) {
+			session.setAttribute("m_id", member.getM_id());
+			log.info(member.getM_id()+"로그인 성공");
+			return "redirect:../";
+		} else {
+			return "redirect:/member/login";
+		}
+	}
+	
+	@GetMapping("/mypage")
+	public String mypage(HttpSession session) {
+		String m_id = (String)session.getAttribute("m_id");
+		if(m_id == null) {
+			return "redirect:/member/login";
+		} else {
+			return "/member/mypage";
+		}
+	}
+	
 	@GetMapping("/list")
 	public String list(Model model, PageDTO page, HttpSession session) {
-		String a_id = (String)session.getAttribute("a_id");
-		if(a_id ==null) {
-			return "redirect:/admin/login";
+		String m_id = (String)session.getAttribute("m_id");
+		if(m_id ==null) {
+			return "redirect:/member/login";
 		} else {
 			model.addAttribute("list", service.getList(page));
 			int total = service.getTotalCount();
@@ -41,9 +68,9 @@ public class MemberController {
 	
 	@GetMapping("/insert")
 	public String insert(HttpSession session) {
-		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
+		String m_id = (String)session.getAttribute("m_id");
+		if(m_id == null) {
+			return "redirect:/member/login";
 		} else {
 			return "/member/insert";
 		}
@@ -51,9 +78,9 @@ public class MemberController {
 	
 	@PostMapping("/insert")
 	public String insert(HttpSession session, MemberVO member) {
-		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
+		String m_id = (String)session.getAttribute("m_id");
+		if(m_id == null) {
+			return "redirect:/member/login";
 		}else {
 			service.insert(member);
 		}return "redirect:/member/list";
@@ -61,9 +88,9 @@ public class MemberController {
 	
 	@GetMapping("/view")
 	public String view(HttpSession session, MemberVO member, Model model, PageDTO page) {
-		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
+		String m_id = (String)session.getAttribute("m_id");
+		if(m_id == null) {
+			return "redirect:/member/login";
 		}else {
 			member = service.read(member);
 			model.addAttribute("member", member);
@@ -74,9 +101,9 @@ public class MemberController {
 	
 	@GetMapping("/update")
 	public String update(HttpSession session, MemberVO member, Model model, PageDTO page) {
-		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
+		String m_id = (String)session.getAttribute("m_id");
+		if(m_id == null) {
+			return "redirect:/member/login";
 		}else {
 			member = service.read(member);
 			model.addAttribute("member", member);
@@ -87,9 +114,9 @@ public class MemberController {
 	
 	@PostMapping("/update")
 	public String update(HttpSession session, MemberVO member, PageDTO page) {
-		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
+		String m_id = (String)session.getAttribute("m_id");
+		if(m_id == null) {
+			return "redirect:/member/login";
 		}else {
 			log.info(member.getM_name()+"님의 회원정보 업데이트");
 			service.update(member);
@@ -99,9 +126,9 @@ public class MemberController {
 	
 	@GetMapping("/delete")
 	public String delete(HttpSession session, MemberVO member) {
-		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
+		String m_id = (String)session.getAttribute("m_id");
+		if(m_id == null) {
+			return "redirect:/member/login";
 		}else {
 			service.delete(member);
 			return "redirect:/member/list";
@@ -110,9 +137,9 @@ public class MemberController {
 	
 	@GetMapping("/upasswd")
 	public String upasswd(HttpSession session, MemberVO member) {
-		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
+		String m_id = (String)session.getAttribute("m_id");
+		if(m_id == null) {
+			return "redirect:/member/login";
 		}else{
 			service.upasswd(member);
 			return "redirect:/member/list";

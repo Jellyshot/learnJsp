@@ -136,7 +136,8 @@ create table tblproduct(
 
 alter table tblproduct auto_increment=1001;
 select * from tblproduct;
-
+insert into tblproduct (p_name, p_price) 
+	select p_name, p_price from tblproduct;
 
 
 -- 장바구니 main 테이블 (장바구니 번호와 구매자를 관리하는 테이블)

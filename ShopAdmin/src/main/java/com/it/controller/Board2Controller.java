@@ -129,6 +129,7 @@ public class Board2Controller {
 			}else {
 			DiskFileUpload upload = new DiskFileUpload(); // 데이터 전송 컴포넌트 'upload' 생성
 //			DiskFileUpload = java의 내장함수 현업에서는 내장말고 유료서비스 씀.
+			
 			try {
 				List items = upload.parseRequest(request); // 웹브라우저 전송 객체를 생성하여 upload 컴포넌트에 전달.
 				Iterator params = items.iterator(); // Iterator 반복자 생성하여 List형태의 items를 반복시켜 값을 받아냄
@@ -210,6 +211,7 @@ public class Board2Controller {
 				/* downLoad는 웹페이지를 여는것이 아닌(text/html이 아니라), 
 				파일 객체를 클라이언트에 전송하는것이라는것을 알리는 코드 */
 				response.setHeader("Content-Disposition", "attachment;filename="+newName);
+				
 				log.info(file.getName());
 				
 				FileInputStream fis = new FileInputStream(filepath);

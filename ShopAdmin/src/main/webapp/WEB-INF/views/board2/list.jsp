@@ -66,22 +66,22 @@
 					<div align="center">
 					
 							<c:if test="${pageview.prev}">
-								<a href="/board/list?pageNum=1">[<<]</a>&nbsp;&nbsp;
-								<a href="/board/list?pageNum=${pageview.startPage-1}">[Prev]</a>&nbsp;&nbsp;
+								<a href="/board2/list?pageNum=1">[<<]</a>&nbsp;&nbsp;
+								<a href="/board2/list?pageNum=${pageview.startPage-1}">[Prev]</a>&nbsp;&nbsp;
 							</c:if>
 												
 							<c:forEach var="num" begin="${pageview.startPage}" end="${pageview.endPage}"> 
 								<c:if test="${pageview.page.pageNum == num}">
-									<b><a href="/board/list?pageNum=${num}" style="color:black">[${num}]</a></b>&nbsp;&nbsp;
+									<b><a href="/board2/list?pageNum=${num}" style="color:black">[${num}]</a></b>&nbsp;&nbsp;
 								</c:if>
 								<c:if test="${pageview.page.pageNum != num}">
-								<a href="/board/list?pageNum=${num}">[${num}]</a>&nbsp;&nbsp;
+								<a href="/board2/list?pageNum=${num}">[${num}]</a>&nbsp;&nbsp;
 								</c:if>
 							</c:forEach>
 								
 							<c:if test="${pageview.next}">
-								<a href="/board/list?pageNum=${pageview.endPage+1}">[Next]</a>&nbsp;&nbsp;
-								<a href="/board/list?pageNum=${pageview.realend}">[>>]</a>&nbsp;&nbsp;
+								<a href="/board2list?pageNum=${pageview.endPage+1}">[Next]</a>&nbsp;&nbsp;
+								<a href="/board2/list?pageNum=${pageview.realend}">[>>]</a>&nbsp;&nbsp;
 							</c:if>
 							
 					</div>				

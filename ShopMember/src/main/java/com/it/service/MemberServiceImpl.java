@@ -40,6 +40,15 @@ public class MemberServiceImpl implements MemberService{
 		mapper.delete(member);
 	}
 	@Override
+	public boolean login(MemberVO member) {
+		member = mapper.login(member);
+		if(member!=null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	@Override
 	public void upasswd(MemberVO member) {
 		mapper.upasswd(member);
 	}

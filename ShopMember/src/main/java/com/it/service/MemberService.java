@@ -13,6 +13,7 @@ public interface MemberService {
 	public void update(MemberVO member);
 	public void delete(MemberVO member);
 	
+	public boolean login(MemberVO member);
 	public void upasswd(MemberVO member);
 	
 	public int getTotalCount();

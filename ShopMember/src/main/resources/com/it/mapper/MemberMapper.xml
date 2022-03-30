@@ -29,6 +29,11 @@
 		delete from tblmember where m_id = #{m_id}
 	</delete>
 	
+	<select id="login" resultType="com.it.domain.MemberVO">
+		select * from tblmember where m_id = #{m_id}
+		and m_passwd = #{m_passwd}
+	</select>
+	
 	<update id="upasswd">
 		update tblmember set m_passwd = #{m_passwd} where m_id = #{m_id}
 	</update>
