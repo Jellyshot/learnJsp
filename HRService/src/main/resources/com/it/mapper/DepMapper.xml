@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.DepMapper">
+	
+	<select id="getList" resultType="com.it.domain.DepVO">
+		select * from dep order by d_code ASC;
+	</select>
+	
+	<select id="read" resultType="com.it.domain.DepVO">
+		select * from dep where d_code = #{d_code}
+	</select>
+	
+	<insert id="insert">
+		insert into dep d_name values #{d_name} 
+	</insert>
+	
+	<update id="update">
+		update dep set d_name = #{d_name} where d_code = #{d_code}
+	</update>
+	
+	<delete id="delete">
+		delete from dep where d_code = #{d_code}
+	</delete>
+	
+</mapper>	

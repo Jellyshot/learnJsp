@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.it.domain.OrderdetailDTO;
 import com.it.domain.OrdermainVO;
+import com.it.domain.OrdermanageDTO;
 import com.it.domain.OrdermemberDTO;
 import com.it.domain.OrdersubVO;
 
@@ -19,4 +20,5 @@ public interface OrderMapper {
 	
 	public OrdermemberDTO getOrderTotal(OrdermainVO ordermain);
 
+	public List<OrdermanageDTO> ordermanage(OrdermainVO ordermain);
 }

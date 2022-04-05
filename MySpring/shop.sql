@@ -217,10 +217,11 @@ show tables;
 
 -- 테이블 데이터 삭제(장바구니 및 구매내역 비움)
 delete from tblordersub;
-delete from tblnotice;
+--delete from tblnotice;
 delete from tblordermain;
 delete from tblcartsub;
 delete from tblcartmain;
+delete from tblproduct;
 
 -- 회원등록
 insert into tblmember (m_id, m_name, m_passwd) values('tiger', '호랑이', '1234');

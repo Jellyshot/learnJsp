@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.BelongMapper">	
+	
+	<select id="getList" resultType="com.it.domain.BelongVO">
+		SELECT * FROM belong order by b_code ASC
+	</select>
+	
+	<select id="read" resultType="com.it.domain.BelongVO">
+		SELECT * FROM belong WHERE b_code = #{b_code}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO belong (b_place) VALUES (#{b_place})
+	</insert>
+	
+	<update id="update">
+		UPDATE belong SET b_place = #{b_place} WHERE b_code = #{b_code}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM belong WHERE b_code = #{b_code}
+	</delete>
+
+</mapper>

@@ -65,9 +65,38 @@
 		                          <th>${ordermanage.a_zipcode}</th>
                                   <td><form action="/order/update?om_code=${ordermanage.om_code}" method="post">
                                   	<select name="om_status">
-                                  		<option>배송대기</option>
-                                  		<option>출고완료</option>
-                                  		<option>배송완료</option>
+<%--                                   	<c:choose>
+                                  	<c:when test="${om_status eq 'order'}">
+                                  		<option value="order" selected >배송대기</option>
+                                  		<option value="released">출고완료</option>
+                                  		<option value="complete">배송완료</option>
+                                  	</c:when>
+                                  	<c:when test="${om_status eq 'released'}">
+                                  		<option value="order" >배송대기</option>
+                                  		<option value="released" selected>출고완료</option>
+                                  		<option value="complete">배송완료</option>
+                                  	</c:when>
+                                  	<c:when test="${om_status eq 'complete'}">
+                                  		<option value="order" >배송대기</option>
+                                  		<option value="released">출고완료</option>
+                                  		<option value="complete" selected>배송완료</option>
+                                  	</c:when>
+                                  	</c:choose> --%>
+                                  	<c:if test="${ordermanage.om_status eq 'order'}">
+                                  		<option value="order" selected >배송대기</option>
+                                  		<option value="released">출고완료</option>
+                                  		<option value="complete">배송완료</option>
+                                  	</c:if>
+                                  	<c:if test="${ordermanage.om_status eq 'released'}">
+                                  		<option value="order" >배송대기</option>
+                                  		<option value="released" selected>출고완료</option>
+                                  		<option value="complete">배송완료</option>
+                                  	</c:if>
+                                  	<c:if test="${ordermanage.om_status eq 'complete'}">
+                                  		<option value="order" >배송대기</option>
+                                  		<option value="released">출고완료</option>
+                                  		<option value="complete" selected>배송완료</option>
+                                  	</c:if>
                                   	</select>	
                                   	<input type="submit" value="수정" />
                                   </form></td>

@@ -39,7 +39,7 @@
 					<nav id="nav">
 						<ul class="links">
 							<li class="active"><a href="/">Main</a></li>
-							<li><a href="generic.html">Generic Page</a></li>
+							<li><a href="/notice/list">Notice</a></li>
 							<li><a href="elements.html">Elements Reference</a></li>
 						</ul>
 						<ul class="icons">
@@ -80,9 +80,10 @@
 					</header>
 					<a href="#" class="image fit"><img src="/resources/product/${product.p_code}.jpg" alt="이미지 준비중" /></a>
 					<p class="align-center"><fmt:formatNumber value="${product.p_price}" type="currency"/></p>
+					
 					<form action="/shop/cart" method="post">
 					<ul class="actions special">
-						<li><input type="hidden" value="${product.p_code}"/></li>
+						<li><input type="hidden" value="${product.p_code}" name="p_code"/></li>
 						<li><select name="cs_cnt">
 							<c:forEach var="count" begin="1" end="10" step="1">
 								<option value="${count}">${count}개</option>

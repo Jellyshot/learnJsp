@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.WorkingstatusMapper">	
+	
+	<select id="getList" resultType="com.it.domain.WorkingstatusVO">
+		SELECT * FROM workingstatus order by s_code ASC
+	</select>
+	
+	<select id="read" resultType="com.it.domain.WorkingstatusVO">
+		SELECT * FROM workingstatus WHERE s_code = #{s_code}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO workingstatus (s_value) VALUES (#{s_value})
+	</insert>
+	
+	<update id="update">
+		UPDATE workingstatus SET s_value = #{s_value} WHERE s_code = #{s_code}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM workingstatus WHERE s_code = #{s_code}
+	</delete>
+
+</mapper>

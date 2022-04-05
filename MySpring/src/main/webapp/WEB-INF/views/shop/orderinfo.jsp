@@ -30,7 +30,7 @@
 							<td>상품가격</td>
 							<td>수량</td>
 							<td>금액</td>
-						</tr>
+						</tr>	
 					</thead>
 					<tbody>
 					<c:forEach items="${list}" var="ordersub">
@@ -48,7 +48,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
-						<p style="float:right; font-size:1.5rem;">장바구니 총 금액은
+						<p style="float:right; font-size:1.5rem;">구매한 총 금액은
 						<b><fmt:formatNumber value="${ordertotal.om_total}" pattern="###,###"/>원</b> 입니다.</p>
 			</div>
 		</div>

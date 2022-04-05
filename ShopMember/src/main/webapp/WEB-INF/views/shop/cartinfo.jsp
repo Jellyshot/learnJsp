@@ -2,27 +2,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="../include/header.jsp"%>
-<div class="container-fluid">
-<h1 style="text-align:center">우당탕탕 스토어</h1>
 
-<h3>${m_name}님의 장바구니</h3>
-	<p class="mb-4"></p>
 
-	<!-- Page Section -->
-	<div class="card shadow mb-4">
-	
-		<!-- 상품등록 버튼 -->
-		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">
-				<a href="/shop/list">상품목록</a>
-			</h6>
-		</div>
-		
-		<!-- 리스팅 시작 -->
-		<div class="card-body">
-			<div class="table-responsive" style="boder:1px">
-				<table class="table table-bordered" width="100%" cellspacing="0">
-				<thead>
+<!-- Main -->
+	<div id="main">
+
+		<!-- Post -->
+			<section class="post">
+				<header class="major">
+					<span class="date">${serverTime}</span>
+					<h1>${m_id}님의 장바구니</h1>
+				</header>
+				<table>
+					<thead>
 						<tr>
 							<td>상세코드</td>
 							<td>상품코드</td>
@@ -58,30 +50,33 @@
 											</c:if>
 										</c:forEach>
 									</select>
-									<input type="submit" value="변경">
+									<div class="actions small">
+									<input type="submit" value="변경" class="button small">
+									<a href="/shop/cartdelete?cs_code=${cartsub.cs_code}&cm_code=${cm_code}" class="button small">&nbsp;삭제</a>
+									</div>
 								</form>
-									<a href="/shop/cartdelete?cs_code=${cartsub.cs_code}&cm_code=${cm_code}" style="float:left;">&nbsp;삭제</a>
 								</td>
 								
 								<td><fmt:formatNumber value="${cartsub.cs_money}" pattern="###,###" /></td>
 							</tr>
 						</c:forEach>
-						
 					</tbody>
 				</table>
-						<p style="float:right; font-size:1.5rem;">장바구니 총 금액은
-						<b><fmt:formatNumber value="${carttotal.cm_total}" pattern="###,###"/>원</b> 입니다.</p>
+				<h2 style="float:right;">장바구니 총 금액은
+						<b><fmt:formatNumber value="${carttotal.cm_total}" pattern="###,###"/>원</b> 입니다.</h2>
 						
 						<!-- cm_code가 있으면(장바구니에 무언가 담겨있으면),전체삭제를 해주는 버튼 생성  -->
-						<c:if test="${not empty cm_code}">
-							<a href="/shop/cartdeleteall?cm_code=${cm_code}">전체삭제</a><br>
-							<a href="/shop/orderinfo?cm_code=${cm_code}" class="btn btn-primary btn-user btn-block" style="margin:20px auto;">주문하기</a>
-						</c:if> 
-			</div>
-		</div>
-	</div>
-
+				<div class="actions">
+					<c:if test="${not empty cm_code}">
+						<a href="/shop/cartdeleteall?cm_code=${cm_code}" class="button">전체삭제</a>
+						<a href="/shop/address?cm_code=${cm_code}" class="button">배송지 입력</a>
+					<%-- <a href="/shop/orderinfo?cm_code=${cm_code}" class="button">주문하기</a> --%>
+					</c:if> 
+				</div>
+			</section>
 </div>
+
+				
 <!-- /.container-fluid -->
 
 <%@ include file="../include/footer.jsp"%>

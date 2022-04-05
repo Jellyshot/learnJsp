@@ -60,8 +60,9 @@ public class OrderController {
 			return "redirect:/admin/login";
 		} else {
 			orderservice.statusupdate(ordermanage);
-		}return "";
+		}return "redirect:/order/list";
 	}
-		
+	
+
 	
 }

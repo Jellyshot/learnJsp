@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.A_categoryMapper">	
+	
+	<select id="getList" resultType="com.it.domain.A_categoryVO">
+		SELECT * FROM a_category order by c_code DESC
+	</select>
+	
+	<select id="read" resultType="com.it.domain.QualificationVO">
+		SELECT * FROM a_category WHERE c_code = #{c_code}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO a_category (c_value) VALUES (#{c_value})
+	</insert>
+	
+	<update id="update">
+		UPDATE a_category 
+			SET c_value = #{c_value} WHERE c_code = #{c_code}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM a_category WHERE c_code = #{c_code}
+	</delete>
+	
+</mapper>

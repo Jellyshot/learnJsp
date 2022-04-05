@@ -1,5 +1,6 @@
 package com.it.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.it.domain.MemberVO;
+import com.it.domain.OrdermainVO;
 import com.it.domain.PageDTO;
 import com.it.domain.PageviewDTO;
 import com.it.service.MemberService;
+import com.it.service.OrderService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -23,32 +26,48 @@ import lombok.extern.log4j.Log4j;
 public class MemberController {
 
 	@Setter(onMethod_ = @Autowired)
-	public MemberService service;
+	public MemberService memberservice;
+	
+	@Setter(onMethod_ = @Autowired)
+	public OrderService orderservice;
 	
 	@GetMapping("/login")
 	public void login() {
 		
 	}
 	@PostMapping("/login")
-	public String login(MemberVO member, HttpSession session) {
+	public String login(MemberVO member, HttpSession session, HttpServletResponse response) {
 		log.info(member);
-		boolean chk = service.login(member);
+		boolean chk = memberservice.login(member);
 		if(chk==true) {
 			session.setAttribute("m_id", member.getM_id());
 			log.info(member.getM_id()+"로그인 성공");
 			return "redirect:../";
+			
 		} else {
 			return "redirect:/member/login";
 		}
 	}
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:../";
+	}
 	
 	@GetMapping("/mypage")
-	public String mypage(HttpSession session) {
+	public String mypage(HttpSession session, Model model) {
 		String m_id = (String)session.getAttribute("m_id");
 		if(m_id == null) {
 			return "redirect:/member/login";
 		} else {
+			OrdermainVO ordermain = new OrdermainVO();
+			ordermain.setM_id(m_id);
+			ordermain = orderservice.readMainid(ordermain);
+			log.info("ordermanage: " +  orderservice.ordermanage(ordermain));
+			model.addAttribute("ordermanage", orderservice.ordermanage(ordermain));
+			
 			return "/member/mypage";
+			
 		}
 	}
 	
@@ -58,32 +77,31 @@ public class MemberController {
 		if(m_id ==null) {
 			return "redirect:/member/login";
 		} else {
-			model.addAttribute("list", service.getList(page));
-			int total = service.getTotalCount();
+			model.addAttribute("list", memberservice.getList(page));
+			int total = memberservice.getTotalCount();
 			
 			PageviewDTO pageview = new PageviewDTO(page,total);
 			model.addAttribute("pageview", pageview);
 		} return "/member/list"; 
 	}
 	
-	@GetMapping("/insert")
-	public String insert(HttpSession session) {
-		String m_id = (String)session.getAttribute("m_id");
-		if(m_id == null) {
-			return "redirect:/member/login";
-		} else {
-			return "/member/insert";
-		}
+	@GetMapping("/regist")
+	public void insert(HttpSession session) {
+		
 	}
 	
 	@PostMapping("/insert")
 	public String insert(HttpSession session, MemberVO member) {
-		String m_id = (String)session.getAttribute("m_id");
-		if(m_id == null) {
-			return "redirect:/member/login";
-		}else {
-			service.insert(member);
-		}return "redirect:/member/list";
+			log.info(member);
+			MemberVO tmp = new MemberVO();
+			tmp = memberservice.read(member);
+			if(tmp==null) {
+				memberservice.insert(member);
+				return "redirect:/member/login";
+			} else {
+				log.info("동일한 아이디가 존재합니다");
+				return "/member/insert";
+			}
 	}
 	
 	@GetMapping("/view")
@@ -92,7 +110,7 @@ public class MemberController {
 		if(m_id == null) {
 			return "redirect:/member/login";
 		}else {
-			member = service.read(member);
+			member = memberservice.read(member);
 			model.addAttribute("member", member);
 			model.addAttribute("page", page);
 			return "/member/view";
@@ -105,7 +123,9 @@ public class MemberController {
 		if(m_id == null) {
 			return "redirect:/member/login";
 		}else {
-			member = service.read(member);
+			member.setM_id(m_id);
+			member = memberservice.read(member);
+			log.info(member);
 			model.addAttribute("member", member);
 			model.addAttribute("page", page);
 		}
@@ -119,7 +139,7 @@ public class MemberController {
 			return "redirect:/member/login";
 		}else {
 			log.info(member.getM_name()+"님의 회원정보 업데이트");
-			service.update(member);
+			memberservice.update(member);
 			return "redirect:/member/view/?m_id="+member.getM_id()+"&pageNum="+page.getPageNum();
 		}
 	}
@@ -130,7 +150,7 @@ public class MemberController {
 		if(m_id == null) {
 			return "redirect:/member/login";
 		}else {
-			service.delete(member);
+			memberservice.delete(member);
 			return "redirect:/member/list";
 		}
 	}
@@ -141,7 +161,7 @@ public class MemberController {
 		if(m_id == null) {
 			return "redirect:/member/login";
 		}else{
-			service.upasswd(member);
+			memberservice.upasswd(member);
 			return "redirect:/member/list";
 		}
 	}

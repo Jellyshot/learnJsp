@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.EducationMapper">	
+	
+	<select id="getList" resultType="com.it.domain.EducationVO">
+		SELECT * FROM education order by e_code ASC
+	</select>
+	
+	<select id="read" resultType="com.it.domain.EducationVO">
+		SELECT * FROM education WHERE e_code = #{e_code}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO education (e_value) VALUES (#{e_value})
+	</insert>
+	
+	<update id="update">
+		UPDATE education SET e_value = #{e_value} WHERE e_code = #{e_code}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM education WHERE e_code = #{e_code}
+	</delete>
+
+</mapper>

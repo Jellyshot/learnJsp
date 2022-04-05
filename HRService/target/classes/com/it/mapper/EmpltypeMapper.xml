@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.EmpltypeMapper">	
+	
+	<select id="getList" resultType="com.it.domain.EmpltypeVO">
+		SELECT * FROM empltype order by t_code ASC
+	</select>
+	
+	<select id="read" resultType="com.it.domain.EmpltypeVO">
+		SELECT * FROM empltype WHERE t_code = #{t_code}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO empltype (t_name, t_period) VALUES (#{t_name}, #{t_period})
+	</insert>
+	
+	<update id="update">
+		UPDATE empltype SET t_name = #{t_name} t_period = #{t_period} WHERE t_code = #{t_code}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM empltype WHERE t_code = #{t_code}
+	</delete>
+
+</mapper>

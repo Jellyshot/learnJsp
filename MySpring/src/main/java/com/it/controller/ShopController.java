@@ -126,7 +126,7 @@ public class ShopController {
 	}
 	
 	
-	@PostMapping("/cartdelete")
+	@PostMapping("/cartupdate")
 	public void updateSub(CartsubVO cartsub) {
 		log.info("-----장바구니 업데이트-----");
 		cartservice.updateSub(cartsub);

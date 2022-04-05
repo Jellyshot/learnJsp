@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.AddressMapper">
+
+	
+	<insert id="insert">
+		insert into tbladdress(m_id, a_address01, a_address02, a_zipcode)
+		values (#{m_id}, #{a_address01}, #{a_address02}, #{a_zipcode})
+	</insert>
+	
+	<select id="read" resultType="com.it.domain.AddressVO">
+		select * from tbladdress where m_id = #{m_id} 
+	</select>
+	
+	<update id="update">
+		update tbladdress set a_address01 = #{a_address01}, a_address02=#{a_address02},  a_zipcode = #{a_zipcode}
+		where m_id = #{m_id}
+	</update>
+	
+	<delete id="delete">
+		delete from tbladdress where m_id = #{m_id}
+	</delete>
+	
+
+	
+</mapper>

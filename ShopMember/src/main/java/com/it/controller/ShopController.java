@@ -127,10 +127,11 @@ public class ShopController {
 	}
 	
 	
-	@PostMapping("/cartdelete")
-	public void updateSub(CartsubVO cartsub) {
-		log.info("-----장바구니 업데이트-----");
+	@PostMapping("/cartupdate")
+	public String updateSub(CartsubVO cartsub) {
 		cartservice.updateSub(cartsub);
+		log.info("-----장바구니 업데이트-----");
+		return "redirect:/shop/cartinfo";
 	}
 	
 	@GetMapping("/cartdelete")
@@ -147,6 +148,27 @@ public class ShopController {
 	}
 	
 //	------------- 주문 진행 -----------------
+	
+	@GetMapping("/address")
+	public String address(HttpSession session, CartmainVO cartmain) {
+		String m_id = (String)session.getAttribute("m_id");
+		if(m_id==null) {
+			return "/member/login";
+		} else {
+			cartmain.getCm_code();
+			return "/shop/address";
+		}
+	}
+	@PostMapping("/address")
+	public String address(HttpSession session, CartmainVO cartmain, Model model) {
+		String m_id = (String)session.getAttribute("m_id");
+		if(m_id==null) {
+			return "/member/login";
+		} else {
+			
+			return "redirect:/shop/orderinfo";
+		}
+	}
 	
 	@GetMapping("/orderinfo")
 	public String orderinfo(HttpSession session, CartmainVO cartmain, Model model) {

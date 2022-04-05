@@ -1,3 +1,6 @@
+import java.util.Calendar;
+import java.util.Date;
+import java.text.*;
 
 public class MyCalendar {
 		
@@ -23,10 +26,7 @@ public class MyCalendar {
 			return sum + day;
 		}
 		
-//		년, 월, 일을 넘겨받아 요일을 숫자로 리턴하는 메서드, 일요일(0),월요일(1)....토요일(6)
-		public static int weekDay(int year, int month, int day) {
-			return totalDay(year, month, day) % 7;
-		}
+		
 		
 	}
 

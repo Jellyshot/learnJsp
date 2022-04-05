@@ -2,21 +2,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="../include/header.jsp"%>
-<div class="container-fluid">
-<h1 style="text-align:center">우당탕탕 스토어</h1>
 
-<h3>${m_name}님의 구매내역</h3>
-	<p class="mb-4"></p>
 
-	<!-- Page Section -->
-	<div class="card shadow mb-4">
+
+
+<div id="main">
+	<section class="post">
+		<header class="major">
+			<span class="date">${serverTime}</span>
+			<h1>${m_id}님의 구매내역</h1>
+			<ul class="actions">
+				<li><a href="/" class="button primary">상품목록으로</a></li>
+			</ul>
+		</header>
 	
-		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">
-				<a href="/shop/list">상품목록</a>
-			</h6>
-		</div>
-		
 		<!-- 리스팅 시작 -->
 		<div class="card-body">
 			<div class="table-responsive" style="boder:1px">
@@ -53,7 +52,8 @@
 			</div>
 		</div>
 	</div>
-
+		
+	</section>
 </div>
 <!-- /.container-fluid -->
 

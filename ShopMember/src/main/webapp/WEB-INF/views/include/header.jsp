@@ -28,7 +28,7 @@
 					<nav id="nav">
 						<ul class="links">
 							<li class="active"><a href="/">Main</a></li>
-							<li><a href="generic.html">Generic Page</a></li>
+							<li><a href="/notice/list">Notice</a></li>
 							<li><a href="elements.html">Elements Reference</a></li>
 						</ul>
 						<ul class="icons">
@@ -36,7 +36,8 @@
 							<li><a href="/member/login"><span class="label"><i class="fas fa-sign-in-alt"></i></span></a></li>
 						</c:if>
 						<c:if test="${m_id != null}">
-								<li><a href="/member/mypage"><span class="label"><i class="fas fa-user"></i></span></a></li>
+							<li><a href="/member/mypage" class="icon"><i class="fas fa-user"></i></a></li>
+							<li><a href="/member/logout" class="icon"><i class="fas fa-sign-out-alt"></i></a></li>
 						</c:if>
 						</ul>
 					</nav>

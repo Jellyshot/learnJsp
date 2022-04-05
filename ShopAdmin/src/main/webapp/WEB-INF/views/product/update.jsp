@@ -30,7 +30,7 @@
 		</div>
 	    <div class="mb-3">
 	  		<label for="staticEmail" class="form-label">상품단가</label>
- 	   	  <input type="text" name="p_price" class="form-control" id="staticEmail" placeholder="${product.p_price}">
+ 	   	  <input type="text" name="p_price" class="form-control" id="staticEmail" value="${product.p_price}">
     
 		</div>
 		<div class="d-grid gap-2">

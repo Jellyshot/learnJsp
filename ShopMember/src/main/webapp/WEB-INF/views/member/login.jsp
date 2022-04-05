@@ -60,9 +60,9 @@
 	      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="m_passwd">
 	      <label for="floatingPassword">Password</label>
 	    </div>
-	
 	   
 	    <input class="w-100 btn btn-lg btn-primary" type="submit" value="Sign in">
+	    <a class="my-3" href="/member/regist">Sign Up</a> 
 	    <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
 	  </form>
 	  </div>

@@ -18,9 +18,13 @@
 	<select id="readMainid" resultType="com.it.domain.CartmainVO">
 		SELECT * FROM tblcartmain WHERE m_id = #{m_id} 
 	</select>
+	
+	
 	<insert id="insertMain">
 		INSERT INTO tblcartmain (m_id) VALUES (#{m_id})
 	</insert>
+	
+	
 	<delete id="deleteMain">
 		DELETE FROM tblcartmain WHERE cm_code = #{cm_code} 
 	</delete>
@@ -37,18 +41,25 @@
 	<insert id="insertSub">
 		INSERT INTO tblcartsub (cm_code, p_code, cs_cnt) VALUES (#{cm_code}, #{p_code}, #{cs_cnt})
 	</insert>
+	
+	
 	<select id="readSub" resultType="com.it.domain.CartsubVO">
 		SELECT * FROM tblcartsub WHERE cs_code = #{cs_code}
 	</select>
 	<select id="readSubproduct" resultType="com.it.domain.CartsubVO">
 		SELECT * FROM tblcartsub WHERE cm_code = #{cm_code} and p_code = #{p_code}
 	</select>
+	
+	
 	<update id="updateSub">
 		UPDATE tblcartsub SET cs_cnt = #{cs_cnt}
 		WHERE cs_code = #{cs_code}
 	</update>
 	<delete id="deleteSub">
 		DELETE FROM tblcartsub WHERE cs_code = #{cs_code}
+	</delete>
+	<delete id="deletesuball">
+		DELETE FROM tblcartsub WHERE cm_code = #{cm_code}
 	</delete>
 	
 	
@@ -60,6 +71,11 @@
 		and cs.cm_code = #{cm_code} 
 	</select>
 	
-	
+	<select id="getCartTotal" resultType="com.it.domain.CartmemberDTO">
+		SELECT sum(p.p_price * cs.cs_cnt) as cm_total 
+		FROM	tblproduct as p, tblcartsub cs
+		WHERE	p.p_code = cs.p_code
+		and cs.cm_code = #{cm_code}
+	</select>
 
 </mapper>

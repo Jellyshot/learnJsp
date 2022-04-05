@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.MemberinfoMapper">	
+	
+	<select id="getList" resultType="com.it.domain.MemberinfoVO">
+		SELECT * FROM memberinfo order by i_code ASC
+	</select>
+	
+	<select id="read" resultType="com.it.domain.MemberinfoVO">
+		SELECT * FROM memberinfo WHERE i_code = #{i_code}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO memberinfo (m_code, i_value, i_sdate, i_edate) 
+			VALUES (#{m_code}, #{i_value}, #{i_sdate}, #{i_edate})
+	</insert>
+	
+	<update id="update">
+		UPDATE memberinfo SET m_code = #{m_code}, i_value = #{i_value}, i_sdate=#{i_sdate}, i_edate = #{i_edate} 
+		WHERE i_code = #{i_code}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM memberinfo WHERE i_code = #{i_code}
+	</delete>
+
+</mapper>

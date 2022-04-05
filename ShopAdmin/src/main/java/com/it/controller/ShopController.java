@@ -148,6 +148,7 @@ public class ShopController {
 	
 //	------------- 주문 진행 -----------------
 	
+
 	@GetMapping("/orderinfo")
 	public String orderinfo(HttpSession session, CartmainVO cartmain, Model model) {
 		//1. 로그인 확인 후		

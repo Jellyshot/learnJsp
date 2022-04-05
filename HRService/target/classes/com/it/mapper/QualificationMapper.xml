@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.QualificationMapper">	
+	
+	<select id="getList" resultType="com.it.domain.QualificationVO">
+		SELECT * FROM qualification order by q_code DESC
+	</select>
+	
+	<select id="read" resultType="com.it.domain.QualificationVO">
+		SELECT * FROM qualification WHERE q_code = #{q_code}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO qualification (m_code, q_name) VALUES (#{m_code}, #{q_name})
+	</insert>
+	
+	<update id="update">
+		UPDATE qualification 
+			SET m_code = #{m_code}, q_name = #{q_name}	WHERE q_code = #{q_code}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM qualification WHERE q_code = #{q_code}
+	</delete>
+	
+</mapper>

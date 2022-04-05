@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.MemberMapper">	
+	
+	<select id="getList" resultType="com.it.domain.MemberVO">
+		SELECT * FROM member order by m_code DESC
+	</select>
+	
+	<select id="read" resultType="com.it.domain.MemberVO">
+		SELECT * FROM member WHERE m_code = #{m_code}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO member (m_pwd, t_code, m_name, m_joindate, b_code, d_code, p_code, m_enumber, s_code, m_phone, m_address, m_email, e_code ) 
+			VALUES (1234, #{t_code}, #{m_name}, #{m_joindate}, #{b_code}, #{d_code}, #{p_code}, #{m_enumber}, #{s_code}, #{m_phone}, #{m_address}, #{m_email}, #{e_code})
+	</insert>
+	
+	<update id="update">
+		UPDATE member 
+			SET m_pwd = #{m_pwd}, t_code = #{t_code}, m_name = #{m_name},  m_joindate = #{m_joindate}, 
+				b_code = #{b_code}, d_code = #{d_code}, p_code = #{p_code}, m_enumber = #{m_enumber}, s_code = #{s_code}, m_phone = #{m_phone}, m_address = #{m_address}, m_email = #{m_email}, e_code = #{m_email} 
+				WHERE m_code = #{m_code}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM member WHERE m_code = #{m_code}
+	</delete>
+
+	<update id="resetpwd">
+		UPDATE member SET m_pwd = 1234 WHERE m_code = #{m_code}
+		
+	</update>
+	
+	<update id="changepwd">
+		UPDATE member SET m_pwd = ${m_pwd} WHERE m_code = #{m_code}
+	</update>
+	
+	
+	<select id="gettotalcount" resultType="int">
+		SELECT COUNT(*) FROM member
+	</select>
+	
+	<select id="getmembercount" resultType="int">
+		SELECT COUNT(*) FROM member WHERE b_code = #{b_code}
+	</select>
+</mapper>

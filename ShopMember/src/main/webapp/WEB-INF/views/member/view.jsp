@@ -5,22 +5,17 @@
 <%@ include file="../include/header.jsp"%>
 
 
+<div id="main">
+	<section class="post">
+		<header class="major">
+			<span class="date">${serverTime}</span>
+			<h1>내정보 상세보기</h1>
+			<ul class="actions">
+				<li><a href="/member/mypage" class="button primary">MyPage</a></li>
+			</ul>
+		</header>
 
-<div id="layoutSidenav_content">
-    <main>
-      <div class="container-fluid px-4">
-          <h1 class="mt-4">공지사항</h1>
-          <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item"><a href="/member/list">리스트로</a></li>
-              <li class="breadcrumb-item active">Tables</li>
-          </ol>
-		<a class="btn btn-primary mb-3 btn-block" href="/member/list?pageNum=${page.pageNum}" role="button">List</a>
-             <div class="card mb-4">
-                <div class="card-header">
-                   <i class="fas fa-table me-1"></i>
-                     DataTable Example
-                </div>
-      	        <div class="card-body">
+
                   <table id="datatablesSimple">
                       
                           <tr>
@@ -44,17 +39,14 @@
                              <td>${member.m_udate}</td>
                          </tr>
                     </table>
-                       <div class="mt-4 mb-0">
-                               
-							<a href="/member/update?m_id=${member.m_id}&pageNum=${page.pageNum}" class="btn btn-primary btn-sm">[수정]</a>
-							<a href="/member/delete?m_id=${member.m_id}" class="btn btn-primary btn-sm">[삭제]</a>
+                    
+               	<ul class="actions">    
+					<li><a href="/member/update?m_id=${member.m_id}&pageNum=${page.pageNum}" class="button">[수정]</a></li>
+					<li><a href="/member/delete?m_id=${member.m_id}" class="button">[삭제]</a></li>
+				</ul>
 						
-                          </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-</div>
+           </section>
+          </div>
 
 
 
