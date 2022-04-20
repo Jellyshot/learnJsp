@@ -38,16 +38,16 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li class="active"><a href="/">Main</a></li>
+							<li class="active"><a href="/">Shop</a></li>
 							<li><a href="/notice/list">Notice</a></li>
-							<li><a href="elements.html">Elements Reference</a></li>
+							<li><a href="/board2/list">Board</a></li>
 						</ul>
 						<ul class="icons">
 						<c:if test="${m_id == null }">
-							<li><a href="/member/login"><span class="label"><i class="fas fa-sign-in-alt"></i></span></a></li>
+							<li><a href="/member/login">Login</a></li>
 						</c:if>
 						<c:if test="${m_id != null}">
-								<li><a href="/member/mypage"><span class="label"><i class="fas fa-user"></i></span></a></li>
+								<li><a href="/member/mypage">MyPage</a></li>
 						</c:if>
 						</ul>
 					</nav>

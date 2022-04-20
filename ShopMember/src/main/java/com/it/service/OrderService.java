@@ -16,7 +16,11 @@ public interface OrderService {
 	
 	public OrdermainVO readMainid(OrdermainVO ordermain);
 	
+	public List<OrdermainVO> readcmcode(OrdermainVO ordermain);
+	
 	public OrdermemberDTO getOrderTotal(OrdermainVO ordermain);
 	
 	public List<OrdermanageDTO> ordermanage(OrdermainVO ordermain);
+	
+	public void deleteid(OrdermainVO ordermain);
 }

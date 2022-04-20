@@ -204,7 +204,7 @@ public class NoticeController {
 				} else {
 					String fname = item.getName();
 					log.info("바이너리 파일이름 : " + fname);
-					if (fname != null) {
+					if (fname != "") {
 						File file = new File(filepath + "/" + fname);
 						notice.setN_file(fname);
 						item.write(file);

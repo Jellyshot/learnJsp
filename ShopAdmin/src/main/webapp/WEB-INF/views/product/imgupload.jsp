@@ -26,7 +26,7 @@
 				//thisform.target = _self;
 				
 				/* Promise(resolve => setTimeout(resolve, 3000)).then(()=>window.open("about:blank", "_self").close());
-				/* opener.location.reload(); 
+				 opener.location.reload(); 
 				window.open("about:blank", "_self").close(); */
 				
 				// opener.location.reload();

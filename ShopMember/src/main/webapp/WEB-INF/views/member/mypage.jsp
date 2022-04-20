@@ -10,7 +10,9 @@
 			<span class="date">${serverTime}</span>
 			<h1>My Page</h1>
 			<ul class="actions">
-				<li><a href="/member/update" class="button primary">회원정보수정</a></li>
+				<li><a href="/shop/cartinfo" class="button primary">장바구니</a></li>
+				<li><a href="/member/update" class="button">회원정보수정</a></li>
+				<li><a href="/member/delete?m_id=${m_id}"  class="button">회원탈퇴</a></li>
 			</ul>
 		</header>
 		<p>${m_id}님의 최근 구매내역</p>

@@ -156,13 +156,13 @@ DELIMITER $$
 	AFTER UPDATE ON member
 	FOR EACH ROW
 	BEGIN
---		DECLARE m_code int
---				h_status VARCHAR(20)
+		DECLARE m_code int;
+		DECLARE h_status VARCHAR(20);
 		
-		SET m_code = NEW.m_code
-		SET h_status = "이(가) 수정됨"
+		SET m_code = NEW.m_code;
+		SET h_status = "이(가) 수정됨";
 		
-		INSERT INTO history (m_code, h_status) VALUE(m_code, h_status)
+		INSERT INTO history (m_code, h_status) VALUE(m_code, h_status);
 		
 	END; $$
-DELIMITER;
+DELIMITER ;

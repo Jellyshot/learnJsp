@@ -35,26 +35,13 @@ public class Board2Controller {
 	@Setter(onMethod_ = @Autowired)
 	private Board2Service service;
 	
-	@GetMapping("/test")
-	public void test() {
-	}
+
 	
 	// ---------------------- Read -------------------------------
 	@GetMapping("/list")
-	public String list(Model model, PageDTO page, HttpSession session) {
-		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
-		}else {
-		// Model : jsp로 데이터를 전달해주는 Controller 내장 객체. 주로 VO객체를 저장함.
-		// RequestParam 변수를 생성하는 어노테이션. "user"는 웹브라우저에서 쓸 이름, String user는 변수이름
+	public void list(Model model, PageDTO page, HttpSession session) {
 		
-		// Tomcat 실행.
-		// board 폴더로 가서 list.jsp 를 만들어 줌 그럼 이제 list.jsp로 가게됨.
-		// model의 속성인 addAttribute를 사용하여 list라는 인스턴스변수에 getList한 데이터를 list.jsp에 전달
 		model.addAttribute("list", service.getList(page));
-		// list.jsp에서는 item="${list}"로 내용을 받음.
-		
 		
 		// --- 페이지네이션 ---
 			int total = service.getTotalCount(); //전체 레코드 갯수
@@ -62,43 +49,19 @@ public class Board2Controller {
 			PageviewDTO pageview = new PageviewDTO(page, total);
 			//파라미터로 page, total을 받으니까 list를 통해 넘어온 정보들을 따로 set해주지 않아도 가지고 있음.
 			model.addAttribute("pageview", pageview);
-			
-		// 가방대신 RequestParam로 만든 변수 출력해보기~! url에 ?user=🍰를 하면 콘솔에 🍰가 찍힌다.	
-		// public void list	@RequestParam("user") String user, @RequestParam("age") int age) 
-		// 다만 이 방식일때는, Null값이 되는 변수, 항상 값이 넘어가지 않는 경우에는 사용하면 안된다. 에러가뜸! 그래서 가방(객체)가 편함! 
-		//	log.info("--- board url의 유저를 출력해보아요 ---");
-		//	log.info(user);
-		//	log.info("--- board url의 나이를 출력해보아요 ---");
-		//	log.info(age + 1);
-		//	model.addAttribute("user", user);
-		//	model.addAttribute("age", age);
-	} return "/board2/list";
+		
 	}
 	
 	//	------------------- 수정, 삭제를 위한 view ---------------------------
 	@GetMapping("/view")
-	public String view(Board2VO board, Model model, PageDTO page, HttpSession session) {
-		String a_id = (String)session.getAttribute("a_id");
-		if(a_id == null) {
-			return "redirect:/admin/login";
-			
-		}else {
-		log.info("-----list에서 넘어온 num값을 받아 read 실행-----");
+	public void view(Board2VO board, Model model, PageDTO page, HttpSession session) {
+		
 		board = service.read(board); 
 		log.info(board);
-		
-	/*	read 로 board변수에 값을 담았으므로, board변수에 있는 값을 name="board"로 넘김.
-	 *  값을 넘길때는 model.addAttribute(String, object)를 사용하고, 페이지를 이동시킬때는 redirect:url을 사용.
-	 *  addAttribute는 값만 넘겨주고 끝이므로 리턴값이 필요 없지만, redirect:url은 메세지 출력해야 하니까 return값이 있음
-	 *  그래서 void가 아니라 string을 써줘야함.
-	 *  model의 속성인 addAttribute를 사용하여 board라는 인스턴스변수에 데이터를 담아 jsp로 전달
-	 */
 		model.addAttribute("board",board);
-		
 		
 		//get으로 받았던 pageNum을 저장하기 위해 PageDTO 파라미터를 인지시켜주고, addAttribute 시켜줌.		
 		model.addAttribute("page", page);
-		} return "/board2/view";
 	}
 	
 	
@@ -106,9 +69,9 @@ public class Board2Controller {
 		@GetMapping("/insert")
 		public String insert(HttpSession session) {
 			// form이 들어간 package를 호출만 함.
-			String a_id = (String)session.getAttribute("a_id");
-			if(a_id == null) {
-				return "redirect:/admin/login";
+			String m_id = (String)session.getAttribute("m_id");
+			if(m_id == null) {
+				return "redirect:/member/login";
 				
 			}else {
 				return "/board2/insert";
@@ -122,9 +85,9 @@ public class Board2Controller {
 		@PostMapping("/insert")
 		public String insert(HttpServletRequest request, HttpSession session) {
 //			HttpServletRequest : request 메서드를 사용할 수 있도록 만들어주는 클래스. 클라이언트의 요청으로부터 받은 정보가 VO파일로 받을 수 없는 유형일때 request로 받는다.
-			String a_id = (String)session.getAttribute("a_id");
-			if(a_id == null) {
-				return "redirect:/admin/login";
+			String m_id = (String)session.getAttribute("m_id");
+			if(m_id == null) {
+				return "redirect:/member/login";
 				
 			}else {
 			DiskFileUpload upload = new DiskFileUpload(); // 데이터 전송 컴포넌트 'upload' 생성
@@ -235,9 +198,9 @@ public class Board2Controller {
 		//view에서 넘겨준 b_num값으로 데이터를 update(form)에 불러옴.
 		@GetMapping("/update")
 		public String update(Board2VO board, Model model, PageDTO page, HttpSession session) {
-			String a_id = (String)session.getAttribute("a_id");
-			if(a_id == null) {
-				return "redirect:/admin/login";
+			String m_id = (String)session.getAttribute("m_id");
+			if(m_id == null) {
+				return "redirect:/member/login";
 				
 			}else {
 			log.info("-----update할 board정보 확인-----");
@@ -246,24 +209,82 @@ public class Board2Controller {
 			
 			model.addAttribute("board", board);
 			model.addAttribute("page", page);
-			} return "/board2/update";
+			} return "board2/update";
 		}
 		
 		//form에서 수정버튼을 누르면 작동하는 코드 작성 (update_process 리턴 필요)
 		@PostMapping("/update")
-		public String update(Board2VO board, PageDTO page, HttpSession session) {
-			String a_id = (String)session.getAttribute("a_id");
-			if(a_id == null) {
-				return "redirect:/admin/login";
+		public String update(HttpServletRequest request, PageDTO page, HttpSession session) {
+			Board2VO board = new Board2VO();
+			String m_id = (String)session.getAttribute("m_id");
+			if(m_id == null) {
+				return "redirect:/member/login";
 				
 			}else {
-			log.info("---------앞에서 받아온 update할 데이터 확인----------");
-			log.info(board);
-			service.update(board);
-			//문자열 안에서 띄워쓰기는 그대로 반영되기때문에 안되지만, 문자열 외 값을 가져오는 문법에서의 띄워쓰기는 괜찮음.	
+			//enctype="multipart/form-data" 형식일때는 일반가방으로 받지 못하므로, 파일업로드 메서드를 써주어야 함.
+			DiskFileUpload upload = new DiskFileUpload();
+			//board가방을 만들어주고
+			
+			try {
+				//List형식의 변수를 만들어 request로 받아오는 정보들을 upload 시켜준다.
+				List items = upload.parseRequest(request);
+				//items에 list형식으로 담긴 정보들을 반복자를 사용하여 params에 저장
+				Iterator params = items.iterator();
+				
+				//자료 저장소 생성
+				String filepath = "C:\\myWorkspace\\learnJSP\\pds";
+				
+				while(params.hasNext()) {
+					//params에 담긴 것들을 다음 파일이 없을때까지 FileItem형식으로 item 변수에 저장 
+					FileItem item = (FileItem)params.next();
+					
+					//만약 item에 담긴게 폼 형태라면, 이름과 밸류를 가져오고
+					if(item.isFormField()) {
+						String fieldname = item.getFieldName();
+						String fieldvalue = item.getString("utf-8");
+						log.info(fieldname+" : "+fieldvalue);
+						
+						if(fieldname.equals("b_num")) {
+							board.setB_num(Integer.parseInt(fieldvalue));
+						}else if (fieldname.equals("b_subject")) {
+							board.setB_subject(fieldvalue);
+						}else if (fieldname.equals("b_contents")) {
+							board.setB_contents(fieldvalue);
+						}else if(fieldname.equals("b_name")) {
+							board.setB_name(fieldvalue);
+						}else if(fieldname.equals("b_fileold")) {
+							board.setB_file(fieldvalue);
+						}
+					} else {
+						String fname = item.getName();
+						log.info("바이너리 파일이름 : " + fname);
+						if (fname != "") {
+							File file = new File(filepath + "/" + fname);
+							board.setB_file(fname);
+							item.write(file);
+						}
+					}
+				} // end of while
+					service.update(board);
+					
+			}catch(Exception e) {
+				System.out.println(e);
 			}
-			return "redirect:/board2/view?b_num=" + board.getB_num() + "&pageNum=" + page.getPageNum();		
+			service.update(board);
+			}
+			return "redirect:/board2/view?b_num="+board.getB_num() + "&pageNum=" + page.getPageNum();		
 		}
 		
+		@GetMapping("/delete")
+		public String delete(Board2VO board, HttpSession session) {
+			String m_id = (String)session.getAttribute("m_id");
+			if(m_id == null) {
+				return "redirect:/member/login";
+			} else {
+				log.info("삭제할 게시글"+board);
+				service.delete(board);
+			
+			} 	return "redirect:/board2/list";
+		}
 }
 		

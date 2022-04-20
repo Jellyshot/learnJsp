@@ -31,6 +31,10 @@
                              <td>${member.m_phone}</td>
                          </tr>
                          <tr>
+                         	<th>주소</th>
+                         	<td>${member.m_address01} &nbsp; ${member.m_address02 }</td>
+                         </tr>
+                         <tr>
                          	<th>가입일</th>
                              <td>${member.m_rdate}</td>
                         </tr>

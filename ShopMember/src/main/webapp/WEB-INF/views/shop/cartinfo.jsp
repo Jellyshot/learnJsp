@@ -12,6 +12,9 @@
 				<header class="major">
 					<span class="date">${serverTime}</span>
 					<h1>${m_id}님의 장바구니</h1>
+					<ul class="actions">
+					<li><a href="/" class="button primary">쇼핑 계속하기</a></li>
+					</ul>
 				</header>
 				<table>
 					<thead>
@@ -69,8 +72,8 @@
 				<div class="actions">
 					<c:if test="${not empty cm_code}">
 						<a href="/shop/cartdeleteall?cm_code=${cm_code}" class="button">전체삭제</a>
-						<a href="/shop/address?cm_code=${cm_code}" class="button">배송지 입력</a>
-					<%-- <a href="/shop/orderinfo?cm_code=${cm_code}" class="button">주문하기</a> --%>
+					
+					 <a href="/shop/orderinfo?cm_code=${cm_code}" class="button primary">주문하기</a>
 					</c:if> 
 				</div>
 			</section>

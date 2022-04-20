@@ -18,9 +18,9 @@ public class OrdermanageDTO {
 	private int p_price;
 	private int os_price; //상품별 금액
 	private String m_phone; 
-	private String a_address01; // 배송주소
-	private String a_address02; // 배송주소
-	private String a_zipcode; //우편번호
+	private String m_address01; // 배송주소
+	private String m_address02; // 배송주소
+	private String m_zipcode; //우편번호
 	
 	
 }

@@ -12,6 +12,7 @@
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_SIZE" value="true"/>
 		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_LOCATION" value="false"/>
 		<list key="orderedElements">
+			<item value="/HRService/hr.sql"/>
 			<item value="/MySpring/shop.sql"/>
 			<item value="/MySpring/src/main/java/com/it/service/CartServiceImpl.java"/>
 			<item value="/MySpring/src/main/java/com/it/domain/PageviewDTO.java"/>
@@ -25,7 +26,6 @@
 			<item value="/MySpring/src/main/java/com/it/domain/OrdermemberDTO.java"/>
 			<item value="/MySpring/src/main/resources/com/it/mapper/CartMapper.xml"/>
 			<item value="/MySpring/src/main/java/com/it/service/OrderService.java"/>
-			<item value="/MySpring/src/main/java/com/it/controller/MemberController.java"/>
 			<item value="org.eclipse.wst.server.ui.ServersView"/>
 			<item value="org.eclipse.ui.views.ContentOutline"/>
 		</list>
@@ -48,11 +48,11 @@
 			<item value="org.eclipse.e4.ui.parts"/>
 		</list>
 		<list key="textEntries">
-			<item value="2"/>
-			<item value="2"/>
-			<item value="2"/>
-			<item value="2"/>
 			<item value="1"/>
+			<item value="2"/>
+			<item value="2"/>
+			<item value="2"/>
+			<item value="2"/>
 			<item value="1"/>
 			<item value="1"/>
 			<item value="1"/>
@@ -66,8 +66,9 @@
 			<item value="2"/>
 		</list>
 		<list key="textArray">
-			<item value="sho"/>
+			<item value="hr.sq"/>
 			<item value="sh"/>
+			<item value="sho"/>
 			<item value="cartser"/>
 			<item value="cartse"/>
 			<item value="pageview"/>
@@ -83,7 +84,6 @@
 			<item value="orderme"/>
 			<item value="cartmapper"/>
 			<item value="orderser"/>
-			<item value="memberc"/>
 			<item value="server"/>
 			<item value="outline"/>
 			<item value="outli"/>

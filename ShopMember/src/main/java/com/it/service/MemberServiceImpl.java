@@ -36,6 +36,12 @@ public class MemberServiceImpl implements MemberService{
 		mapper.update(member);
 	}
 	@Override
+	public void adupdate(MemberVO member) {
+		mapper.adupdate(member);
+	}
+	
+	
+	@Override
 	public void delete(MemberVO member) {
 		mapper.delete(member);
 	}

@@ -74,6 +74,11 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	@Override
+	public List<OrdermainVO> readcmcode(OrdermainVO ordermain) {
+		return ordermapper.readcmcode(ordermain);
+	} 
+	
+	@Override
 	public OrdermemberDTO getOrderTotal(OrdermainVO ordermain) {
 		return ordermapper.getOrderTotal(ordermain);
 	}
@@ -83,6 +88,18 @@ public class OrderServiceImpl implements OrderService{
 		return ordermapper.ordermanage(ordermain);
 	}
 	
-	
+	@Override
+	public void deleteid(OrdermainVO ordermain) {
+//		1. ID값을 ordermain에 set시킴(컨트롤러에서 해줌)
+			
+//		2. om_code값을 구하여 ordersub 데이터를 delete
+		List<OrdermainVO> items = ordermapper.readcmcode(ordermain);
+			for(OrdermainVO e : items) {
+//				ordermapper.deletesuball(ordermain);
+				ordermapper.deletesuball(e);
+			};
+//		3. ordermain의 데이터를 delete
+			ordermapper.deletemainall(ordermain);
+	}
 	
 }

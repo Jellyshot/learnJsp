@@ -10,7 +10,10 @@ public interface MemberService {
 	public List<MemberVO> getList(PageDTO page);
 	public void insert(MemberVO member);
 	public MemberVO read(MemberVO member);
+	
 	public void update(MemberVO member);
+	public void adupdate(MemberVO member);
+	
 	public void delete(MemberVO member);
 	
 	public boolean login(MemberVO member);

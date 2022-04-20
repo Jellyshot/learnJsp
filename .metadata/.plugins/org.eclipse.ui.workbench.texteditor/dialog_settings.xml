@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="delete"/>
+		<item key="selection" value="notice"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="delete"/>
-			<item value="getcart"/>
-			<item value="a_id"/>
-			<item value="html"/>
-			<item value="signin"/>
-			<item value="root"/>
-			<item value="ROOT"/>
-			<item value="admin"/>
+			<item value="board"/>
+			<item value="notice"/>
+			<item value="member"/>
+			<item value="sales"/>
+			<item value="asset"/>
+			<item value="src=&quot;assets"/>
+			<item value="href=&quot;assets"/>
+			<item value="c_"/>
 		</list>
 		<list key="replacehistory">
-			<item value="m_id"/>
-			<item value="member"/>
-			<item value="resources"/>
-			<item value="/resource"/>
-			<item value="m_"/>
-			<item value="n_"/>
-			<item value="notice.n_"/>
 			<item value="notice"/>
+			<item value="address"/>
+			<item value="src=&quot;/resources"/>
+			<item value="href=&quot;/resources"/>
+			<item value="a_"/>
+			<item value="attendance"/>
+			<item value="a_category"/>
+			<item value="c_"/>
 		</list>
 	</section>
 </section>

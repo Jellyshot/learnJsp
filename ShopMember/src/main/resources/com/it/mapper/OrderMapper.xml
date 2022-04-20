@@ -17,7 +17,11 @@
 	<!-- 읽어오기 -->
 	<!-- m_id를 가지고 ordermain의 결과값을 검색하는 쿼리 -->
 	<select id="readMainid" resultType="com.it.domain.OrdermainVO">
-		SELECT * FROM tblordermain WHERE m_id = #{m_id} Order by om_code desc limit 1
+		SELECT * FROM tblordermain WHERE m_id = #{m_id} Order by om_code DESC limit 1;
+	</select>
+	
+		<select id="readcmcode" resultType="com.it.domain.OrdermainVO">
+		SELECT * FROM tblordermain WHERE m_id = #{m_id} Order by om_code
 	</select>
 	
 	
@@ -51,7 +55,8 @@
 		FROM tblordermain as om 
 		INNER JOIN tblordersub AS os ON om.om_code = os.om_code
 		INNER JOIN tblproduct AS p ON p.p_code = os.p_code
-		INNER JOIN tblmember AS m ON m.m_id = '${m_id}' 
+        INNER JOIN tblmember AS m ON om.m_id = m.m_id
+		WHERE m.m_id = #{m_id}
 	</select>
 	
 	<update id="statusupdate">
@@ -62,5 +67,12 @@
 	<select id="getTotalCount" resultType="int">
 		SELECT count(om_code) FROM tblordermain 
 	</select>
+	
+	<delete id="deletesuball">
+		DELETE FROM tblordersub WHERE om_code = #{om_code}
+	</delete>
+	<delete id="deletemainall">
+		DELETE FROM tblordermain WHERE m_id = #{m_id}
+	</delete>
 	
 </mapper>

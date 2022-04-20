@@ -3,4 +3,5 @@
 <aop-project name="MySpring"/>
 <aop-project name="ShopMember"/>
 <aop-project name="ShopAdmin"/>
+<aop-project name="HRService"/>
 </aop-reference-model>

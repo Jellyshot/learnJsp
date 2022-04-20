@@ -5,23 +5,19 @@
 <%@ include file="../include/header.jsp"%>
 
 
+<div id="main">
+	<section class="post">
+		<header class="major">
+			<span class="date">${serverTime}</span>
+			<h1>자유게시판</h1>
+			<c:if test="${m_id != null}">
+			<ul class="actions">
+				<li><a href="/board2/insert"  class="button" >게시판 글쓰기</a></li>
+				<li><a href="/board2/list"  class="button" >게시판 리스트</a></li>
+			</ul>
+			</c:if>
+		</header>
 
-<div id="layoutSidenav_content">
-    <main>
-      <div class="container-fluid px-4">
-          <h1 class="mt-4">Tables</h1>
-          <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item"><a href="index.html">View Detail</a></li>
-              <li class="breadcrumb-item active">Tables</li>
-           
-		<a class="btn btn-primary mb-3 btn-block" href="/board2/list?pageNum=${page.pageNum}" role="button">List</a>
-          </ol>
-             <div class="card mb-4">
-                <div class="card-header">
-                   <i class="fas fa-table me-1"></i>
-                     DataTable Example
-                </div>
-      	        <div class="card-body">
                   <table id="datatablesSimple">
                       
                           <tr>
@@ -32,36 +28,33 @@
                           </tr>
                           <tr>
                              <th>Subject</th>
-                             <td>${board.b_subject}</td>
+                             <td colspan="3">${board.b_subject}</td>
                          </tr>
                          <tr>
-                              <th collaspe="2">Contents</th>
+                              <th colspan="4">Contents</th>
                          </tr>
                          <tr>
-                             <td collaspe="2">${board.b_contents}</td>
+                             <td colspan="4">${board.b_contents}</td>
                         </tr>
 			             <tr>
                              <th>Date</th>
-                             <td>${board.b_date}</td>
+                             <td colspan="3">${board.b_date}</td>
                          </tr>
                          <tr>
                          	<th>첨부파일</th>
-                             <td>${board.b_file}</td>
+                         
+                             <td colspan="3"><a href="/board2/downLoad?b_num=${board.b_num}">${board.b_file}</a></td>
                           </tr>
                           
                     </table>
-                       <div class="mt-4 mb-0">
-                               
-							<a href="/board2/update?b_num=${board.b_num}&pageNum=${page.pageNum}" class="btn btn-primary btn-lg">[수정]</a>
-							<a href="/board2/delete?b_num=${board.b_num}" class="btn btn-primary btn-lg">[삭제]</a>
-						
-                          </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-</div>
-        </div>
+                    <c:if test="${board.b_name == m_id}">
+                       <div class="action">
+							<a href="/board2/update?b_num=${board.b_num}&pageNum=${page.pageNum}" class="button primary">[수정]</a>
+							<a href="/board2/delete?b_num=${board.b_num}" class="button">[삭제]</a>
+                       </div>
+                    </c:if>
+	</section>                         
+ </div>
 
 
 

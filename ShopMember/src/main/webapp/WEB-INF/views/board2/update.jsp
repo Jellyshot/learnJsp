@@ -6,54 +6,50 @@
 
 
  
-<div id="layoutSidenav_content">        
-	
-         <main>
-           <div class="container">
-               <div class="row justify-content-center">
-                   <div class="col-lg-7">
-                       <div class="card shadow-lg border-0 rounded-lg mt-5">
-                           <div class="card-header"><h3 class="text-center font-weight-light my-4">Update Board2</h3></div>
-                           <div class="card-body">
-   
-							<a class="btn btn-primary mb-3" href="/board2/list" role="button">List</a>
+<div id="main">
+	<section class="post">
+		<header class="major">
+			<span class="date">${serverTime}</span>
+			<h1>자유게시판</h1>
+			<c:if test="${m_id != null}">
+			<ul class="actions">
+				<li><a href="/board2/insert"  class="button" >게시판 글쓰기</a></li>
+			</ul>
+			</c:if>
+		</header>
 
-                               <form action="/board2/update?pageNum=${page.pageNum}" method="post" enctype="multipart/form-data">
-                                 <div class="row mb-3 md-6">
+                <form action="/board2/update?pageNum=${page.pageNum}" method="post" enctype="multipart/form-data">
+                  <div class="row mb-3 md-6">
+                          <div class="col-12">
+                              <label>No.</label>
+                              <input class="form-control mb-3" type="text" name="b_num" value="${board.b_num}" readonly/>
+                     	</div>	                                                
+                          <div class="col-12">
+                              <label>작성자</label>
+                              <input class="form-control mb-3" type="text" name="b_name" value="${board.b_name}" readonly/>
+                     	</div>	
 
-                                         <div class="form-floating mb-3 mb-md-0">
-                                             <input class="form-control mb-3" id="inputFirstName" type="text" name="b_num" value="${board.b_num}" readonly/>
-                                             <label for="inputFirstName">No.</label>
-                                    	</div>	                                                
-                                         <div class="form-floating mb-3 mb-md-0">
-                                             <input class="form-control mb-3" id="inputFirstName" type="text" name="b_name" value="${board.b_name}" readonly/>
-                                             <label for="inputFirstName">Name</label>
-                                    	</div>	
-
-                                         <div class="form-floating mb-3 mb-md-0 ">
-                                             <input class="form-control mb-3" id="inputLastName" type="text" value="${board.b_subject}" name="b_subject" />
-                                             <label for="inputLastName">Subject</label>
-                                         </div>
-
-                                 </div>
-                                 <div class="form-floating mb-3 mb-md-0">
-								<p>Contents</p>
-								<textarea rows="5" class="d-grid mb-3" name="b_contents" style="width:100%">${board.b_contents}</textarea>
-                                <input class="form-control mb-3" id="inputPassword" type="file" value="${board.b_file}" name="b_file" />
-                                 </div>
-                                 <div class="mt-4 mb-0">
-                                 <div class="d-grid">
-                                 	<button type="submit" class="btn btn-primary btn-block">Update</button>
-                              	</div>
-                                 </div>
-                             </form>
-                         </div>
-                     </div>
-                 </div>
-             </div>
+                          <div class="col-12">
+                              <label>제목</label>
+                              <input class="form-control mb-3" type="text" value="${board.b_subject}" name="b_subject" />
+                          </div>
+                   </div>
+                   <label>내용</label>
+                   <div class="form-floating mb-3 mb-md-0">
+					<textarea rows="5" class="d-grid mb-3" name="b_contents" style="width:100%">${board.b_contents}</textarea>
+                  </div>
+                  <div class="form-floating mb-3 mb-md-0">
+                  	<label>첨부된 파일</label>
+                  	<input type="text" class="form-control mb-3" name="b_fileold" value="${board.b_file}" readonly>
+               	</div>
+                 	<input class="form-control mb-3" id="inputPassword" type="file" name="b_file" />
+                  <div class="actions">
+                  	<input type="submit" class="button primary" value="수정" />
+                  	<input type="button" class="button" value="취소" onclick="history.back(-1)">
+                  </div>
+              </form>
+        	</section>            
          </div>
-     </main>
- </div>
 
 
 

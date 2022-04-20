@@ -16,9 +16,15 @@ public interface OrderMapper {
 	
 	public OrdermainVO readMainid(OrdermainVO ordermain);
 	
+	public List<OrdermainVO> readcmcode(OrdermainVO ordermain);
+		
 	public List<OrderdetailDTO>getListOrderDetail(OrdermainVO ordermain);
 	
 	public OrdermemberDTO getOrderTotal(OrdermainVO ordermain);
 
 	public List<OrdermanageDTO> ordermanage(OrdermainVO ordermain);
+	
+	public void deletesuball(OrdermainVO ordermain);
+	
+	public void deletemainall(OrdermainVO ordermain);
 }

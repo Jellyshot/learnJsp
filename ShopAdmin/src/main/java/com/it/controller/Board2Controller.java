@@ -253,18 +253,65 @@ public class Board2Controller {
 		
 		//form에서 수정버튼을 누르면 작동하는 코드 작성 (update_process 리턴 필요)
 		@PostMapping("/update")
-		public String update(Board2VO board, PageDTO page, HttpSession session) {
-			String a_id = (String)session.getAttribute("a_id");
-			if(a_id == null) {
-				return "redirect:/admin/login";
+		public String update(HttpServletRequest request, PageDTO page, HttpSession session) {
+			Board2VO board = new Board2VO();
+			String m_id = (String)session.getAttribute("m_id");
+			if(m_id == null) {
+				return "redirect:/member/login";
 				
 			}else {
-			log.info("---------앞에서 받아온 update할 데이터 확인----------");
-			log.info(board);
-			service.update(board);
-			//문자열 안에서 띄워쓰기는 그대로 반영되기때문에 안되지만, 문자열 외 값을 가져오는 문법에서의 띄워쓰기는 괜찮음.	
+			//enctype="multipart/form-data" 형식일때는 일반가방으로 받지 못하므로, 파일업로드 메서드를 써주어야 함.
+			DiskFileUpload upload = new DiskFileUpload();
+			//board가방을 만들어주고
+			
+			try {
+				//List형식의 변수를 만들어 request로 받아오는 정보들을 upload 시켜준다.
+				List items = upload.parseRequest(request);
+				//items에 list형식으로 담긴 정보들을 반복자를 사용하여 params에 저장
+				Iterator params = items.iterator();
+				
+				//자료 저장소 생성
+				String filepath = "C:\\myWorkspace\\learnJSP\\pds";
+				
+				while(params.hasNext()) {
+					//params에 담긴 것들을 다음 파일이 없을때까지 FileItem형식으로 item 변수에 저장 
+					FileItem item = (FileItem)params.next();
+					
+					//만약 item에 담긴게 폼 형태라면, 이름과 밸류를 가져오고
+					if(item.isFormField()) {
+						String fieldname = item.getFieldName();
+						String fieldvalue = item.getString("utf-8");
+						log.info(fieldname+" : "+fieldvalue);
+						
+						if(fieldname.equals("b_num")) {
+							board.setB_num(Integer.parseInt(fieldvalue));
+						}else if (fieldname.equals("b_subject")) {
+							board.setB_subject(fieldvalue);
+						}else if (fieldname.equals("b_contents")) {
+							board.setB_contents(fieldvalue);
+						}else if(fieldname.equals("b_name")) {
+							board.setB_name(fieldvalue);
+						}else if(fieldname.equals("b_fileold")) {
+							board.setB_file(fieldvalue);
+						}
+					} else {
+						String fname = item.getName();
+						log.info("바이너리 파일이름 : " + fname);
+						if (fname != "") {
+							File file = new File(filepath + "/" + fname);
+							board.setB_file(fname);
+							item.write(file);
+						}
+					}
+				} // end of while
+					service.update(board);
+					
+			}catch(Exception e) {
+				System.out.println(e);
 			}
-			return "redirect:/board2/view?b_num=" + board.getB_num() + "&pageNum=" + page.getPageNum();		
+			service.update(board);
+			}
+			return "redirect:/board2/view?b_num="+board.getB_num() + "&pageNum=" + page.getPageNum();		
 		}
 		
 }

@@ -47,12 +47,12 @@
 	
 	<select id="ordermanage" resultType="com.it.domain.OrdermanageDTO">
 		SELECT om.om_code, om_rdate, om.m_id, m.m_name, om_status, os.p_code, 
-		       p.p_name, os_cnt, p_price, os_cnt*p_price as os_price, m_phone, a_address01, a_address02, a_zipcode
+		       p.p_name, os_cnt, p_price, os_cnt*p_price as os_price, m_phone, m_address01, m_address02, m_zipcode
 		FROM tblordermain as om 
 		INNER JOIN tblordersub AS os ON om.om_code = os.om_code
 		INNER JOIN tblproduct AS p ON p.p_code = os.p_code
-		INNER JOIN tbladdress AS a ON a.m_id = om.m_id
-		INNER JOIN tblmember AS m ON m.m_id = om.m_id
+	  	INNER JOIN tblmember AS m ON om.m_id = m.m_id
+		
 		 
 	</select>
 	

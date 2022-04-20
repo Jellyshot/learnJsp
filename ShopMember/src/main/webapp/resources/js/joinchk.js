@@ -6,6 +6,9 @@ function joinchk() {
 	let m_passwd = document.getElementById("demo-passwd");
 	let m_cpasswd = document.getElementById("demo-cpasswd");
 	let m_phone = document.getElementById("demo-phone");
+	let m_zipcode = document.getElementById("sample6_postcode");
+	let m_address01 = document.getElementById("sample6_address");
+	let m_address02 = document.getElementById("sample6_detailAddress");
 	
 	if (m_id.value == ""){
 		alert("아이디를 입력하세요");
@@ -50,7 +53,7 @@ function joinchk() {
 	if(m_phone.value == ""){
 		alert("전화번호를 입력해 주세요");
 		m_phone.focus()	;
-		return false
+		return false;
 	}
 	
 	let phoneCheck = /^[0-9]{10,11}$/;
@@ -60,7 +63,26 @@ function joinchk() {
 		return false;
 	}
 	
-	alert("회원가입을 축하합니다");
+	if(m_zipcode.value == ""){
+		alert("우편번호를 입력해 주세요");
+		m_zipcode.focus();
+		return false;
+	}
+	
+	if(m_address01.value == ""){
+		alert("주소를 입력해 주세요");
+		m_address01.focus();
+		return false;
+	}
+	
+	if(m_address02.value ==""){
+		alert("상세주소를 입력해 주세요");
+		m_address02.focus();
+		return false;
+	}
+	
+	
+	/*alert("회원가입에 성공하였습니다.");*/
 	document.join_form.submit();	
 		
 	

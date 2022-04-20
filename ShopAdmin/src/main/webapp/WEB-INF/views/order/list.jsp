@@ -61,8 +61,8 @@
 		                          <th>${ordermanage.p_price}</th>
 		                          <th>${ordermanage.os_price}</th>
 		                          <th>${ordermanage.m_phone}</th>
-		                          <th>${ordermanage.a_address01} ${ordermanage.a_address02}</th>
-		                          <th>${ordermanage.a_zipcode}</th>
+		                          <th>${ordermanage.m_address01} ${ordermanage.m_address02}</th>
+		                          <th>${ordermanage.m_zipcode}</th>
                                   <td><form action="/order/update?om_code=${ordermanage.om_code}" method="post">
                                   	<select name="om_status">
 <%--                                   	<c:choose>
@@ -100,12 +100,6 @@
                                   	</select>	
                                   	<input type="submit" value="수정" />
                                   </form></td>
-                                  <td><a href="/order/view?b_num=${board.b_num}&pageNum=${pageview.page.pageNum}">삭제</a></td>
-                                  <td>${board.b_subject}</a></td>
-                                  <!-- pageview.page.pageNum pageview안에 page라는 객체의 pageNum이라는 뜻 -->
-                                  <td>${om.b_name}</td>
-					          	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.b_date}" /></td>
-					          <!-- 작성일 부분은 길어지기 때문에 formating 실시 -->
 					         </tr>
 					            </c:forEach>
 	                  	</tbody>
